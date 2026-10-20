@@ -1700,5 +1700,49 @@ a{
      整段替換即可。
 ===================================================== -->
 
+<!-- ==========================================
+     【龍淵天堂 V5 背景圖片 開始】
+
+     圖片名稱：longyuan-bg.png
+     作用：首頁黑龍城堡背景
+     不影響隕石及火苗特效
+========================================== -->
+
+<style id="ly-background-v5">
+
+/* 【01】首頁背景圖片 */
+.hero{
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(4,10,20,.30),
+      rgba(4,10,20,.48)
+    ),
+    url("longyuan-bg.png")
+    center center / cover no-repeat;
+}
+
+/* 【02】標題保持清楚 */
+.hero-content{
+  position:relative;
+  z-index:3;
+}
+
+/* 【03】手機版背景 */
+@media(max-width:600px){
+  .hero{
+    background-position:center center;
+  }
+}
+
+</style>
+
+<!-- ==========================================
+     【龍淵天堂 V5 背景圖片 結束】
+
+     以後要更換背景：
+     只需更換 longyuan-bg.png
+========================================== -->
+
 </body>
 </html>
