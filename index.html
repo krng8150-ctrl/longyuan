@@ -1325,5 +1325,380 @@ a{
      請勿刪除上面的首頁主程式。
 ===================================================== -->
 
+<!-- =====================================================
+     龍淵天堂官方網站
+     【V4 微微飄浮火苗特效 開始】
+
+     功能：
+     1. 小火苗緩緩向上飄
+     2. 左右輕微搖晃
+     3. 橘紅色餘燼忽明忽暗
+     4. 自動適應電腦與手機
+     5. 不影響原本 V3 隕石特效
+
+     貼上位置：
+     index.html 最下面的 </body> 正上方
+
+     以後要修改火苗：
+     只替換本區塊，不要重複貼上。
+===================================================== -->
+
+<style id="ly-floating-fire-v4-css">
+
+/* =====================================
+   【火苗 01】特效容器
+===================================== */
+
+#ly-floating-fire-v4{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:2;
+}
+
+/* =====================================
+   【火苗 02】微微飄浮火苗
+===================================== */
+
+.ly-v4-flame{
+  position:absolute;
+  bottom:-35px;
+
+  width:var(--flame-size,9px);
+  height:calc(var(--flame-size,9px) * 2.1);
+
+  border-radius:65% 25% 65% 40%;
+
+  background:linear-gradient(
+    to top,
+    #ff4b12 0%,
+    #ff8a20 35%,
+    #ffd276 70%,
+    rgba(255,236,164,0) 100%
+  );
+
+  box-shadow:
+    0 0 8px rgba(255,100,20,.7),
+    0 0 18px rgba(255,65,0,.25);
+
+  filter:blur(.6px);
+
+  opacity:0;
+
+  transform:rotate(35deg);
+
+  animation:
+    ly-v4-flame-rise
+    var(--flame-duration,8s)
+    ease-in-out
+    var(--flame-delay,0s)
+    infinite;
+
+  will-change:transform,opacity;
+}
+
+/* =====================================
+   【火苗 03】火苗上升動畫
+===================================== */
+
+@keyframes ly-v4-flame-rise{
+
+  0%{
+    transform:
+      translate(0,0)
+      rotate(35deg)
+      scale(.65);
+    opacity:0;
+  }
+
+  15%{
+    opacity:.75;
+  }
+
+  35%{
+    transform:
+      translate(12px,-110px)
+      rotate(22deg)
+      scale(1);
+    opacity:.65;
+  }
+
+  60%{
+    transform:
+      translate(-9px,-225px)
+      rotate(43deg)
+      scale(.8);
+    opacity:.4;
+  }
+
+  85%{
+    transform:
+      translate(14px,-340px)
+      rotate(28deg)
+      scale(.5);
+    opacity:.15;
+  }
+
+  100%{
+    transform:
+      translate(4px,-420px)
+      rotate(35deg)
+      scale(.2);
+    opacity:0;
+  }
+
+}
+
+/* =====================================
+   【火苗 04】細小餘燼火星
+===================================== */
+
+.ly-v4-ember{
+  position:absolute;
+  bottom:-15px;
+
+  width:var(--ember-size,3px);
+  height:var(--ember-size,3px);
+
+  border-radius:50%;
+
+  background:#ffbf60;
+
+  box-shadow:
+    0 0 6px #ff9b31,
+    0 0 13px rgba(255,72,10,.55);
+
+  opacity:0;
+
+  animation:
+    ly-v4-ember-rise
+    var(--ember-duration,10s)
+    linear
+    var(--ember-delay,0s)
+    infinite;
+
+  will-change:transform,opacity;
+}
+
+/* =====================================
+   【火苗 05】餘燼上升動畫
+===================================== */
+
+@keyframes ly-v4-ember-rise{
+
+  0%{
+    transform:translate(0,0) scale(.5);
+    opacity:0;
+  }
+
+  15%{
+    opacity:.7;
+  }
+
+  40%{
+    transform:translate(16px,-140px) scale(1);
+    opacity:.8;
+  }
+
+  70%{
+    transform:translate(-12px,-280px) scale(.65);
+    opacity:.35;
+  }
+
+  100%{
+    transform:translate(8px,-440px) scale(.2);
+    opacity:0;
+  }
+
+}
+
+/* =====================================
+   【火苗 06】手機效果調整
+===================================== */
+
+@media(max-width:600px){
+
+  .ly-v4-flame{
+    filter:blur(.5px);
+  }
+
+  .ly-v4-ember{
+    box-shadow:0 0 7px rgba(255,110,30,.65);
+  }
+
+}
+
+/* =====================================
+   【火苗 07】尊重減少動畫設定
+===================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+  #ly-floating-fire-v4{
+    display:none!important;
+  }
+
+}
+
+</style>
+
+<script id="ly-floating-fire-v4-js">
+
+(function(){
+
+  "use strict";
+
+  /* =====================================
+     【火苗 08】防止重複產生
+  ===================================== */
+
+  if(document.getElementById("ly-floating-fire-v4")){
+    return;
+  }
+
+  /* =====================================
+     【火苗 09】尋找首頁主視覺
+  ===================================== */
+
+  const hero=document.querySelector(".hero");
+
+  if(!hero){
+    return;
+  }
+
+  /* =====================================
+     【火苗 10】建立特效容器
+  ===================================== */
+
+  const layer=document.createElement("div");
+
+  layer.id="ly-floating-fire-v4";
+  layer.setAttribute("aria-hidden","true");
+
+  hero.insertBefore(layer,hero.firstChild);
+
+  /* =====================================
+     【火苗 11】火苗數量設定
+
+     電腦：16 個火苗、22 個火星
+     手機：8 個火苗、12 個火星
+
+     以後想增加或減少數量，
+     修改這裡的數字即可。
+  ===================================== */
+
+  const isMobile=window.matchMedia(
+    "(max-width:600px)"
+  ).matches;
+
+  const flameCount=isMobile ? 8 : 16;
+  const emberCount=isMobile ? 12 : 22;
+
+  /* =====================================
+     【火苗 12】產生固定亂數
+
+     讓每顆火苗的位置與速度不同，
+     但不會因重新整理而亂跳。
+  ===================================== */
+
+  function seededRandom(seed){
+
+    const value=Math.sin(seed*127.1)*43758.5453;
+
+    return value-Math.floor(value);
+
+  }
+
+  /* =====================================
+     【火苗 13】建立小火苗
+  ===================================== */
+
+  for(let i=0;i<flameCount;i++){
+
+    const flame=document.createElement("span");
+
+    flame.className="ly-v4-flame";
+
+    const x=seededRandom(i+10)*100;
+    const size=5+seededRandom(i+30)*7;
+    const duration=7+seededRandom(i+50)*6;
+    const delay=-(seededRandom(i+70)*duration);
+
+    flame.style.left=x+"%";
+
+    flame.style.setProperty(
+      "--flame-size",
+      size+"px"
+    );
+
+    flame.style.setProperty(
+      "--flame-duration",
+      duration+"s"
+    );
+
+    flame.style.setProperty(
+      "--flame-delay",
+      delay+"s"
+    );
+
+    layer.appendChild(flame);
+
+  }
+
+  /* =====================================
+     【火苗 14】建立餘燼火星
+  ===================================== */
+
+  for(let i=0;i<emberCount;i++){
+
+    const ember=document.createElement("span");
+
+    ember.className="ly-v4-ember";
+
+    const x=seededRandom(i+110)*100;
+    const size=2+seededRandom(i+130)*3;
+    const duration=8+seededRandom(i+150)*8;
+    const delay=-(seededRandom(i+170)*duration);
+
+    ember.style.left=x+"%";
+
+    ember.style.setProperty(
+      "--ember-size",
+      size+"px"
+    );
+
+    ember.style.setProperty(
+      "--ember-duration",
+      duration+"s"
+    );
+
+    ember.style.setProperty(
+      "--ember-delay",
+      delay+"s"
+    );
+
+    layer.appendChild(ember);
+
+  }
+
+})();
+
+</script>
+
+<!-- =====================================================
+     【V4 微微飄浮火苗特效 結束】
+
+     名稱：龍淵天堂・飄浮火苗與餘燼
+     版本：V4
+
+     保留原本 V3 龍焰隕石雨。
+
+     以後修改火苗時：
+     從「V4 微微飄浮火苗特效 開始」
+     到「V4 微微飄浮火苗特效 結束」
+     整段替換即可。
+===================================================== -->
+
 </body>
 </html>
