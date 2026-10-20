@@ -1744,5 +1744,258 @@ a{
      只需更換 longyuan-bg.png
 ========================================== -->
 
+<!-- ==================================================
+     【龍淵天堂 V6 全站背景與特效 開始】
+
+     功能：
+     1. 黑龍城堡背景鋪滿整個網站
+     2. 背景固定，往下捲動仍然看得到
+     3. 隕石特效擴展到全畫面
+     4. 火苗特效擴展到全畫面
+     5. 保留原本首頁、公告及系統入口
+
+     貼上位置：
+     index.html 最下面 </body> 正上方
+
+     以後修改 V6：
+     整段替換，不要重複貼上
+================================================== -->
+
+<style id="ly-fullscreen-v6-css">
+
+/* ======================================
+   【01】整個網站背景
+====================================== */
+
+html{
+  min-height:100%;
+}
+
+body{
+  min-height:100vh;
+  background:#07111f !important;
+}
+
+/* ======================================
+   【02】黑龍城堡固定背景
+
+   圖片名稱：
+   longyuan-bg.png
+
+   圖片須與 index.html 同一層
+====================================== */
+
+body::before{
+  content:"" !important;
+
+  position:fixed !important;
+  inset:0 !important;
+
+  width:100% !important;
+  height:100vh !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3,9,20,.20),
+      rgba(3,9,20,.52)
+    ),
+    url("longyuan-bg.png")
+    center center / cover no-repeat !important;
+
+  z-index:-2 !important;
+
+  pointer-events:none !important;
+}
+
+/* ======================================
+   【03】移除原本的首頁局部背景
+====================================== */
+
+.hero{
+  background:transparent !important;
+}
+
+/* ======================================
+   【04】讓全站內容保持清楚
+====================================== */
+
+.nav{
+  position:sticky;
+  z-index:20;
+}
+
+main{
+  position:relative;
+  z-index:1;
+}
+
+.panel{
+  background:rgba(5,16,32,.78);
+  backdrop-filter:blur(5px);
+}
+
+/* ======================================
+   【05】全畫面特效容器
+
+   V3 隕石
+   V4 火苗
+====================================== */
+
+#ly-meteor-v3,
+#ly-floating-fire-v4{
+  position:fixed !important;
+
+  inset:0 !important;
+
+  width:100vw !important;
+  height:100vh !important;
+
+  overflow:hidden !important;
+
+  pointer-events:none !important;
+
+  z-index:2 !important;
+}
+
+/* ======================================
+   【06】讓特效不影響點擊
+====================================== */
+
+.hero-content,
+.nav,
+.panel,
+.footer{
+  position:relative;
+  z-index:3;
+}
+
+.nav{
+  position:sticky;
+  z-index:20;
+}
+
+/* ======================================
+   【07】手機版
+====================================== */
+
+@media(max-width:600px){
+
+  body::before{
+    background-position:center center !important;
+  }
+
+}
+
+/* ======================================
+   【08】減少動畫偏好
+====================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+  #ly-meteor-v3,
+  #ly-floating-fire-v4{
+    display:none !important;
+  }
+
+}
+
+</style>
+
+<script id="ly-fullscreen-v6-js">
+
+(function(){
+
+  "use strict";
+
+  /* ======================================
+     【09】把特效移到全站層級
+
+     原本在 .hero 裡面的特效，
+     移到 body 底下。
+
+     不重新建立特效，
+     避免重複產生。
+  ====================================== */
+
+  function moveEffects(){
+
+    const ids=[
+      "ly-meteor-v3",
+      "ly-floating-fire-v4"
+    ];
+
+    ids.forEach(function(id){
+
+      const effect=document.getElementById(id);
+
+      if(effect && effect.parentElement!==document.body){
+        document.body.appendChild(effect);
+      }
+
+    });
+
+  }
+
+  moveEffects();
+
+  /* ======================================
+     【10】重新設定隕石移動距離
+
+     使用整個螢幕的寬度與高度，
+     不再使用首頁主視覺的尺寸。
+  ====================================== */
+
+  function updateMeteorDistance(){
+
+    const elements=document.querySelectorAll(
+      "#ly-meteor-v3 .ly-v3-rock,"+
+      "#ly-meteor-v3 .ly-v3-spark,"+
+      "#ly-meteor-v3 .ly-v3-smoke"
+    );
+
+    const moveX=-(window.innerWidth+350);
+    const moveY=Math.round(window.innerHeight*.95);
+
+    elements.forEach(function(element){
+
+      element.style.setProperty(
+        "--move-x",
+        moveX+"px"
+      );
+
+      element.style.setProperty(
+        "--move-y",
+        moveY+"px"
+      );
+
+    });
+
+  }
+
+  updateMeteorDistance();
+
+  window.addEventListener(
+    "resize",
+    updateMeteorDistance,
+    {passive:true}
+  );
+
+})();
+
+</script>
+
+<!-- ==================================================
+     【龍淵天堂 V6 全站背景與特效 結束】
+
+     V3：隕石
+     V4：火苗
+     V5：背景圖片
+     V6：全畫面顯示
+
+     以後修改全站背景及特效範圍，
+     只需要替換這個區塊。
+================================================== -->
+
 </body>
 </html>
