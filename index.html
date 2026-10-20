@@ -6,9 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#07111f">
 <title>龍淵天堂｜官方網站</title>
+
 <style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   margin:0;
   font-family:"Microsoft JhengHei",Arial,sans-serif;
@@ -16,16 +23,31 @@ body{
   background:#07111f;
   overflow-x:hidden;
 }
+
 body:before{
   content:"";
   position:fixed;
   inset:0;
   z-index:-2;
   background:
-    radial-gradient(ellipse at 50% 12%,rgba(49,112,174,.34),transparent 55%),
-    radial-gradient(ellipse at 15% 75%,rgba(25,79,130,.2),transparent 50%),
-    linear-gradient(180deg,#07111f,#0a1b30 48%,#040b15);
+    radial-gradient(
+      ellipse at 50% 12%,
+      rgba(49,112,174,.34),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 15% 75%,
+      rgba(25,79,130,.2),
+      transparent 50%
+    ),
+    linear-gradient(
+      180deg,
+      #07111f,
+      #0a1b30 48%,
+      #040b15
+    );
 }
+
 body:after{
   content:"";
   position:fixed;
@@ -34,14 +56,32 @@ body:after{
   opacity:.13;
   pointer-events:none;
   background:repeating-linear-gradient(
-    135deg,transparent 0 90px,
+    135deg,
+    transparent 0 90px,
     rgba(146,202,255,.12) 91px,
     transparent 92px 180px
   );
 }
-a{color:inherit;text-decoration:none}
-button{font:inherit}
-.wrap{max-width:1180px;margin:auto;padding:0 20px}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{
+  font:inherit;
+}
+
+.wrap{
+  max-width:1180px;
+  margin:auto;
+  padding:0 20px;
+}
+
+/* =========================
+   頂部導覽列
+========================= */
+
 .nav{
   position:sticky;
   top:0;
@@ -50,6 +90,7 @@ button{font:inherit}
   border-bottom:1px solid rgba(163,213,255,.22);
   backdrop-filter:blur(12px);
 }
+
 .nav-inner{
   max-width:1180px;
   margin:auto;
@@ -59,6 +100,7 @@ button{font:inherit}
   justify-content:space-between;
   gap:18px;
 }
+
 .brand{
   font-size:27px;
   font-weight:900;
@@ -66,9 +108,25 @@ button{font:inherit}
   white-space:nowrap;
   text-shadow:0 0 18px #469de7;
 }
-.nav-links{display:flex;flex-wrap:wrap;gap:22px}
-.nav-links a{font-size:15px}
-.nav-links a:hover{color:#91d4ff}
+
+.nav-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:22px;
+}
+
+.nav-links a{
+  font-size:15px;
+}
+
+.nav-links a:hover{
+  color:#91d4ff;
+}
+
+/* =========================
+   首頁主視覺
+========================= */
+
 .hero{
   position:relative;
   min-height:480px;
@@ -78,7 +136,9 @@ button{font:inherit}
   text-align:center;
   overflow:hidden;
   padding:85px 20px;
+  isolation:isolate;
 }
+
 .hero:before{
   content:"";
   position:absolute;
@@ -92,13 +152,20 @@ button{font:inherit}
     inset 0 0 90px rgba(68,148,222,.08);
   animation:breathe 5s ease-in-out infinite alternate;
 }
-.hero-content{position:relative;z-index:1}
+
+.hero-content{
+  position:relative;
+  z-index:3;
+  pointer-events:auto;
+}
+
 .hero .eyebrow{
   color:#aedcff;
   font-size:14px;
   letter-spacing:8px;
   margin-bottom:20px;
 }
+
 .hero h1{
   margin:0;
   font-size:clamp(48px,8vw,96px);
@@ -109,53 +176,199 @@ button{font:inherit}
     0 0 30px #62b7ff,
     0 0 65px #2675c9;
 }
+
 .hero p{
   font-size:23px;
   letter-spacing:5px;
   margin:25px 0 34px;
   color:#d6edff;
 }
+
 .hero-actions{
   display:flex;
   justify-content:center;
   flex-wrap:wrap;
   gap:14px;
 }
+
 .btn{
   display:inline-block;
   border:1px solid #75bbef;
-  background:linear-gradient(135deg,#1d5b91,#0c2d52);
+  background:linear-gradient(
+    135deg,
+    #1d5b91,
+    #0c2d52
+  );
   padding:13px 30px;
   border-radius:9px;
   font-weight:bold;
   box-shadow:0 0 20px rgba(72,163,243,.18);
   transition:.2s;
 }
-.btn:hover{transform:translateY(-2px);filter:brightness(1.2)}
-.btn.secondary{background:rgba(6,22,40,.65)}
+
+.btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.2);
+}
+
+.btn.secondary{
+  background:rgba(6,22,40,.65);
+}
+
+/* =========================
+   燃燒隕石雨
+========================= */
+
 .meteor{
   position:absolute;
-  top:15%;
-  right:-10%;
-  width:150px;
-  height:2px;
-  background:linear-gradient(90deg,#fff,#80c9ff,transparent);
-  transform:rotate(-25deg);
-  box-shadow:0 0 14px #80c9ff;
-  animation:meteor 8s linear infinite;
+  top:12%;
+  right:-12%;
+  width:42px;
+  height:42px;
+  border-radius:48% 52% 57% 43%;
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      #ffe3a2 0%,
+      #ff8737 20%,
+      #a43b1e 48%,
+      #3c2929 75%
+    );
+  border:2px solid rgba(255,158,66,.8);
+  box-shadow:
+    0 0 16px #ff8c32,
+    0 0 35px rgba(255,72,14,.65),
+    inset -7px -7px 8px rgba(25,10,8,.7);
+  animation:meteorFall 9s linear infinite;
+  pointer-events:none;
+  z-index:2;
 }
-.meteor.two{top:45%;animation-delay:3s}
-@keyframes meteor{
-  0%{transform:translate(0,0) rotate(-25deg);opacity:0}
-  12%{opacity:1}
-  38%{transform:translate(-1000px,450px) rotate(-25deg);opacity:0}
-  100%{opacity:0}
+
+/* 隕石火焰尾巴 */
+
+.meteor::before{
+  content:"";
+  position:absolute;
+  left:100%;
+  top:50%;
+  width:135px;
+  height:28px;
+  transform:translateY(-50%);
+  transform-origin:left center;
+  border-radius:50%;
+  background:linear-gradient(
+    90deg,
+    #ffe6a0 0%,
+    rgba(255,139,25,.85) 20%,
+    rgba(255,66,10,.55) 55%,
+    transparent 100%
+  );
+  filter:blur(7px);
+  z-index:-1;
 }
+
+/* 岩石表面熔岩紋理 */
+
+.meteor::after{
+  content:"";
+  position:absolute;
+  inset:7px;
+  border-radius:45%;
+  background:
+    radial-gradient(
+      circle at 25% 30%,
+      rgba(255,218,123,.9),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 70% 65%,
+      rgba(60,22,18,.95),
+      transparent 45%
+    );
+  box-shadow:inset 2px 2px 6px rgba(0,0,0,.4);
+}
+
+/* 第二顆隕石 */
+
+.meteor.two{
+  top:40%;
+  width:29px;
+  height:29px;
+  animation-delay:3.2s;
+  animation-duration:11s;
+}
+
+/* 第三顆隕石 */
+
+.meteor.three{
+  top:23%;
+  width:24px;
+  height:24px;
+  animation-delay:6s;
+  animation-duration:13s;
+}
+
+/* 第四顆隕石 */
+
+.meteor.four{
+  top:58%;
+  width:35px;
+  height:35px;
+  animation-delay:8.5s;
+  animation-duration:12s;
+}
+
+/* 隕石墜落 */
+
+@keyframes meteorFall{
+  0%{
+    transform:translate(0,0) rotate(-25deg) scale(.65);
+    opacity:0;
+  }
+
+  7%{
+    opacity:1;
+  }
+
+  35%{
+    transform:translate(-950px,470px) rotate(-25deg) scale(1.05);
+    opacity:1;
+  }
+
+  45%{
+    transform:translate(-1250px,620px) rotate(-25deg) scale(1.2);
+    opacity:0;
+  }
+
+  100%{
+    transform:translate(-1250px,620px) rotate(-25deg) scale(1.2);
+    opacity:0;
+  }
+}
+
+/* 背景光暈呼吸 */
+
 @keyframes breathe{
-  from{opacity:.45;transform:scale(.95)}
-  to{opacity:1;transform:scale(1.05)}
+  from{
+    opacity:.45;
+    transform:scale(.95);
+  }
+  to{
+    opacity:1;
+    transform:scale(1.05);
+  }
 }
-.section{margin:0 auto 30px;max-width:1180px;padding:0 20px}
+
+/* =========================
+   首頁共用區塊
+========================= */
+
+.section{
+  margin:0 auto 30px;
+  max-width:1180px;
+  padding:0 20px;
+}
+
 .panel{
   background:rgba(5,16,32,.78);
   border:1px solid rgba(166,214,255,.2);
@@ -163,6 +376,7 @@ button{font:inherit}
   padding:27px;
   box-shadow:0 10px 40px rgba(0,0,0,.22);
 }
+
 .heading{
   margin:0 0 22px;
   padding-bottom:14px;
@@ -171,6 +385,11 @@ button{font:inherit}
   border-bottom:1px solid rgba(162,210,255,.18);
   text-shadow:0 0 13px rgba(101,187,255,.45);
 }
+
+/* =========================
+   最新公告
+========================= */
+
 .notice{
   display:flex;
   align-items:center;
@@ -179,15 +398,35 @@ button{font:inherit}
   border-bottom:1px solid rgba(153,208,255,.12);
   line-height:1.7;
 }
-.notice:last-child{border-bottom:0}
-.notice .symbol{font-size:21px}
-.notice .date{margin-left:auto;color:#9bb8ce;font-size:13px}
-.notice a:hover{color:#90d6ff}
+
+.notice:last-child{
+  border-bottom:0;
+}
+
+.notice .symbol{
+  font-size:21px;
+}
+
+.notice .date{
+  margin-left:auto;
+  color:#9bb8ce;
+  font-size:13px;
+}
+
+.notice a:hover{
+  color:#90d6ff;
+}
+
+/* =========================
+   遊戲特色
+========================= */
+
 .game-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:15px;
 }
+
 .game-card{
   padding:22px;
   border:1px solid rgba(165,216,255,.14);
@@ -195,30 +434,74 @@ button{font:inherit}
   border-radius:12px;
   text-align:center;
 }
-.game-card .ico{font-size:29px;margin-bottom:10px}
-.game-card h3{font-size:19px;margin:0 0 10px}
-.game-card p{font-size:14px;color:#bad5e9;line-height:1.8;margin:0}
+
+.game-card .ico{
+  font-size:29px;
+  margin-bottom:10px;
+}
+
+.game-card h3{
+  font-size:19px;
+  margin:0 0 10px;
+}
+
+.game-card p{
+  font-size:14px;
+  color:#bad5e9;
+  line-height:1.8;
+  margin:0;
+}
+
+/* =========================
+   系統入口
+========================= */
+
 .entry-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:13px;
 }
+
 .entry{
   padding:23px 12px;
   text-align:center;
-  background:linear-gradient(145deg,rgba(25,51,80,.8),rgba(7,22,42,.85));
+  background:linear-gradient(
+    145deg,
+    rgba(25,51,80,.8),
+    rgba(7,22,42,.85)
+  );
   border:1px solid rgba(158,210,255,.2);
   border-radius:12px;
   transition:.2s;
 }
+
 .entry:hover{
   transform:translateY(-3px);
   border-color:#85caff;
   box-shadow:0 0 20px rgba(73,160,242,.15);
 }
-.entry .ico{font-size:29px;margin-bottom:10px}
-.entry strong{display:block;font-size:17px}
-.entry small{display:block;color:#9dbdd6;margin-top:8px;font-size:12px}
+
+.entry .ico{
+  font-size:29px;
+  margin-bottom:10px;
+}
+
+.entry strong{
+  display:block;
+  font-size:17px;
+}
+
+.entry small{
+  display:block;
+  color:#9dbdd6;
+  margin-top:8px;
+  font-size:12px;
+}
+
+/* =========================
+   網站頁尾
+========================= */
+
 .footer{
   padding:38px 20px 50px;
   text-align:center;
@@ -226,39 +509,168 @@ button{font:inherit}
   font-size:13px;
   border-top:1px solid rgba(145,205,255,.1);
 }
+
+/* =========================
+   平板版
+========================= */
+
 @media(max-width:850px){
-  .nav-inner{flex-direction:column}
-  .nav-links{justify-content:center;gap:15px}
-  .game-grid{grid-template-columns:1fr}
-  .entry-grid{grid-template-columns:repeat(2,1fr)}
+
+  .nav-inner{
+    flex-direction:column;
+  }
+
+  .nav-links{
+    justify-content:center;
+    gap:15px;
+  }
+
+  .game-grid{
+    grid-template-columns:1fr;
+  }
+
+  .entry-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
+
+/* =========================
+   手機版
+========================= */
+
 @media(max-width:560px){
-  .brand{font-size:23px}
-  .nav-links{gap:12px}
-  .nav-links a{font-size:13px}
-  .hero{min-height:385px;padding:55px 14px}
-  .hero h1{letter-spacing:4px}
-  .hero p{font-size:16px;letter-spacing:2px}
-  .hero .eyebrow{font-size:11px;letter-spacing:3px}
-  .hero:before{width:310px;height:310px}
-  .panel{padding:19px}
-  .heading{font-size:22px}
-  .notice{flex-wrap:wrap}
-  .notice .date{width:100%;margin-left:33px}
-  .entry-grid{gap:9px}
-  .entry{padding:19px 8px}
-  .entry strong{font-size:15px}
+
+  .brand{
+    font-size:23px;
+  }
+
+  .nav-links{
+    gap:12px;
+  }
+
+  .nav-links a{
+    font-size:13px;
+  }
+
+  .hero{
+    min-height:385px;
+    padding:55px 14px;
+  }
+
+  .hero h1{
+    letter-spacing:4px;
+  }
+
+  .hero p{
+    font-size:16px;
+    letter-spacing:2px;
+  }
+
+  .hero .eyebrow{
+    font-size:11px;
+    letter-spacing:3px;
+  }
+
+  .hero:before{
+    width:310px;
+    height:310px;
+  }
+
+  .meteor{
+    width:28px;
+    height:28px;
+  }
+
+  .meteor::before{
+    width:85px;
+    height:18px;
+  }
+
+  .meteor.two{
+    width:20px;
+    height:20px;
+  }
+
+  .meteor.three{
+    width:16px;
+    height:16px;
+  }
+
+  .meteor.four{
+    width:24px;
+    height:24px;
+  }
+
+  @keyframes meteorFall{
+    0%{
+      transform:translate(0,0) rotate(-25deg) scale(.65);
+      opacity:0;
+    }
+    8%{
+      opacity:1;
+    }
+    40%{
+      transform:translate(-480px,260px) rotate(-25deg);
+      opacity:0;
+    }
+    100%{
+      opacity:0;
+    }
+  }
+
+  .panel{
+    padding:19px;
+  }
+
+  .heading{
+    font-size:22px;
+  }
+
+  .notice{
+    flex-wrap:wrap;
+  }
+
+  .notice .date{
+    width:100%;
+    margin-left:33px;
+  }
+
+  .entry-grid{
+    gap:9px;
+  }
+
+  .entry{
+    padding:19px 8px;
+  }
+
+  .entry strong{
+    font-size:15px;
+  }
 }
+
+/* 減少動畫偏好 */
 @media(prefers-reduced-motion:reduce){
-  *,*:before,*:after{animation:none!important;scroll-behavior:auto!important}
+  *,
+  *:before,
+  *:after{
+    animation:none!important;
+    scroll-behavior:auto!important;
+  }
 }
+
 </style>
 </head>
+
 <body>
 
+<!-- 頂部選單 -->
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="index.html">龍淵天堂</a>
+
+    <a class="brand" href="index.html">
+      龍淵天堂
+    </a>
+
     <nav class="nav-links" aria-label="主要選單">
       <a href="index.html">首頁</a>
       <a href="#announcements">公告</a>
@@ -267,126 +679,215 @@ button{font:inherit}
       <a href="#entries">下載專區</a>
       <a href="#entries">贊助專區</a>
     </nav>
+
   </div>
 </header>
 
 <main>
+
+  <!-- 首頁主視覺 -->
   <section class="hero">
+
+    <!-- 燃燒隕石雨 -->
     <div class="meteor"></div>
     <div class="meteor two"></div>
+    <div class="meteor three"></div>
+    <div class="meteor four"></div>
+
     <div class="hero-content">
-      <div class="eyebrow">LINEAGE · DRAGON REALM</div>
+
+      <div class="eyebrow">
+        LINEAGE · DRAGON REALM
+      </div>
+
       <h1>龍淵天堂</h1>
+
       <p>龍魂覺醒・傳奇再臨</p>
+
       <div class="hero-actions">
-        <a class="btn" href="#entries">探索遊戲</a>
-        <a class="btn secondary" href="#announcements">最新公告</a>
+
+        <a class="btn" href="#entries">
+          探索遊戲
+        </a>
+
+        <a class="btn secondary" href="#announcements">
+          最新公告
+        </a>
+
       </div>
+
     </div>
+
   </section>
 
+  <!-- 最新公告 -->
   <section class="section" id="announcements">
+
     <div class="panel">
-      <h2 class="heading">📢 最新公告</h2>
+
+      <h2 class="heading">
+        📢 最新公告
+      </h2>
+
       <div class="notice">
+
         <span class="symbol">📣</span>
-        <span>龍淵天堂官方網站建置中，最新資訊敬請期待。</span>
+
+        <span>
+          龍淵天堂官方網站建置中，最新資訊敬請期待。
+        </span>
+
       </div>
+
     </div>
+
   </section>
 
+  <!-- 遊戲特色 -->
   <section class="section">
+
     <div class="panel">
-      <h2 class="heading">遊戲特色</h2>
+
+      <h2 class="heading">
+        遊戲特色
+      </h2>
+
       <div class="game-grid">
+
         <div class="game-card">
+
           <div class="ico">🐉</div>
+
           <h3>龍族世界</h3>
-          <p>以龍淵天堂為主題的冒險世界。</p>
+
+          <p>
+            以龍淵天堂為主題的冒險世界。
+          </p>
+
         </div>
+
         <div class="game-card">
+
           <div class="ico">⚔️</div>
+
           <h3>裝備養成</h3>
-          <p>武器、防具與飾品介紹將依實際遊戲資料建立。</p>
+
+          <p>
+            武器、防具與飾品介紹將依實際遊戲資料建立。
+          </p>
+
         </div>
+
         <div class="game-card">
+
           <div class="ico">✦</div>
+
           <h3>轉生系統</h3>
-          <p>各職業轉生能力及詳細數值將陸續公開。</p>
+
+          <p>
+            各職業轉生能力及詳細數值將陸續公開。
+          </p>
+
         </div>
+
       </div>
+
     </div>
+
   </section>
 
+  <!-- 系統入口 -->
   <section class="section" id="entries">
+
     <div class="panel">
-      <h2 class="heading">系統入口</h2>
+
+      <h2 class="heading">
+        系統入口
+      </h2>
+
       <div class="entry-grid">
+
         <a class="entry" href="#announcements">
           <div class="ico">📢</div>
           <strong>最新公告</strong>
           <small>查看網站消息</small>
         </a>
+
         <a class="entry" href="#entries">
           <div class="ico">📖</div>
           <strong>遊戲介紹</strong>
           <small>敬請期待</small>
         </a>
+
         <a class="entry" href="#entries">
           <div class="ico">⚔️</div>
           <strong>武器介紹</strong>
           <small>敬請期待</small>
         </a>
+
         <a class="entry" href="#entries">
           <div class="ico">🛡️</div>
           <strong>防具介紹</strong>
           <small>敬請期待</small>
         </a>
+
         <a class="entry" href="#entries">
           <div class="ico">💎</div>
           <strong>飾品介紹</strong>
           <small>敬請期待</small>
         </a>
+
         <a class="entry" href="#entries">
           <div class="ico">✦</div>
           <strong>轉生系統</strong>
           <small>敬請期待</small>
         </a>
+
         <a class="entry" href="#entries">
           <div class="ico">🗺️</div>
           <strong>地圖掉落</strong>
           <small>敬請期待</small>
         </a>
+
         <a class="entry" href="#entries">
           <div class="ico">📥</div>
           <strong>下載專區</strong>
           <small>敬請期待</small>
         </a>
+
         <a class="entry" href="#entries">
           <div class="ico">🐲</div>
           <strong>古龍系列</strong>
           <small>敬請期待</small>
         </a>
+
         <a class="entry" href="#entries">
           <div class="ico">🎖️</div>
           <strong>徽章系統</strong>
           <small>敬請期待</small>
         </a>
+
         <a class="entry" href="#entries">
           <div class="ico">💬</div>
           <strong>官方社群</strong>
           <small>敬請期待</small>
         </a>
+
         <a class="entry" href="#entries">
           <div class="ico">🎁</div>
           <strong>贊助專區</strong>
           <small>敬請期待</small>
         </a>
+
       </div>
+
     </div>
+
   </section>
+
 </main>
 
+<!-- 網站頁尾 -->
 <footer class="footer">
   龍淵天堂 · 官方網站
 </footer>
