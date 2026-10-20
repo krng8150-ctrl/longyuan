@@ -5,9 +5,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#07111f">
+
 <title>龍淵天堂｜官方網站</title>
 
 <style>
+
+/* ========================================
+   【01】網站基本設定
+======================================== */
+
 *{
   box-sizing:border-box;
 }
@@ -24,7 +30,7 @@ body{
   overflow-x:hidden;
 }
 
-body:before{
+body::before{
   content:"";
   position:fixed;
   inset:0;
@@ -48,7 +54,7 @@ body:before{
     );
 }
 
-body:after{
+body::after{
   content:"";
   position:fixed;
   inset:0;
@@ -68,19 +74,9 @@ a{
   text-decoration:none;
 }
 
-button{
-  font:inherit;
-}
-
-.wrap{
-  max-width:1180px;
-  margin:auto;
-  padding:0 20px;
-}
-
-/* =========================
-   頂部導覽列
-========================= */
+/* ========================================
+   【02】頂部導覽列
+======================================== */
 
 .nav{
   position:sticky;
@@ -123,9 +119,9 @@ button{
   color:#91d4ff;
 }
 
-/* =========================
-   首頁主視覺
-========================= */
+/* ========================================
+   【03】首頁主視覺
+======================================== */
 
 .hero{
   position:relative;
@@ -139,7 +135,7 @@ button{
   isolation:isolate;
 }
 
-.hero:before{
+.hero::before{
   content:"";
   position:absolute;
   width:550px;
@@ -150,13 +146,23 @@ button{
     0 0 0 65px rgba(117,193,255,.025),
     0 0 100px rgba(56,151,244,.2),
     inset 0 0 90px rgba(68,148,222,.08);
-  animation:breathe 5s ease-in-out infinite alternate;
+  animation:lyBreathe 5s ease-in-out infinite alternate;
+}
+
+@keyframes lyBreathe{
+  from{
+    opacity:.45;
+    transform:scale(.95);
+  }
+  to{
+    opacity:1;
+    transform:scale(1.05);
+  }
 }
 
 .hero-content{
   position:relative;
   z-index:3;
-  pointer-events:auto;
 }
 
 .hero .eyebrow{
@@ -215,153 +221,9 @@ button{
   background:rgba(6,22,40,.65);
 }
 
-/* =========================
-   燃燒隕石雨
-========================= */
-
-.meteor{
-  position:absolute;
-  top:12%;
-  right:-12%;
-  width:42px;
-  height:42px;
-  border-radius:48% 52% 57% 43%;
-  background:
-    radial-gradient(
-      circle at 30% 30%,
-      #ffe3a2 0%,
-      #ff8737 20%,
-      #a43b1e 48%,
-      #3c2929 75%
-    );
-  border:2px solid rgba(255,158,66,.8);
-  box-shadow:
-    0 0 16px #ff8c32,
-    0 0 35px rgba(255,72,14,.65),
-    inset -7px -7px 8px rgba(25,10,8,.7);
-  animation:meteorFall 9s linear infinite;
-  pointer-events:none;
-  z-index:2;
-}
-
-/* 隕石火焰尾巴 */
-
-.meteor::before{
-  content:"";
-  position:absolute;
-  left:100%;
-  top:50%;
-  width:135px;
-  height:28px;
-  transform:translateY(-50%);
-  transform-origin:left center;
-  border-radius:50%;
-  background:linear-gradient(
-    90deg,
-    #ffe6a0 0%,
-    rgba(255,139,25,.85) 20%,
-    rgba(255,66,10,.55) 55%,
-    transparent 100%
-  );
-  filter:blur(7px);
-  z-index:-1;
-}
-
-/* 岩石表面熔岩紋理 */
-
-.meteor::after{
-  content:"";
-  position:absolute;
-  inset:7px;
-  border-radius:45%;
-  background:
-    radial-gradient(
-      circle at 25% 30%,
-      rgba(255,218,123,.9),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 70% 65%,
-      rgba(60,22,18,.95),
-      transparent 45%
-    );
-  box-shadow:inset 2px 2px 6px rgba(0,0,0,.4);
-}
-
-/* 第二顆隕石 */
-
-.meteor.two{
-  top:40%;
-  width:29px;
-  height:29px;
-  animation-delay:3.2s;
-  animation-duration:11s;
-}
-
-/* 第三顆隕石 */
-
-.meteor.three{
-  top:23%;
-  width:24px;
-  height:24px;
-  animation-delay:6s;
-  animation-duration:13s;
-}
-
-/* 第四顆隕石 */
-
-.meteor.four{
-  top:58%;
-  width:35px;
-  height:35px;
-  animation-delay:8.5s;
-  animation-duration:12s;
-}
-
-/* 隕石墜落 */
-
-@keyframes meteorFall{
-  0%{
-    transform:translate(0,0) rotate(-25deg) scale(.65);
-    opacity:0;
-  }
-
-  7%{
-    opacity:1;
-  }
-
-  35%{
-    transform:translate(-950px,470px) rotate(-25deg) scale(1.05);
-    opacity:1;
-  }
-
-  45%{
-    transform:translate(-1250px,620px) rotate(-25deg) scale(1.2);
-    opacity:0;
-  }
-
-  100%{
-    transform:translate(-1250px,620px) rotate(-25deg) scale(1.2);
-    opacity:0;
-  }
-}
-
-/* 背景光暈呼吸 */
-
-@keyframes breathe{
-  from{
-    opacity:.45;
-    transform:scale(.95);
-  }
-  to{
-    opacity:1;
-    transform:scale(1.05);
-  }
-}
-
-/* =========================
-   首頁共用區塊
-========================= */
+/* ========================================
+   【04】首頁共用區塊
+======================================== */
 
 .section{
   margin:0 auto 30px;
@@ -386,9 +248,9 @@ button{
   text-shadow:0 0 13px rgba(101,187,255,.45);
 }
 
-/* =========================
-   最新公告
-========================= */
+/* ========================================
+   【05】最新公告
+======================================== */
 
 .notice{
   display:flex;
@@ -417,9 +279,9 @@ button{
   color:#90d6ff;
 }
 
-/* =========================
-   遊戲特色
-========================= */
+/* ========================================
+   【06】遊戲特色
+======================================== */
 
 .game-grid{
   display:grid;
@@ -452,9 +314,9 @@ button{
   margin:0;
 }
 
-/* =========================
-   系統入口
-========================= */
+/* ========================================
+   【07】系統入口
+======================================== */
 
 .entry-grid{
   display:grid;
@@ -498,9 +360,9 @@ button{
   font-size:12px;
 }
 
-/* =========================
-   網站頁尾
-========================= */
+/* ========================================
+   【08】網站頁尾
+======================================== */
 
 .footer{
   padding:38px 20px 50px;
@@ -510,9 +372,9 @@ button{
   border-top:1px solid rgba(145,205,255,.1);
 }
 
-/* =========================
-   平板版
-========================= */
+/* ========================================
+   【09】平板版
+======================================== */
 
 @media(max-width:850px){
 
@@ -532,11 +394,12 @@ button{
   .entry-grid{
     grid-template-columns:repeat(2,1fr);
   }
+
 }
 
-/* =========================
-   手機版
-========================= */
+/* ========================================
+   【10】手機版
+======================================== */
 
 @media(max-width:560px){
 
@@ -571,51 +434,9 @@ button{
     letter-spacing:3px;
   }
 
-  .hero:before{
+  .hero::before{
     width:310px;
     height:310px;
-  }
-
-  .meteor{
-    width:28px;
-    height:28px;
-  }
-
-  .meteor::before{
-    width:85px;
-    height:18px;
-  }
-
-  .meteor.two{
-    width:20px;
-    height:20px;
-  }
-
-  .meteor.three{
-    width:16px;
-    height:16px;
-  }
-
-  .meteor.four{
-    width:24px;
-    height:24px;
-  }
-
-  @keyframes meteorFall{
-    0%{
-      transform:translate(0,0) rotate(-25deg) scale(.65);
-      opacity:0;
-    }
-    8%{
-      opacity:1;
-    }
-    40%{
-      transform:translate(-480px,260px) rotate(-25deg);
-      opacity:0;
-    }
-    100%{
-      opacity:0;
-    }
   }
 
   .panel{
@@ -646,16 +467,22 @@ button{
   .entry strong{
     font-size:15px;
   }
+
 }
 
-/* 減少動畫偏好 */
+/* ========================================
+   【11】減少動畫設定
+======================================== */
+
 @media(prefers-reduced-motion:reduce){
+
   *,
-  *:before,
-  *:after{
+  *::before,
+  *::after{
     animation:none!important;
     scroll-behavior:auto!important;
   }
+
 }
 
 </style>
@@ -663,8 +490,12 @@ button{
 
 <body>
 
-<!-- 頂部選單 -->
+<!-- =====================================
+     【12】頂部選單
+===================================== -->
+
 <header class="nav">
+
   <div class="nav-inner">
 
     <a class="brand" href="index.html">
@@ -672,225 +503,827 @@ button{
     </a>
 
     <nav class="nav-links" aria-label="主要選單">
+
       <a href="index.html">首頁</a>
       <a href="#announcements">公告</a>
       <a href="#entries">遊戲介紹</a>
       <a href="#entries">裝備介紹</a>
       <a href="#entries">下載專區</a>
       <a href="#entries">贊助專區</a>
+
     </nav>
 
   </div>
+
 </header>
 
 <main>
 
-  <!-- 首頁主視覺 -->
-  <section class="hero">
+<!-- =====================================
+     【13】首頁主視覺
+===================================== -->
 
-    <!-- 燃燒隕石雨 -->
-    <div class="meteor"></div>
-    <div class="meteor two"></div>
-    <div class="meteor three"></div>
-    <div class="meteor four"></div>
+<section class="hero">
 
-    <div class="hero-content">
+  <div class="hero-content">
 
-      <div class="eyebrow">
-        LINEAGE · DRAGON REALM
+    <div class="eyebrow">
+      LINEAGE · DRAGON REALM
+    </div>
+
+    <h1>龍淵天堂</h1>
+
+    <p>龍魂覺醒・傳奇再臨</p>
+
+    <div class="hero-actions">
+
+      <a class="btn" href="#entries">
+        探索遊戲
+      </a>
+
+      <a class="btn secondary" href="#announcements">
+        最新公告
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =====================================
+     【14】最新公告
+===================================== -->
+
+<section class="section" id="announcements">
+
+  <div class="panel">
+
+    <h2 class="heading">
+      📢 最新公告
+    </h2>
+
+    <div class="notice">
+
+      <span class="symbol">📣</span>
+
+      <span>
+        龍淵天堂官方網站建置中，最新資訊敬請期待。
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =====================================
+     【15】遊戲特色
+===================================== -->
+
+<section class="section">
+
+  <div class="panel">
+
+    <h2 class="heading">
+      遊戲特色
+    </h2>
+
+    <div class="game-grid">
+
+      <div class="game-card">
+
+        <div class="ico">🐉</div>
+
+        <h3>龍族世界</h3>
+
+        <p>
+          以龍淵天堂為主題的冒險世界。
+        </p>
+
       </div>
 
-      <h1>龍淵天堂</h1>
+      <div class="game-card">
 
-      <p>龍魂覺醒・傳奇再臨</p>
+        <div class="ico">⚔️</div>
 
-      <div class="hero-actions">
+        <h3>裝備養成</h3>
 
-        <a class="btn" href="#entries">
-          探索遊戲
-        </a>
+        <p>
+          武器、防具與飾品介紹將依實際遊戲資料建立。
+        </p>
 
-        <a class="btn secondary" href="#announcements">
-          最新公告
-        </a>
+      </div>
+
+      <div class="game-card">
+
+        <div class="ico">✦</div>
+
+        <h3>轉生系統</h3>
+
+        <p>
+          各職業轉生能力及詳細數值將陸續公開。
+        </p>
 
       </div>
 
     </div>
 
-  </section>
+  </div>
 
-  <!-- 最新公告 -->
-  <section class="section" id="announcements">
+</section>
 
-    <div class="panel">
+<!-- =====================================
+     【16】系統入口
+===================================== -->
 
-      <h2 class="heading">
-        📢 最新公告
-      </h2>
+<section class="section" id="entries">
 
-      <div class="notice">
+  <div class="panel">
 
-        <span class="symbol">📣</span>
+    <h2 class="heading">
+      系統入口
+    </h2>
 
-        <span>
-          龍淵天堂官方網站建置中，最新資訊敬請期待。
-        </span>
+    <div class="entry-grid">
 
-      </div>
+      <a class="entry" href="#announcements">
+        <div class="ico">📢</div>
+        <strong>最新公告</strong>
+        <small>查看網站消息</small>
+      </a>
 
-    </div>
+      <a class="entry" href="#entries">
+        <div class="ico">📖</div>
+        <strong>遊戲介紹</strong>
+        <small>敬請期待</small>
+      </a>
 
-  </section>
+      <a class="entry" href="#entries">
+        <div class="ico">⚔️</div>
+        <strong>武器介紹</strong>
+        <small>敬請期待</small>
+      </a>
 
-  <!-- 遊戲特色 -->
-  <section class="section">
+      <a class="entry" href="#entries">
+        <div class="ico">🛡️</div>
+        <strong>防具介紹</strong>
+        <small>敬請期待</small>
+      </a>
 
-    <div class="panel">
+      <a class="entry" href="#entries">
+        <div class="ico">💎</div>
+        <strong>飾品介紹</strong>
+        <small>敬請期待</small>
+      </a>
 
-      <h2 class="heading">
-        遊戲特色
-      </h2>
+      <a class="entry" href="#entries">
+        <div class="ico">✦</div>
+        <strong>轉生系統</strong>
+        <small>敬請期待</small>
+      </a>
 
-      <div class="game-grid">
+      <a class="entry" href="#entries">
+        <div class="ico">🗺️</div>
+        <strong>地圖掉落</strong>
+        <small>敬請期待</small>
+      </a>
 
-        <div class="game-card">
+      <a class="entry" href="#entries">
+        <div class="ico">📥</div>
+        <strong>下載專區</strong>
+        <small>敬請期待</small>
+      </a>
 
-          <div class="ico">🐉</div>
+      <a class="entry" href="#entries">
+        <div class="ico">🐲</div>
+        <strong>古龍系列</strong>
+        <small>敬請期待</small>
+      </a>
 
-          <h3>龍族世界</h3>
+      <a class="entry" href="#entries">
+        <div class="ico">🎖️</div>
+        <strong>徽章系統</strong>
+        <small>敬請期待</small>
+      </a>
 
-          <p>
-            以龍淵天堂為主題的冒險世界。
-          </p>
+      <a class="entry" href="#entries">
+        <div class="ico">💬</div>
+        <strong>官方社群</strong>
+        <small>敬請期待</small>
+      </a>
 
-        </div>
-
-        <div class="game-card">
-
-          <div class="ico">⚔️</div>
-
-          <h3>裝備養成</h3>
-
-          <p>
-            武器、防具與飾品介紹將依實際遊戲資料建立。
-          </p>
-
-        </div>
-
-        <div class="game-card">
-
-          <div class="ico">✦</div>
-
-          <h3>轉生系統</h3>
-
-          <p>
-            各職業轉生能力及詳細數值將陸續公開。
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- 系統入口 -->
-  <section class="section" id="entries">
-
-    <div class="panel">
-
-      <h2 class="heading">
-        系統入口
-      </h2>
-
-      <div class="entry-grid">
-
-        <a class="entry" href="#announcements">
-          <div class="ico">📢</div>
-          <strong>最新公告</strong>
-          <small>查看網站消息</small>
-        </a>
-
-        <a class="entry" href="#entries">
-          <div class="ico">📖</div>
-          <strong>遊戲介紹</strong>
-          <small>敬請期待</small>
-        </a>
-
-        <a class="entry" href="#entries">
-          <div class="ico">⚔️</div>
-          <strong>武器介紹</strong>
-          <small>敬請期待</small>
-        </a>
-
-        <a class="entry" href="#entries">
-          <div class="ico">🛡️</div>
-          <strong>防具介紹</strong>
-          <small>敬請期待</small>
-        </a>
-
-        <a class="entry" href="#entries">
-          <div class="ico">💎</div>
-          <strong>飾品介紹</strong>
-          <small>敬請期待</small>
-        </a>
-
-        <a class="entry" href="#entries">
-          <div class="ico">✦</div>
-          <strong>轉生系統</strong>
-          <small>敬請期待</small>
-        </a>
-
-        <a class="entry" href="#entries">
-          <div class="ico">🗺️</div>
-          <strong>地圖掉落</strong>
-          <small>敬請期待</small>
-        </a>
-
-        <a class="entry" href="#entries">
-          <div class="ico">📥</div>
-          <strong>下載專區</strong>
-          <small>敬請期待</small>
-        </a>
-
-        <a class="entry" href="#entries">
-          <div class="ico">🐲</div>
-          <strong>古龍系列</strong>
-          <small>敬請期待</small>
-        </a>
-
-        <a class="entry" href="#entries">
-          <div class="ico">🎖️</div>
-          <strong>徽章系統</strong>
-          <small>敬請期待</small>
-        </a>
-
-        <a class="entry" href="#entries">
-          <div class="ico">💬</div>
-          <strong>官方社群</strong>
-          <small>敬請期待</small>
-        </a>
-
-        <a class="entry" href="#entries">
-          <div class="ico">🎁</div>
-          <strong>贊助專區</strong>
-          <small>敬請期待</small>
-        </a>
-
-      </div>
+      <a class="entry" href="#entries">
+        <div class="ico">🎁</div>
+        <strong>贊助專區</strong>
+        <small>敬請期待</small>
+      </a>
 
     </div>
 
-  </section>
+  </div>
+
+</section>
 
 </main>
 
-<!-- 網站頁尾 -->
+<!-- =====================================
+     【17】網站頁尾
+===================================== -->
+
 <footer class="footer">
   龍淵天堂 · 官方網站
 </footer>
+
+
+<!-- =====================================================
+     ★★★★★★★★★★★★★★★★★★★★★★★★★★★
+
+     【龍淵天堂特效專區開始】
+
+     以後所有特效統一放在這裡。
+     不需要修改上面的首頁程式。
+
+     目前版本：
+     龍焰隕石雨 V3
+
+     ★★★★★★★★★★★★★★★★★★★★★★★★★★★
+===================================================== -->
+
+
+<!-- =====================================================
+     【隕石特效 V3 開始】
+
+     名稱：龍焰隕石雨
+     版本：V3
+
+     效果：
+     1. 黑色熔岩岩石
+     2. 橘紅色火焰尾巴
+     3. 火星粒子
+     4. 煙霧
+     5. 不同大小與速度
+     6. 手機自動適應
+
+     未來更新：
+     從這個標記開始，
+     到「隕石特效 V3 結束」為止，
+     整段替換即可。
+===================================================== -->
+
+<style id="ly-meteor-v3-css">
+
+/* =====================================
+   【隕石 01】特效容器
+===================================== */
+
+#ly-meteor-v3{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:2;
+}
+
+/* =====================================
+   【隕石 02】隕石本體
+===================================== */
+
+.ly-v3-rock{
+  --rock-size:40px;
+  --fall-time:9s;
+  --fall-delay:0s;
+  --start-y:0px;
+  --move-x:-1200px;
+  --move-y:600px;
+
+  position:absolute;
+  top:0;
+  left:100%;
+
+  width:var(--rock-size);
+  height:var(--rock-size);
+
+  border-radius:
+    43% 57% 39% 61% /
+    56% 36% 64% 44%;
+
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      #ffe6a3 0%,
+      #ff8735 10%,
+      #b53c17 23%,
+      #49302a 43%,
+      #222329 68%,
+      #0b0e14 100%
+    );
+
+  border:2px solid rgba(255,119,37,.8);
+
+  box-shadow:
+    0 0 12px #ff9d36,
+    0 0 30px rgba(255,85,12,.7),
+    0 0 65px rgba(255,55,0,.3),
+    inset -8px -8px 12px #090b10,
+    inset 4px 4px 8px rgba(255,157,51,.55);
+
+  opacity:0;
+
+  animation:
+    ly-v3-rock-fall
+    var(--fall-time)
+    linear
+    var(--fall-delay)
+    infinite;
+
+  will-change:transform,opacity;
+}
+
+/* =====================================
+   【隕石 03】熔岩裂紋
+===================================== */
+
+.ly-v3-rock::after{
+  content:"";
+  position:absolute;
+  inset:6px;
+  border-radius:inherit;
+
+  background:
+    linear-gradient(
+      35deg,
+      transparent 28%,
+      #ffb343 31%,
+      #ff4d0a 34%,
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      transparent 42%,
+      #ff7c1d 45%,
+      transparent 49%
+    ),
+    radial-gradient(
+      circle at 70% 75%,
+      #ffb340 0%,
+      #a92f10 15%,
+      transparent 30%
+    );
+
+  filter:drop-shadow(0 0 4px #ff6b13);
+}
+
+/* =====================================
+   【隕石 04】火焰尾巴
+
+   想加長火焰：
+   修改 width:240px
+===================================== */
+
+.ly-v3-rock::before{
+  content:"";
+  position:absolute;
+
+  left:55%;
+  top:50%;
+
+  width:240px;
+  height:calc(var(--rock-size) * 1.4);
+
+  transform:translateY(-50%);
+
+  border-radius:50%;
+
+  background:linear-gradient(
+    90deg,
+    #fff1b2 0%,
+    #ffc346 8%,
+    rgba(255,122,17,.96) 24%,
+    rgba(245,45,5,.75) 54%,
+    rgba(125,26,19,.3) 78%,
+    transparent 100%
+  );
+
+  filter:blur(10px);
+  z-index:-1;
+}
+
+/* =====================================
+   【隕石 05】墜落動畫
+===================================== */
+
+@keyframes ly-v3-rock-fall{
+
+  0%{
+    transform:
+      translate(0,var(--start-y))
+      rotate(-26deg)
+      scale(.7);
+    opacity:0;
+  }
+
+  8%{
+    opacity:1;
+  }
+
+  60%{
+    opacity:1;
+  }
+
+  78%{
+    transform:
+      translate(
+        var(--move-x),
+        calc(var(--start-y) + var(--move-y))
+      )
+      rotate(-26deg)
+      scale(1.1);
+    opacity:0;
+  }
+
+  100%{
+    transform:
+      translate(
+        var(--move-x),
+        calc(var(--start-y) + var(--move-y))
+      )
+      rotate(-26deg)
+      scale(1.1);
+    opacity:0;
+  }
+
+}
+
+/* =====================================
+   【隕石 06】飛散火星
+===================================== */
+
+.ly-v3-spark{
+  position:absolute;
+
+  width:4px;
+  height:4px;
+  border-radius:50%;
+
+  background:#ffcf75;
+
+  box-shadow:
+    0 0 6px #ff9b27,
+    0 0 12px #ff5412;
+
+  opacity:0;
+
+  animation:
+    ly-v3-spark-fall
+    var(--fall-time)
+    linear
+    var(--fall-delay)
+    infinite;
+}
+
+@keyframes ly-v3-spark-fall{
+
+  0%{
+    transform:translate(0,0) scale(.5);
+    opacity:0;
+  }
+
+  12%{
+    opacity:0;
+  }
+
+  25%{
+    opacity:1;
+  }
+
+  60%{
+    opacity:.8;
+  }
+
+  78%{
+    transform:
+      translate(
+        var(--move-x),
+        var(--move-y)
+      )
+      scale(.2);
+    opacity:0;
+  }
+
+  100%{
+    opacity:0;
+  }
+
+}
+
+/* =====================================
+   【隕石 07】煙霧效果
+===================================== */
+
+.ly-v3-smoke{
+  position:absolute;
+
+  width:110px;
+  height:45px;
+
+  border-radius:50%;
+
+  background:radial-gradient(
+    ellipse,
+    rgba(119,70,57,.3),
+    rgba(47,51,63,.18) 50%,
+    transparent 75%
+  );
+
+  filter:blur(15px);
+
+  opacity:0;
+
+  animation:
+    ly-v3-rock-fall
+    var(--fall-time)
+    linear
+    var(--fall-delay)
+    infinite;
+}
+
+/* =====================================
+   【隕石 08】手機調整
+===================================== */
+
+@media(max-width:600px){
+
+  .ly-v3-rock::before{
+    width:145px;
+    filter:blur(8px);
+  }
+
+  .ly-v3-smoke{
+    width:65px;
+    height:30px;
+  }
+
+}
+
+/* =====================================
+   【隕石 09】減少動畫設定
+===================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+  #ly-meteor-v3{
+    display:none!important;
+  }
+
+}
+
+</style>
+
+<script id="ly-meteor-v3-js">
+
+(function(){
+
+  "use strict";
+
+  /* =====================================
+     【隕石 10】避免重複建立
+  ===================================== */
+
+  if(document.getElementById("ly-meteor-v3")){
+    return;
+  }
+
+  /* =====================================
+     【隕石 11】尋找首頁主視覺
+  ===================================== */
+
+  const hero=document.querySelector(".hero");
+
+  if(!hero){
+    return;
+  }
+
+  /* =====================================
+     【隕石 12】建立特效容器
+  ===================================== */
+
+  const layer=document.createElement("div");
+
+  layer.id="ly-meteor-v3";
+  layer.setAttribute("aria-hidden","true");
+
+  hero.insertBefore(layer,hero.firstChild);
+
+  /* =====================================
+     【隕石 13】隕石設定
+
+     size：隕石大小
+     duration：飛行秒數
+     delay：延遲秒數
+     startY：開始高度
+
+     以後要調整數量，
+     可以在這裡新增設定。
+  ===================================== */
+
+  const settings=[
+
+    {
+      size:54,
+      duration:8,
+      delay:0,
+      startY:20
+    },
+
+    {
+      size:32,
+      duration:10,
+      delay:3,
+      startY:130
+    },
+
+    {
+      size:23,
+      duration:12,
+      delay:6,
+      startY:-45
+    },
+
+    {
+      size:42,
+      duration:11,
+      delay:8,
+      startY:225
+    }
+
+  ];
+
+  /* =====================================
+     【隕石 14】儲存所有動畫元素
+  ===================================== */
+
+  const movingElements=[];
+
+  /* =====================================
+     【隕石 15】建立隕石
+  ===================================== */
+
+  settings.forEach(function(setting){
+
+    const rock=document.createElement("div");
+
+    rock.className="ly-v3-rock";
+
+    rock.style.setProperty(
+      "--rock-size",
+      setting.size+"px"
+    );
+
+    rock.style.setProperty(
+      "--fall-time",
+      setting.duration+"s"
+    );
+
+    rock.style.setProperty(
+      "--fall-delay",
+      setting.delay+"s"
+    );
+
+    rock.style.setProperty(
+      "--start-y",
+      setting.startY+"px"
+    );
+
+    layer.appendChild(rock);
+
+    movingElements.push(rock);
+
+    /* ==============================
+       【隕石 16】建立火星
+    ============================== */
+
+    for(let i=0;i<5;i++){
+
+      const spark=document.createElement("div");
+
+      spark.className="ly-v3-spark";
+
+      spark.style.left=(100+i*3)+"%";
+
+      spark.style.top=
+        (setting.startY+20+i*9)+"px";
+
+      spark.style.setProperty(
+        "--fall-time",
+        setting.duration+"s"
+      );
+
+      spark.style.setProperty(
+        "--fall-delay",
+        (setting.delay+i*.13)+"s"
+      );
+
+      layer.appendChild(spark);
+
+      movingElements.push(spark);
+
+    }
+
+    /* ==============================
+       【隕石 17】建立煙霧
+    ============================== */
+
+    const smoke=document.createElement("div");
+
+    smoke.className="ly-v3-smoke";
+
+    smoke.style.left="100%";
+
+    smoke.style.top=
+      (setting.startY+10)+"px";
+
+    smoke.style.setProperty(
+      "--fall-time",
+      setting.duration+"s"
+    );
+
+    smoke.style.setProperty(
+      "--fall-delay",
+      setting.delay+"s"
+    );
+
+    smoke.style.setProperty(
+      "--start-y",
+      "0px"
+    );
+
+    layer.appendChild(smoke);
+
+    movingElements.push(smoke);
+
+  });
+
+  /* =====================================
+     【隕石 18】電腦與手機距離調整
+  ===================================== */
+
+  function updateTravel(){
+
+    const width=hero.clientWidth;
+    const height=hero.clientHeight;
+
+    const moveX=-(width+350);
+    const moveY=Math.round(height*.95);
+
+    movingElements.forEach(function(element){
+
+      element.style.setProperty(
+        "--move-x",
+        moveX+"px"
+      );
+
+      element.style.setProperty(
+        "--move-y",
+        moveY+"px"
+      );
+
+    });
+
+  }
+
+  updateTravel();
+
+  window.addEventListener(
+    "resize",
+    updateTravel,
+    {passive:true}
+  );
+
+})();
+
+</script>
+
+<!-- =====================================================
+     【隕石特效 V3 結束】
+
+     以上是完整的龍焰隕石雨 V3。
+
+     下次只要告訴我：
+     「修改龍淵天堂隕石特效」
+
+     我們就只修改這一區，
+     不動首頁其他內容。
+===================================================== -->
+
+
+<!-- =====================================================
+     【龍淵天堂特效專區結束】
+
+     後續其他特效可繼續加在此處。
+
+     請勿刪除上面的首頁主程式。
+===================================================== -->
 
 </body>
 </html>
