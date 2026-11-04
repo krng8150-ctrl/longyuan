@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07111f">
+
+<title>龍淵天堂｜轉生介紹</title>
+
+<style>
+
+/* =====================================
+   【01】基本設定與背景
+===================================== */
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:25px;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:"Microsoft JhengHei",Arial,sans-serif;
+  color:#eef7ff;
+  background:#07111f;
+  line-height:1.85;
+  isolation:isolate;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3,10,22,.45),
+      rgba(3,10,22,.88)
+    ),
+    url("longyuan-bg.png")
+    center center / cover no-repeat;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+a:focus-visible,
+.table-wrap:focus-visible{
+  outline:2px solid #91d4ff;
+  outline-offset:5px;
+}
+
+h1,h2,h3,p,li{
+  overflow-wrap:anywhere;
+}
+
+/* =====================================
+   【02】頂部導覽
+===================================== */
+
+.nav{
+  background:rgba(4,12,28,.94);
+  border-bottom:1px solid rgba(180,220,255,.22);
+  backdrop-filter:blur(10px);
+}
+
+.nav-inner{
+  max-width:1280px;
+  margin:auto;
+  padding:17px 20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:16px;
+}
+
+.brand{
+  font-size:26px;
+  font-weight:bold;
+  letter-spacing:3px;
+  text-shadow:0 0 16px rgba(98,183,255,.65);
+}
+
+.nav-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  font-size:14px;
+}
+
+.nav-links a:hover{
+  color:#91d4ff;
+}
+
+/* =====================================
+   【03】標題
+===================================== */
+
+.wrapper{
+  max-width:1280px;
+  margin:auto;
+  padding:35px 20px 65px;
+}
+
+.page-header{
+  text-align:center;
+  padding:15px 0 30px;
+}
+
+.eyebrow{
+  margin:0 0 12px;
+  color:#a9d8ff;
+  font-size:12px;
+  letter-spacing:4px;
+}
+
+.main-title{
+  margin:0 0 14px;
+  font-size:clamp(34px,5vw,54px);
+  line-height:1.5;
+  letter-spacing:4px;
+
+  text-shadow:
+    0 0 12px rgba(143,210,255,.65),
+    0 0 28px rgba(45,125,255,.45);
+}
+
+.sub-title{
+  margin:0;
+  color:#dcefff;
+  font-size:17px;
+}
+
+/* =====================================
+   【04】內容區塊
+===================================== */
+
+.panel{
+  margin-bottom:26px;
+  padding:28px;
+
+  background:rgba(8,18,38,.89);
+  border:1px solid rgba(180,220,255,.2);
+  border-radius:18px;
+  backdrop-filter:blur(6px);
+
+  box-shadow:0 10px 30px rgba(0,0,0,.22);
+}
+
+.section-title{
+  margin:0 0 18px;
+  padding-bottom:12px;
+
+  border-bottom:1px solid rgba(180,220,255,.18);
+  font-size:27px;
+
+  text-shadow:0 0 10px rgba(112,196,255,.5);
+}
+
+.panel p{
+  color:#c9dfef;
+}
+
+.open-notice{
+  margin-bottom:24px;
+  padding:22px 25px;
+
+  border:1px solid rgba(255,205,126,.55);
+  border-left:5px solid #ffd083;
+  border-radius:12px;
+
+  background:rgba(48,34,15,.9);
+}
+
+.open-notice strong{
+  display:block;
+  color:#ffda9e;
+  font-size:22px;
+}
+
+.open-notice p{
+  margin:8px 0 0;
+  color:#f0dfc4;
+  font-size:15px;
+}
+
+.notes{
+  margin:0;
+  padding-left:22px;
+  color:#c9dfef;
+}
+
+.notes li{
+  margin-bottom:9px;
+}
+
+/* =====================================
+   【05】職業快速入口
+===================================== */
+
+.class-nav{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+
+  margin-top:22px;
+}
+
+.class-nav a{
+  padding:9px 18px;
+
+  border:1px solid rgba(180,220,255,.28);
+  border-radius:9px;
+  background:rgba(15,43,72,.9);
+
+  font-size:14px;
+}
+
+.class-nav a:hover{
+  background:rgba(36,82,125,.95);
+  border-color:#91d4ff;
+}
+
+.class-section{
+  scroll-margin-top:25px;
+}
+
+.class-description{
+  margin:0 0 15px;
+  color:#bdd7ea;
+  font-size:14px;
+}
+
+/* =====================================
+   【06】轉生能力表格
+===================================== */
+
+.table-wrap{
+  width:100%;
+  overflow-x:auto;
+  border:1px solid rgba(180,220,255,.18);
+  border-radius:10px;
+}
+
+table{
+  width:100%;
+  min-width:650px;
+  border-collapse:collapse;
+  font-size:15px;
+  font-variant-numeric:tabular-nums;
+}
+
+table.wide{
+  min-width:1150px;
+}
+
+caption{
+  padding:12px 15px;
+  text-align:left;
+  color:#d4e8f7;
+  font-size:14px;
+}
+
+th,td{
+  padding:12px 14px;
+  text-align:center;
+  white-space:nowrap;
+  border:1px solid rgba(180,220,255,.14);
+}
+
+thead th{
+  background:#17324d;
+  color:#fff;
+}
+
+tbody th{
+  background:rgba(16,35,58,.75);
+  font-weight:bold;
+}
+
+tbody tr:hover td{
+  background:rgba(120,180,255,.07);
+}
+
+.current-limit th,
+.current-limit td{
+  border-bottom:2px solid #7acbff;
+}
+
+.future-row{
+  background:rgba(255,200,110,.025);
+}
+
+.future-row td{
+  color:#c0ccda;
+}
+
+.future-divider td{
+  padding:15px;
+  text-align:left;
+  white-space:normal;
+
+  background:rgba(83,58,24,.6);
+  color:#ffda9e;
+  font-size:14px;
+}
+
+.state{
+  display:inline-block;
+  padding:3px 9px;
+  border-radius:5px;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.state.open{
+  color:#aee6ff;
+  border:1px solid rgba(116,202,255,.45);
+  background:rgba(53,127,169,.13);
+}
+
+.state.future{
+  color:#f0d2a5;
+  border:1px solid rgba(235,188,119,.35);
+  background:rgba(126,87,36,.12);
+}
+
+.table-hint{
+  margin:14px 0 0;
+  font-size:13px;
+  color:#b6cee2;
+}
+
+/* =====================================
+   【07】其他連結與頁尾
+===================================== */
+
+.related-link{
+  display:inline-block;
+  margin-top:8px;
+  padding:11px 22px;
+
+  border:1px solid rgba(180,220,255,.35);
+  border-radius:9px;
+  background:rgba(15,47,79,.94);
+}
+
+.related-link:hover{
+  background:rgba(34,80,125,.94);
+}
+
+.back-wrap{
+  display:flex;
+  justify-content:center;
+  margin-top:30px;
+}
+
+.back-btn{
+  display:inline-block;
+  min-width:210px;
+  padding:13px 26px;
+
+  text-align:center;
+  border-radius:10px;
+
+  background:rgba(15,47,79,.94);
+  border:1px solid rgba(180,220,255,.35);
+}
+
+.back-btn:hover{
+  background:rgba(34,80,125,.94);
+}
+
+.footer{
+  padding:25px 20px;
+  text-align:center;
+  color:#aac7dc;
+  font-size:13px;
+  border-top:1px solid rgba(180,220,255,.14);
+}
+
+/* =====================================
+   【08】手機版
+===================================== */
+
+@media(max-width:600px){
+
+  .nav-inner{
+    justify-content:center;
+  }
+
+  .nav-links{
+    justify-content:center;
+    gap:15px;
+  }
+
+  .wrapper{
+    padding:24px 14px 45px;
+  }
+
+  .main-title{
+    font-size:34px;
+  }
+
+  .sub-title{
+    font-size:15px;
+  }
+
+  .panel{
+    padding:21px 16px;
+  }
+
+  .section-title{
+    font-size:23px;
+  }
+
+  .open-notice{
+    padding:18px;
+  }
+
+  .open-notice strong{
+    font-size:19px;
+  }
+
+  .open-notice p{
+    font-size:14px;
+  }
+
+  .class-nav{
+    gap:8px;
+  }
+
+  .class-nav a{
+    padding:8px 13px;
+    font-size:13px;
+  }
+
+  th,td{
+    padding:11px 12px;
+    font-size:14px;
+  }
+
+  .back-btn{
+    width:100%;
+  }
+
+}
+
+@media(prefers-reduced-motion:reduce){
+
+  html{
+    scroll-behavior:auto;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================
+     【09】頂部導覽
+===================================== -->
+
+<header class="nav">
+
+  <div class="nav-inner">
+
+    <a class="brand" href="https://yong-yi.uk/longyuan/">
+      龍淵天堂
+    </a>
+
+    <nav class="nav-links" aria-label="主要選單">
+
+      <a href="https://yong-yi.uk/longyuan/">
+        官方首頁
+      </a>
+
+      <a href="rebirth.html" aria-current="page">
+        轉生介紹
+      </a>
+
+      <a href="poly.html">
+        轉生變身
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+<main class="wrapper">
+
+<!-- =====================================
+     【10】頁面標題
+===================================== -->
+
+<header class="page-header">
+
+  <p class="eyebrow">
+    LONGYUAN · REBIRTH
+  </p>
+
+  <h1 class="main-title">
+    轉生介紹
+  </h1>
+
+  <p class="sub-title">
+    各職業1～30轉能力介紹
+  </p>
+
+  <nav
+    class="class-nav"
+    id="class-nav"
+    aria-label="職業快速導覽">
+  </nav>
+
+</header>
+
+<!-- =====================================
+     【11】開放公告
+===================================== -->
+
+<aside class="open-notice" aria-label="目前開放進度">
+
+  <strong>
+    目前僅開放至10轉
+  </strong>
+
+  <p>
+    本頁先介紹1～30轉能力。
+    11～30轉為後續規劃內容，目前尚未開放，
+    後續將陸續新增，開放時間以官方公告為準。
+  </p>
+
+</aside>
+
+<!-- =====================================
+     【12】系統說明
+===================================== -->
+
+<section class="panel" aria-labelledby="system-title">
+
+  <h2 class="section-title" id="system-title">
+    轉生系統說明
+  </h2>
+
+  <ul class="notes">
+
+    <li>
+      各職業的轉生能力不同，請查看對應職業的能力表。
+    </li>
+
+    <li>
+      表格列出各轉階段的能力設定，
+      與「轉生變身」的能力介紹分開整理。
+    </li>
+
+    <li>
+      各表僅顯示該職業有設定加成的能力項目。
+    </li>
+
+    <li>
+      1～10轉為目前開放範圍；
+      11～30轉已標示「尚未開放」。
+    </li>
+
+    <li>
+      後續開放內容及調整，以龍淵天堂官方公告為準。
+    </li>
+
+  </ul>
+
+</section>
+
+<!-- =====================================
+     【13】七個職業能力表
+===================================== -->
+
+<div id="class-tables"></div>
+
+<!-- =====================================
+     【14】轉生變身入口
+===================================== -->
+
+<section class="panel" aria-labelledby="poly-title">
+
+  <h2 class="section-title" id="poly-title">
+    轉生變身介紹
+  </h2>
+
+  <p>
+    各階變身的需求轉生與能力加成，
+    請前往獨立的變身介紹頁查看。
+  </p>
+
+  <a class="related-link" href="poly.html">
+    查看轉生變身介紹 →
+  </a>
+
+</section>
+
+<noscript>
+  <p>
+    請啟用 JavaScript 查看各職業轉生能力表。
+  </p>
+</noscript>
+
+<!-- =====================================
+     【15】返回首頁
+===================================== -->
+
+<nav class="back-wrap" aria-label="返回導覽">
+
+  <a
+    class="back-btn"
+    href="https://yong-yi.uk/longyuan/">
+    返回官方首頁
+  </a>
+
+</nav>
+
+</main>
+
+<footer class="footer">
+  龍淵天堂 · 官方網站
+</footer>
+
+<script>
+"use strict";
+
+/* =====================================
+   【16】目前開放轉數
+
+   後續正式開放時，再修改此數字，
+   並同步更新頁面上方的開放公告。
+===================================== */
+
+const OPEN_TURNS=10;
+
+/* =====================================
+   【17】各職業轉生資料
+
+   數值依提供的轉生資料逐筆整理。
+   每列第一個數字是轉數，
+   其後依 columns 的欄位順序排列。
+
+   未收錄戰士。
+===================================== */
+
+const CLASS_DATA=[
+
+  /* ---------- 王族 ---------- */
+
+  {
+    id:"prince",
+    name:"王族",
+    columns:["血量","魔量","力量","傷害減免"],
+
+    rows:[
+      [1,300,200,1,1],
+      [2,600,400,1,1],
+      [3,900,500,2,2],
+      [4,1200,700,2,2],
+      [5,1500,900,3,3],
+      [6,1800,1100,3,3],
+      [7,2100,1200,4,4],
+      [8,2400,1400,4,4],
+      [9,2700,1600,5,5],
+      [10,3000,1800,5,5],
+      [11,3300,1900,6,6],
+      [12,3600,2100,6,6],
+      [13,3900,2300,7,7],
+      [14,4200,2500,7,7],
+      [15,4500,2600,8,8],
+      [16,4800,2800,8,8],
+      [17,5100,3000,9,9],
+      [18,5400,3200,9,9],
+      [19,5700,3300,10,10],
+      [20,6000,3500,10,10],
+      [21,6300,3567,11,11],
+      [22,6600,3633,11,11],
+      [23,6900,3700,12,12],
+      [24,7200,3767,12,12],
+      [25,7500,3833,13,13],
+      [26,7800,3900,13,13],
+      [27,8100,3967,14,14],
+      [28,8400,4033,14,14],
+      [29,8700,4100,15,15],
+      [30,9000,4167,15,15]
+    ]
+  },
+
+  /* ---------- 騎士 ---------- */
+
+  {
+    id:"knight",
+    name:"騎士",
+    columns:["血量","魔量","力量","傷害減免"],
+
+    rows:[
+      [1,350,100,1,1],
+      [2,700,200,1,1],
+      [3,1050,300,2,2],
+      [4,1400,400,2,2],
+      [5,1750,500,3,3],
+      [6,2100,600,3,3],
+      [7,2450,700,4,4],
+      [8,2800,800,4,4],
+      [9,3150,900,5,5],
+      [10,3500,1000,5,5],
+      [11,3850,1100,6,6],
+      [12,4200,1200,6,6],
+      [13,4550,1300,7,7],
+      [14,4900,1400,7,7],
+      [15,5250,1500,8,8],
+      [16,5600,1600,8,8],
+      [17,5950,1700,9,9],
+      [18,6300,1800,9,9],
+      [19,6650,1900,10,10],
+      [20,7000,2000,10,10],
+      [21,7350,2033,11,11],
+      [22,7700,2067,11,11],
+      [23,8050,2100,12,12],
+      [24,8400,2133,12,12],
+      [25,8750,2167,13,13],
+      [26,9100,2200,13,13],
+      [27,9450,2233,14,14],
+      [28,9800,2267,14,14],
+      [29,10150,2300,15,15],
+      [30,10500,2333,15,15]
+    ]
+  },
+
+  /* ---------- 妖精 ---------- */
+
+  {
+    id:"elf",
+    name:"妖精",
+
+    columns:[
+      "血量",
+      "魔量",
+      "力量",
+      "敏捷",
+      "魔法防禦",
+      "近距離命中",
+      "近距離傷害",
+      "遠距離命中",
+      "遠距離傷害"
+    ],
+
+    rows:[
+      [1,270,300,1,1,1,1,1,1,1],
+      [2,540,500,1,1,1,2,2,2,2],
+      [3,810,800,2,2,2,3,3,3,3],
+      [4,1080,1000,2,2,2,4,4,4,4],
+      [5,1350,1300,3,3,3,5,5,5,5],
+      [6,1620,1500,3,3,3,6,6,6,6],
+      [7,1890,1800,4,4,4,7,7,7,7],
+      [8,2160,2000,4,4,4,8,8,8,8],
+      [9,2430,2300,5,5,5,9,9,9,9],
+      [10,2700,2500,5,5,5,10,10,10,10],
+      [11,2970,2800,6,6,6,11,11,11,11],
+      [12,3240,3000,6,6,6,12,12,12,12],
+      [13,3510,3300,7,7,7,13,13,13,13],
+      [14,3780,3500,7,7,7,14,14,14,14],
+      [15,4050,3800,8,8,8,15,15,15,15],
+      [16,4320,4000,8,8,8,16,16,16,16],
+      [17,4590,4300,9,9,9,17,17,17,17],
+      [18,4860,4500,9,9,9,18,18,18,18],
+      [19,5130,4800,10,10,10,19,19,19,19],
+      [20,5400,5000,10,10,10,20,20,20,20],
+      [21,5670,5083,11,11,11,21,21,21,21],
+      [22,5940,5167,11,11,11,22,22,22,22],
+      [23,6210,5250,12,12,12,23,23,23,23],
+      [24,6480,5333,12,12,12,24,24,24,24],
+      [25,6750,5417,13,13,13,25,25,25,25],
+      [26,7020,5500,13,13,13,26,26,26,26],
+      [27,7290,5583,14,14,14,27,27,27,27],
+      [28,7560,5667,14,14,14,28,28,28,28],
+      [29,7830,5750,15,15,15,29,29,29,29],
+      [30,8100,5833,15,15,15,30,30,30,30]
+    ]
+  },
+
+  /* ---------- 法師 ---------- */
+
+  {
+    id:"wizard",
+    name:"法師",
+
+    columns:[
+      "血量",
+      "魔量",
+      "智力",
+      "魔攻",
+      "額外魔法傷害"
+    ],
+
+    rows:[
+      [1,200,400,1,1,1],
+      [2,400,800,1,2,2],
+      [3,600,1100,2,3,3],
+      [4,800,1500,2,4,4],
+      [5,1000,1900,3,5,5],
+      [6,1200,2300,3,6,6],
+      [7,1400,2600,4,7,7],
+      [8,1600,3000,4,8,8],
+      [9,1800,3400,5,9,9],
+      [10,2000,3800,5,10,10],
+      [11,2200,4100,6,11,11],
+      [12,2400,4500,6,12,12],
+      [13,2600,4900,7,13,13],
+      [14,2800,5300,7,14,14],
+      [15,3000,5600,8,15,15],
+      [16,3200,6000,8,16,16],
+      [17,3400,6400,9,17,17],
+      [18,3600,6800,9,18,18],
+      [19,3800,7100,10,19,19],
+      [20,4000,7500,10,20,20],
+      [21,4200,7617,11,21,21],
+      [22,4400,7733,11,22,22],
+      [23,4600,7850,12,23,23],
+      [24,4800,7967,12,24,24],
+      [25,5000,8083,13,25,25],
+      [26,5200,8200,13,26,26],
+      [27,5400,8317,14,27,27],
+      [28,5600,8433,14,28,28],
+      [29,5800,8550,15,29,29],
+      [30,6000,8667,15,30,30]
+    ]
+  },
+
+  /* ---------- 黑妖 ---------- */
+
+  {
+    id:"darkelf",
+    name:"黑妖",
+
+    columns:[
+      "血量",
+      "魔量",
+      "力量",
+      "近距離傷害"
+    ],
+
+    rows:[
+      [1,270,200,1,1],
+      [2,540,400,1,2],
+      [3,810,500,2,3],
+      [4,1080,700,2,4],
+      [5,1350,900,3,5],
+      [6,1620,1100,3,6],
+      [7,1890,1200,4,7],
+      [8,2160,1400,4,8],
+      [9,2430,1600,5,9],
+      [10,2700,1800,5,10],
+      [11,2970,1900,6,11],
+      [12,3240,2100,6,12],
+      [13,3510,2300,7,13],
+      [14,3780,2500,7,14],
+      [15,4050,2600,8,15],
+      [16,4320,2800,8,16],
+      [17,4590,3000,9,17],
+      [18,4860,3200,9,18],
+      [19,5130,3300,10,19],
+      [20,5400,3500,10,20],
+      [21,5670,3550,11,21],
+      [22,5940,3600,11,22],
+      [23,6210,3650,12,23],
+      [24,6480,3700,12,24],
+      [25,6750,3750,13,25],
+      [26,7020,3800,13,26],
+      [27,7290,3850,14,27],
+      [28,7560,3900,14,28],
+      [29,7830,3950,15,29],
+      [30,8100,4000,15,30]
+    ]
+  },
+
+  /* ---------- 龍騎士 ---------- */
+
+  {
+    id:"dragonknight",
+    name:"龍騎士",
+
+    columns:[
+      "血量",
+      "魔量",
+      "力量",
+      "近距離傷害"
+    ],
+
+    rows:[
+      [1,400,100,1,1],
+      [2,800,300,1,2],
+      [3,1200,400,2,3],
+      [4,1600,500,2,4],
+      [5,2000,600,3,5],
+      [6,2400,800,3,6],
+      [7,2800,900,4,7],
+      [8,3200,1000,4,8],
+      [9,3600,1100,5,9],
+      [10,4000,1300,5,10],
+      [11,4400,1400,6,11],
+      [12,4800,1500,6,12],
+      [13,5200,1600,7,13],
+      [14,5600,1800,7,14],
+      [15,6000,1900,8,15],
+      [16,6400,2000,8,16],
+      [17,6800,2100,9,17],
+      [18,7200,2300,9,18],
+      [19,7600,2400,10,19],
+      [20,8000,2500,10,20],
+      [21,8400,2533,11,21],
+      [22,8800,2567,11,22],
+      [23,9200,2600,12,23],
+      [24,9600,2633,12,24],
+      [25,10000,2667,13,25],
+      [26,10400,2700,13,26],
+      [27,10800,2733,14,27],
+      [28,11200,2767,14,28],
+      [29,11600,2800,15,29],
+      [30,12000,2833,15,30]
+    ]
+  },
+
+  /* ---------- 幻術士 ---------- */
+
+  {
+    id:"illusionist",
+    name:"幻術士",
+
+    columns:[
+      "血量",
+      "魔量",
+      "智力",
+      "魔攻",
+      "額外魔法傷害"
+    ],
+
+    rows:[
+      [1,200,300,1,1,1],
+      [2,400,600,1,2,2],
+      [3,600,900,2,3,3],
+      [4,800,1200,2,4,4],
+      [5,1000,1500,3,5,5],
+      [6,1200,1800,3,6,6],
+      [7,1400,2100,4,7,7],
+      [8,1600,2400,4,8,8],
+      [9,1800,2700,5,9,9],
+      [10,2000,3000,5,10,10],
+      [11,2200,3300,6,11,11],
+      [12,2400,3600,6,12,12],
+      [13,2600,3900,7,13,13],
+      [14,2800,4200,7,14,14],
+      [15,3000,4500,8,15,15],
+      [16,3200,4800,8,16,16],
+      [17,3400,5100,9,17,17],
+      [18,3600,5400,9,18,18],
+      [19,3800,5700,10,19,19],
+      [20,4000,6000,10,20,20],
+      [21,4200,6100,11,21,21],
+      [22,4400,6200,11,22,22],
+      [23,4600,6300,12,23,23],
+      [24,4800,6400,12,24,24],
+      [25,5000,6500,13,25,25],
+      [26,5200,6600,13,26,26],
+      [27,5400,6700,14,27,27],
+      [28,5600,6800,14,28,28],
+      [29,5800,6900,15,29,29],
+      [30,6000,7000,15,30,30]
+    ]
+  }
+
+];
+
+/* =====================================
+   【18】共用工具
+===================================== */
+
+function element(tag,className,text){
+
+  const node=document.createElement(tag);
+
+  if(className){
+    node.className=className;
+  }
+
+  if(text!==undefined){
+    node.textContent=text;
+  }
+
+  return node;
+
+}
+
+function displayValue(value){
+
+  if(value>0){
+    return "+"+value;
+  }
+
+  return String(value);
+
+}
+
+/* =====================================
+   【19】職業快速導覽
+===================================== */
+
+function renderClassNav(){
+
+  const nav=document.getElementById(
+    "class-nav"
+  );
+
+  nav.replaceChildren();
+
+  CLASS_DATA.forEach(job=>{
+
+    const link=element(
+      "a",
+      "",
+      job.name
+    );
+
+    link.href="#"+job.id;
+
+    nav.appendChild(link);
+
+  });
+
+}
+
+/* =====================================
+   【20】建立各職業轉生能力表
+===================================== */
+
+function renderTables(){
+
+  const container=document.getElementById(
+    "class-tables"
+  );
+
+  container.replaceChildren();
+
+  CLASS_DATA.forEach(job=>{
+
+    const section=element(
+      "section",
+      "panel class-section"
+    );
+
+    section.id=job.id;
+
+    const heading=element(
+      "h2",
+      "section-title",
+      job.name+"｜轉生能力"
+    );
+
+    heading.id=job.id+"-title";
+
+    section.setAttribute(
+      "aria-labelledby",
+      heading.id
+    );
+
+    section.appendChild(heading);
+
+    section.appendChild(
+
+      element(
+        "p",
+        "class-description",
+        "1～10轉目前開放；11～30轉為後續規劃，尚未開放。"
+      )
+
+    );
+
+    const wrap=element(
+      "div",
+      "table-wrap"
+    );
+
+    wrap.setAttribute("tabindex","0");
+    wrap.setAttribute("role","region");
+
+    wrap.setAttribute(
+      "aria-label",
+      job.name+"轉生能力表，可左右捲動"
+    );
+
+    const table=element(
+      "table",
+      job.columns.length>6?"wide":""
+    );
+
+    table.appendChild(
+
+      element(
+        "caption",
+        "",
+        job.name+"｜1～30轉能力設定"
+      )
+
+    );
+
+    const thead=element("thead");
+    const headRow=element("tr");
+
+    const headings=[
+      "轉生",
+      "開放狀態",
+      ...job.columns
+    ];
+
+    headings.forEach(label=>{
+
+      const th=element(
+        "th",
+        "",
+        label
+      );
+
+      th.setAttribute("scope","col");
+
+      headRow.appendChild(th);
+
+    });
+
+    thead.appendChild(headRow);
+    table.appendChild(thead);
+
+    const tbody=element("tbody");
+
+    job.rows.forEach(data=>{
+
+      const turns=data[0];
+      const future=turns>OPEN_TURNS;
+
+      /* 在未開放範圍前插入提醒 */
+
+      if(turns===OPEN_TURNS+1){
+
+        const divider=element(
+          "tr",
+          "future-divider"
+        );
+
+        const message=element(
+          "td",
+          "",
+          "以下為後續規劃內容，目前尚未開放。後續將陸續新增，請留意官方公告。"
+        );
+
+        message.colSpan=headings.length;
+
+        divider.appendChild(message);
+        tbody.appendChild(divider);
+
+      }
+
+      const row=element(
+        "tr",
+        future
+          ?"future-row"
+          :turns===OPEN_TURNS
+            ?"current-limit"
+            :""
+      );
+
+      const turnCell=element(
+        "th",
+        "",
+        turns+"轉"
+      );
+
+      turnCell.setAttribute(
+        "scope",
+        "row"
+      );
+
+      row.appendChild(turnCell);
+
+      /* 每列明確顯示開放狀態 */
+
+      const statusCell=element("td");
+
+      statusCell.appendChild(
+
+        element(
+          "span",
+          "state "+(future?"future":"open"),
+          future?"尚未開放":"目前開放"
+        )
+
+      );
+
+      row.appendChild(statusCell);
+
+      /* 能力數值 */
+
+      data.slice(1).forEach(value=>{
+
+        row.appendChild(
+
+          element(
+            "td",
+            "",
+            displayValue(value)
+          )
+
+        );
+
+      });
+
+      tbody.appendChild(row);
+
+    });
+
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+    section.appendChild(wrap);
+
+    section.appendChild(
+
+      element(
+        "p",
+        "table-hint",
+        "手機可左右滑動表格查看完整能力。"
+      )
+
+    );
+
+    container.appendChild(section);
+
+  });
+
+}
+
+/* =====================================
+   【21】啟動
+===================================== */
+
+renderClassNav();
+renderTables();
+
+</script>
+
+</body>
+</html>
