@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07111f">
+<meta name="description" content="龍淵天堂轉生變身介紹：傳說、神話、覺醒、青變與加速版的轉生需求及能力。">
+
+<title>龍淵天堂｜轉生變身介紹</title>
+
+<style>
+
+/* =====================================
+   【01】基本設定
+===================================== */
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  min-height:100%;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:"Microsoft JhengHei",Arial,sans-serif;
+  color:#eef7ff;
+  background:#07111f;
+  line-height:1.85;
+  isolation:isolate;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3,10,22,.45),
+      rgba(3,10,22,.88)
+    ),
+    url("longyuan-bg.png")
+    center center / cover no-repeat;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+a:focus-visible,
+[tabindex]:focus-visible{
+  outline:2px solid #91d4ff;
+  outline-offset:5px;
+}
+
+h1,h2,h3,p{
+  overflow-wrap:anywhere;
+}
+
+/* =====================================
+   【02】頂部導覽
+===================================== */
+
+.nav{
+  background:rgba(4,12,28,.94);
+  border-bottom:1px solid rgba(180,220,255,.22);
+  backdrop-filter:blur(10px);
+}
+
+.nav-inner{
+  max-width:1280px;
+  margin:auto;
+  padding:17px 20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:16px;
+}
+
+.brand{
+  font-size:26px;
+  font-weight:bold;
+  letter-spacing:3px;
+  text-shadow:0 0 16px rgba(98,183,255,.65);
+}
+
+.nav-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  font-size:14px;
+}
+
+.nav-links a:hover{
+  color:#91d4ff;
+}
+
+/* =====================================
+   【03】標題與頁面
+===================================== */
+
+.wrapper{
+  width:100%;
+  max-width:1280px;
+  margin:auto;
+  padding:30px 20px 65px;
+}
+
+.breadcrumb{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+
+  margin-bottom:28px;
+  font-size:13px;
+  color:#bad7ed;
+}
+
+.breadcrumb a:hover{
+  color:#91d4ff;
+}
+
+.page-header{
+  text-align:center;
+  padding:20px 0 32px;
+}
+
+.eyebrow{
+  margin:0 0 12px;
+  color:#a9d8ff;
+  font-size:12px;
+  letter-spacing:4px;
+}
+
+.main-title{
+  margin:0 0 14px;
+  font-size:clamp(32px,5vw,54px);
+  line-height:1.5;
+  letter-spacing:4px;
+
+  text-shadow:
+    0 0 12px rgba(143,210,255,.65),
+    0 0 28px rgba(45,125,255,.45);
+}
+
+.sub-title{
+  margin:0;
+  font-size:18px;
+  color:#dcefff;
+}
+
+.page-description{
+  margin:14px 0 0;
+  font-size:14px;
+  color:#b9d3e8;
+}
+
+/* =====================================
+   【04】內容區塊
+===================================== */
+
+.panel{
+  margin-bottom:26px;
+  padding:28px;
+
+  background:rgba(8,18,38,.87);
+  border:1px solid rgba(180,220,255,.2);
+  border-radius:18px;
+  backdrop-filter:blur(6px);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.22),
+    inset 0 0 12px rgba(255,255,255,.025);
+}
+
+.section-title{
+  margin:0 0 22px;
+  padding-bottom:12px;
+  font-size:27px;
+
+  border-bottom:1px solid rgba(180,220,255,.18);
+  text-shadow:0 0 10px rgba(112,196,255,.5);
+}
+
+/* =====================================
+   【05】五階快速導覽
+===================================== */
+
+.tier-nav{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  margin-top:24px;
+}
+
+.tier-nav a{
+  display:inline-block;
+  padding:8px 16px;
+
+  background:rgba(10,29,51,.9);
+  border:1px solid rgba(180,220,255,.25);
+  border-radius:8px;
+
+  font-size:14px;
+}
+
+.tier-nav a:hover{
+  background:rgba(35,76,116,.85);
+  border-color:#8fd2ff;
+}
+
+/* =====================================
+   【06】變身能力卡片
+===================================== */
+
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:20px;
+}
+
+.card{
+  min-width:0;
+  padding:23px;
+  scroll-margin-top:24px;
+
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(180,220,255,.17);
+  border-radius:15px;
+}
+
+.card h3{
+  margin:0 0 15px;
+  font-size:24px;
+  line-height:1.6;
+}
+
+.requirement{
+  display:inline-block;
+  margin-bottom:15px;
+  padding:4px 12px;
+
+  border:1px solid rgba(180,220,255,.23);
+  border-radius:7px;
+
+  color:#d9edfc;
+  background:rgba(120,190,255,.05);
+  font-size:13px;
+}
+
+.ability p{
+  margin:8px 0;
+  font-size:15px;
+  line-height:1.95;
+  color:#e0effa;
+}
+
+.legend h3,
+.legend-text{
+  color:#ff9adf;
+  text-shadow:0 0 8px rgba(255,90,190,.35);
+}
+
+.myth h3,
+.myth-text{
+  color:#ffd36a;
+  text-shadow:0 0 8px rgba(255,190,60,.35);
+}
+
+.awakening h3,
+.awakening-text{
+  color:#b8a6ff;
+  text-shadow:0 0 8px rgba(140,120,255,.35);
+}
+
+.blue h3,
+.blue-text{
+  color:#7eeaff;
+  text-shadow:0 0 8px rgba(80,202,255,.4);
+}
+
+.accelerated h3,
+.accelerated-text{
+  color:#ffbd7a;
+  text-shadow:0 0 8px rgba(255,148,60,.35);
+}
+
+/* =====================================
+   【07】能力比較表
+===================================== */
+
+.table-note{
+  margin:0 0 15px;
+  font-size:14px;
+  color:#b9d4e8;
+}
+
+.table-wrap{
+  width:100%;
+  overflow-x:auto;
+  border:1px solid rgba(180,220,255,.18);
+  border-radius:10px;
+}
+
+table{
+  width:100%;
+  min-width:1700px;
+  border-collapse:collapse;
+  font-variant-numeric:tabular-nums;
+}
+
+caption{
+  padding:12px 15px;
+  text-align:left;
+  color:#d8ecfa;
+  font-size:14px;
+}
+
+th,td{
+  padding:13px 12px;
+  text-align:center;
+  white-space:nowrap;
+
+  border:1px solid rgba(180,220,255,.14);
+  font-size:14px;
+  line-height:1.6;
+}
+
+thead th{
+  background:#17324d;
+  color:#fff;
+}
+
+tbody th{
+  background:#10233a;
+  text-align:left;
+}
+
+tbody tr:hover{
+  background:rgba(120,180,255,.08);
+}
+
+/* =====================================
+   【08】說明及返回按鈕
+===================================== */
+
+.notes{
+  margin:0;
+  padding-left:22px;
+  color:#c8deee;
+  font-size:15px;
+}
+
+.notes li{
+  margin-bottom:10px;
+}
+
+.back-wrap{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:30px;
+}
+
+.back-btn{
+  display:inline-block;
+  min-width:180px;
+  padding:12px 24px;
+
+  text-align:center;
+  border-radius:10px;
+
+  background:rgba(15,47,79,.94);
+  border:1px solid rgba(180,220,255,.35);
+}
+
+.back-btn:hover{
+  background:rgba(34,80,125,.94);
+}
+
+.footer{
+  padding:25px 20px;
+  text-align:center;
+  color:#aac7dc;
+  font-size:13px;
+  border-top:1px solid rgba(180,220,255,.14);
+}
+
+/* =====================================
+   【09】手機版
+===================================== */
+
+@media(max-width:900px){
+
+  .card-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .nav-inner{
+    justify-content:center;
+  }
+
+  .nav-links{
+    justify-content:center;
+    gap:15px;
+  }
+
+  .wrapper{
+    padding:22px 14px 45px;
+  }
+
+  .page-header{
+    padding:12px 0 26px;
+  }
+
+  .main-title{
+    font-size:31px;
+    letter-spacing:2px;
+  }
+
+  .sub-title{
+    font-size:15px;
+  }
+
+  .panel{
+    padding:21px 16px;
+  }
+
+  .section-title{
+    font-size:23px;
+  }
+
+  .card{
+    padding:20px 16px;
+  }
+
+  .card h3{
+    font-size:22px;
+  }
+
+  .ability p{
+    font-size:14px;
+  }
+
+  .tier-nav{
+    gap:8px;
+  }
+
+  .tier-nav a{
+    padding:7px 12px;
+    font-size:13px;
+  }
+
+  .back-btn{
+    width:100%;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================
+     【10】頂部導覽
+===================================== -->
+
+<header class="nav">
+
+  <div class="nav-inner">
+
+    <a class="brand" href="index.html">
+      龍淵天堂
+    </a>
+
+    <nav class="nav-links" aria-label="主要選單">
+      <a href="index.html">官方首頁</a>
+      <a href="intro.html">介紹入口</a>
+      <a href="poly.html" aria-current="page">
+        轉生變身
+      </a>
+    </nav>
+
+  </div>
+
+</header>
+
+<main class="wrapper">
+
+  <nav class="breadcrumb" aria-label="目前位置">
+
+    <a href="index.html">首頁</a>
+    <span aria-hidden="true">›</span>
+
+    <a href="intro.html">介紹入口</a>
+    <span aria-hidden="true">›</span>
+
+    <span aria-current="page">轉生變身介紹</span>
+
+  </nav>
+
+  <!-- =====================================
+       【11】頁面標題
+  ===================================== -->
+
+  <header class="page-header">
+
+    <p class="eyebrow">
+      LONGYUAN · TRANSFORMATION
+    </p>
+
+    <h1 class="main-title">
+      轉生變身介紹
+    </h1>
+
+    <p class="sub-title">
+      傳說｜神話｜覺醒｜青變｜加速版
+    </p>
+
+    <p class="page-description">
+      查看各階變身的需求轉生與能力加成。
+    </p>
+
+    <nav class="tier-nav" aria-label="變身階級導覽">
+      <a href="#legend">傳說・1轉</a>
+      <a href="#myth">神話・5轉</a>
+      <a href="#awakening">覺醒・7轉</a>
+      <a href="#blue">青變・10轉</a>
+      <a href="#accelerated">加速版・13轉</a>
+    </nav>
+
+  </header>
+
+  <!-- =====================================
+       【12】變身能力卡片
+  ===================================== -->
+
+  <section class="panel" aria-labelledby="tier-title">
+
+    <h2 class="section-title" id="tier-title">
+      變身階級介紹
+    </h2>
+
+    <div class="card-grid" id="tier-cards"></div>
+
+  </section>
+
+  <!-- =====================================
+       【13】完整能力比較表
+  ===================================== -->
+
+  <section class="panel" aria-labelledby="table-title">
+
+    <h2 class="section-title" id="table-title">
+      各階變身能力比較
+    </h2>
+
+    <p class="table-note">
+      表格可左右滑動，查看完整能力。
+    </p>
+
+    <div
+      class="table-wrap"
+      tabindex="0"
+      role="region"
+      aria-label="變身能力比較表，可左右捲動">
+
+      <table>
+
+        <caption>
+          各階變身共通能力與需求轉生
+        </caption>
+
+        <thead>
+          <tr id="table-head"></tr>
+        </thead>
+
+        <tbody id="table-body"></tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+  <!-- =====================================
+       【14】變身說明
+  ===================================== -->
+
+  <section class="panel" aria-labelledby="notes-title">
+
+    <h2 class="section-title" id="notes-title">
+      變身說明
+    </h2>
+
+    <ul class="notes">
+      <li>
+        各階變身的需求轉生次數如上所列。
+      </li>
+      <li>
+        本頁列出各階共通能力，
+        實際效果以龍淵天堂遊戲內設定為準。
+      </li>
+    </ul>
+
+  </section>
+
+  <noscript>
+    <p>
+      請啟用 JavaScript 查看變身能力卡片與比較表。
+    </p>
+  </noscript>
+
+  <!-- =====================================
+       【15】返回導覽
+  ===================================== -->
+
+  <nav class="back-wrap" aria-label="返回導覽">
+
+    <a class="back-btn" href="intro.html">
+      ← 返回介紹入口
+    </a>
+
+    <a class="back-btn" href="index.html">
+      返回官方首頁
+    </a>
+
+  </nav>
+
+</main>
+
+<footer class="footer">
+  龍淵天堂 · 官方網站
+</footer>
+
+<script>
+"use strict";
+
+/* =====================================
+   【16】龍淵變身資料
+
+   數值依使用者提供的龍淵截圖整理。
+
+   rebirth：需求轉生
+   ability：力量、敏捷、體質、智力、精神
+   hp：血量
+   mp：魔量
+   hpr：回血
+   mpr：回魔
+   combat：近傷、遠傷、近命、遠命、
+           物減、魔減、魔攻、魔命
+   mr：魔法防禦
+   element：火、水、風、地屬性
+
+   魅力為0，未列入顯示。
+===================================== */
+
+const TRANSFORMATIONS=[
+
+  {
+    id:"legend",
+    name:"傳說變身",
+    rebirth:1,
+    ability:2,
+    hp:150,
+    mp:80,
+    hpr:20,
+    mpr:20,
+    combat:1,
+    mr:8,
+    element:2
+  },
+
+  {
+    id:"myth",
+    name:"神話變身",
+    rebirth:5,
+    ability:3,
+    hp:250,
+    mp:120,
+    hpr:35,
+    mpr:35,
+    combat:2,
+    mr:12,
+    element:3
+  },
+
+  {
+    id:"awakening",
+    name:"覺醒變身",
+    rebirth:7,
+    ability:4,
+    hp:350,
+    mp:180,
+    hpr:55,
+    mpr:55,
+    combat:4,
+    mr:16,
+    element:4
+  },
+
+  {
+    id:"blue",
+    name:"青變",
+    rebirth:10,
+    ability:5,
+    hp:500,
+    mp:250,
+    hpr:80,
+    mpr:80,
+    combat:6,
+    mr:20,
+    element:5
+  },
+
+  {
+    id:"accelerated",
+    name:"加速版變身",
+    rebirth:13,
+    ability:6,
+    hp:600,
+    mp:310,
+    hpr:110,
+    mpr:110,
+    combat:8,
+    mr:24,
+    element:6
+  }
+
+];
+
+/* =====================================
+   【17】共用工具
+===================================== */
+
+function createElement(tag,className,text){
+
+  const element=document.createElement(tag);
+
+  if(className){
+    element.className=className;
+  }
+
+  if(text!==undefined){
+    element.textContent=text;
+  }
+
+  return element;
+
+}
+
+function plus(value){
+  return value>0?"+"+value:String(value);
+}
+
+/* =====================================
+   【18】顯示五階能力卡片
+===================================== */
+
+function renderCards(){
+
+  const container=document.getElementById(
+    "tier-cards"
+  );
+
+  container.replaceChildren();
+
+  TRANSFORMATIONS.forEach(item=>{
+
+    const card=createElement(
+      "article",
+      "card "+item.id
+    );
+
+    card.id=item.id;
+
+    const title=createElement(
+      "h3",
+      "",
+      item.name+"｜"+item.rebirth+"轉可使用"
+    );
+
+    card.appendChild(title);
+
+    card.appendChild(
+      createElement(
+        "span",
+        "requirement",
+        "需求轉生："+item.rebirth+"轉"
+      )
+    );
+
+    const ability=createElement(
+      "div",
+      "ability"
+    );
+
+    const lines=[
+
+      "力量 "+plus(item.ability)+
+      "、敏捷 "+plus(item.ability)+
+      "、體質 "+plus(item.ability)+
+      "、智力 "+plus(item.ability)+
+      "、精神 "+plus(item.ability),
+
+      "血量 "+plus(item.hp)+
+      "、魔量 "+plus(item.mp)+
+      "、回血 "+plus(item.hpr)+
+      "、回魔 "+plus(item.mpr),
+
+      "近距離傷害 "+plus(item.combat)+
+      "、近距離命中 "+plus(item.combat),
+
+      "遠距離傷害 "+plus(item.combat)+
+      "、遠距離命中 "+plus(item.combat),
+
+      "物理減免 "+plus(item.combat)+
+      "、魔法減免 "+plus(item.combat),
+
+      "魔攻 "+plus(item.combat)+
+      "、魔法命中 "+plus(item.combat),
+
+      "魔法防禦 "+plus(item.mr),
+
+      "火屬性 "+plus(item.element)+
+      "、水屬性 "+plus(item.element)+
+      "、風屬性 "+plus(item.element)+
+      "、地屬性 "+plus(item.element)
+
+    ];
+
+    lines.forEach(text=>{
+
+      ability.appendChild(
+        createElement("p","",text)
+      );
+
+    });
+
+    card.appendChild(ability);
+
+    container.appendChild(card);
+
+  });
+
+}
+
+/* =====================================
+   【19】顯示完整比較表
+===================================== */
+
+function renderTable(){
+
+  const headings=[
+
+    "變身分類",
+    "需求轉生",
+
+    "力量",
+    "敏捷",
+    "體質",
+    "智力",
+    "精神",
+
+    "血量",
+    "魔量",
+    "回血",
+    "回魔",
+
+    "近距離傷害",
+    "遠距離傷害",
+    "近距離命中",
+    "遠距離命中",
+
+    "物理減免",
+    "魔法減免",
+    "魔攻",
+    "魔法命中",
+    "魔法防禦",
+
+    "火屬性",
+    "水屬性",
+    "風屬性",
+    "地屬性"
+
+  ];
+
+  const head=document.getElementById(
+    "table-head"
+  );
+
+  const body=document.getElementById(
+    "table-body"
+  );
+
+  head.replaceChildren();
+  body.replaceChildren();
+
+  headings.forEach(text=>{
+
+    const cell=createElement(
+      "th",
+      "",
+      text
+    );
+
+    cell.setAttribute("scope","col");
+
+    head.appendChild(cell);
+
+  });
+
+  TRANSFORMATIONS.forEach(item=>{
+
+    const row=createElement("tr");
+
+    const name=createElement(
+      "th",
+      item.id+"-text",
+      item.name
+    );
+
+    name.setAttribute("scope","row");
+
+    row.appendChild(name);
+
+    const values=[
+
+      item.rebirth+"轉",
+
+      plus(item.ability),
+      plus(item.ability),
+      plus(item.ability),
+      plus(item.ability),
+      plus(item.ability),
+
+      plus(item.hp),
+      plus(item.mp),
+      plus(item.hpr),
+      plus(item.mpr),
+
+      plus(item.combat),
+      plus(item.combat),
+      plus(item.combat),
+      plus(item.combat),
+
+      plus(item.combat),
+      plus(item.combat),
+      plus(item.combat),
+      plus(item.combat),
+
+      plus(item.mr),
+
+      plus(item.element),
+      plus(item.element),
+      plus(item.element),
+      plus(item.element)
+
+    ];
+
+    values.forEach(value=>{
+
+      row.appendChild(
+        createElement("td","",value)
+      );
+
+    });
+
+    body.appendChild(row);
+
+  });
+
+}
+
+/* =====================================
+   【20】啟動
+===================================== */
+
+renderCards();
+renderTable();
+
+</script>
+
+</body>
+</html>
