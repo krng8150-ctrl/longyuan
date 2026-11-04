@@ -1,72 +1,43 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#07111f">
-
-<title>龍淵天堂｜官方網站</title>
+<title>遊戲介紹｜龍淵天堂</title>
 
 <style>
-
-/* ========================================
-   【01】網站基本設定
-======================================== */
+/* =====================================
+   【01】基本設定與背景
+===================================== */
 
 *{
   box-sizing:border-box;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
 body{
   margin:0;
+  min-height:100vh;
   font-family:"Microsoft JhengHei",Arial,sans-serif;
   color:#eaf6ff;
   background:#07111f;
-  overflow-x:hidden;
+  line-height:1.85;
 }
 
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  z-index:-2;
+  z-index:-1;
+  pointer-events:none;
   background:
-    radial-gradient(
-      ellipse at 50% 12%,
-      rgba(49,112,174,.34),
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse at 15% 75%,
-      rgba(25,79,130,.2),
-      transparent 50%
-    ),
     linear-gradient(
       180deg,
-      #07111f,
-      #0a1b30 48%,
-      #040b15
-    );
-}
-
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  opacity:.13;
-  pointer-events:none;
-  background:repeating-linear-gradient(
-    135deg,
-    transparent 0 90px,
-    rgba(146,202,255,.12) 91px,
-    transparent 92px 180px
-  );
+      rgba(3,9,20,.55),
+      rgba(3,9,20,.85)
+    ),
+    url("longyuan-bg.png") center / cover no-repeat;
 }
 
 a{
@@ -74,17 +45,28 @@ a{
   text-decoration:none;
 }
 
-/* ========================================
-   【02】頂部導覽列
-======================================== */
+button,input{
+  font:inherit;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible{
+  outline:2px solid #91d4ff;
+  outline-offset:5px;
+}
+
+h1,h2,h3,p,a,li{
+  overflow-wrap:anywhere;
+}
+
+/* =====================================
+   【02】導覽
+===================================== */
 
 .nav{
-  position:sticky;
-  top:0;
-  z-index:20;
-  background:rgba(4,12,28,.91);
+  background:rgba(4,12,28,.94);
   border-bottom:1px solid rgba(163,213,255,.22);
-  backdrop-filter:blur(12px);
 }
 
 .nav-inner{
@@ -94,1333 +76,894 @@ a{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:18px;
+  flex-wrap:wrap;
+  gap:14px;
 }
 
 .brand{
-  font-size:27px;
+  font-size:25px;
   font-weight:900;
   letter-spacing:3px;
-  white-space:nowrap;
   text-shadow:0 0 18px #469de7;
 }
 
 .nav-links{
   display:flex;
   flex-wrap:wrap;
-  gap:22px;
+  gap:20px;
+  font-size:14px;
 }
 
-.nav-links a{
-  font-size:15px;
-}
-
-.nav-links a:hover{
+.nav-links a:hover,
+.breadcrumb a:hover{
   color:#91d4ff;
 }
 
-/* ========================================
-   【03】首頁主視覺
-======================================== */
+/* =====================================
+   【03】介紹頁
+===================================== */
 
-.hero{
-  position:relative;
-  min-height:480px;
+.page{
+  max-width:1100px;
+  margin:auto;
+  padding:30px 20px 65px;
+}
+
+.breadcrumb{
   display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  overflow:hidden;
-  padding:85px 20px;
-  isolation:isolate;
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  width:550px;
-  height:550px;
-  border:1px solid rgba(151,213,255,.15);
-  border-radius:50%;
-  box-shadow:
-    0 0 0 65px rgba(117,193,255,.025),
-    0 0 100px rgba(56,151,244,.2),
-    inset 0 0 90px rgba(68,148,222,.08);
-  animation:lyBreathe 5s ease-in-out infinite alternate;
-}
-
-@keyframes lyBreathe{
-  from{
-    opacity:.45;
-    transform:scale(.95);
-  }
-  to{
-    opacity:1;
-    transform:scale(1.05);
-  }
-}
-
-.hero-content{
-  position:relative;
-  z-index:3;
-}
-
-.hero .eyebrow{
-  color:#aedcff;
-  font-size:14px;
-  letter-spacing:8px;
-  margin-bottom:20px;
-}
-
-.hero h1{
-  margin:0;
-  font-size:clamp(48px,8vw,96px);
-  letter-spacing:12px;
-  color:#fff;
-  text-shadow:
-    0 0 12px rgba(255,255,255,.7),
-    0 0 30px #62b7ff,
-    0 0 65px #2675c9;
-}
-
-.hero p{
-  font-size:23px;
-  letter-spacing:5px;
-  margin:25px 0 34px;
-  color:#d6edff;
-}
-
-.hero-actions{
-  display:flex;
-  justify-content:center;
   flex-wrap:wrap;
-  gap:14px;
-}
-
-.btn{
-  display:inline-block;
-  border:1px solid #75bbef;
-  background:linear-gradient(
-    135deg,
-    #1d5b91,
-    #0c2d52
-  );
-  padding:13px 30px;
-  border-radius:9px;
-  font-weight:bold;
-  box-shadow:0 0 20px rgba(72,163,243,.18);
-  transition:.2s;
-}
-
-.btn:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.2);
-}
-
-.btn.secondary{
-  background:rgba(6,22,40,.65);
-}
-
-/* ========================================
-   【04】首頁共用區塊
-======================================== */
-
-.section{
-  margin:0 auto 30px;
-  max-width:1180px;
-  padding:0 20px;
-}
-
-.panel{
-  background:rgba(5,16,32,.78);
-  border:1px solid rgba(166,214,255,.2);
-  border-radius:17px;
-  padding:27px;
-  box-shadow:0 10px 40px rgba(0,0,0,.22);
-}
-
-.heading{
-  margin:0 0 22px;
-  padding-bottom:14px;
-  font-size:26px;
-  font-weight:700;
-  border-bottom:1px solid rgba(162,210,255,.18);
-  text-shadow:0 0 13px rgba(101,187,255,.45);
-}
-
-/* ========================================
-   【05】最新公告
-======================================== */
-
-.notice{
-  display:flex;
   align-items:center;
-  gap:12px;
-  padding:15px;
-  border-bottom:1px solid rgba(153,208,255,.12);
-  line-height:1.7;
-}
-
-.notice:last-child{
-  border-bottom:0;
-}
-
-.notice .symbol{
-  font-size:21px;
-}
-
-.notice .date{
-  margin-left:auto;
-  color:#9bb8ce;
+  gap:9px;
+  margin-bottom:22px;
+  color:#a9cbe4;
   font-size:13px;
 }
 
-.notice a:hover{
-  color:#90d6ff;
+.page-header{
+  padding:32px;
+  margin-bottom:24px;
+  background:rgba(5,16,32,.88);
+  border:1px solid rgba(166,214,255,.25);
+  border-radius:16px;
 }
 
-/* ========================================
-   【06】遊戲特色
-======================================== */
-
-.game-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
-.game-card{
-  padding:22px;
-  border:1px solid rgba(165,216,255,.14);
-  background:rgba(126,192,255,.04);
-  border-radius:12px;
-  text-align:center;
-}
-
-.game-card .ico{
-  font-size:29px;
-  margin-bottom:10px;
-}
-
-.game-card h3{
-  font-size:19px;
+.eyebrow{
   margin:0 0 10px;
+  font-size:11px;
+  letter-spacing:4px;
+  color:#9bcdf2;
 }
 
-.game-card p{
-  font-size:14px;
-  color:#bad5e9;
-  line-height:1.8;
-  margin:0;
+.page-header h1{
+  margin:0 0 12px;
+  font-size:34px;
+  line-height:1.5;
+  text-shadow:0 0 18px rgba(98,183,255,.6);
 }
 
-/* ========================================
-   【07】系統入口
-======================================== */
+.page-header p:last-child{
+  margin-bottom:0;
+  color:#bfd7e9;
+}
+
+.status{
+  display:inline-block;
+  margin-top:14px;
+  padding:4px 10px;
+  border:1px solid rgba(245,195,117,.4);
+  border-radius:6px;
+  color:#f5d39d;
+  font-size:12px;
+}
+
+.panel{
+  margin-bottom:22px;
+  padding:26px;
+  border:1px solid rgba(166,214,255,.2);
+  border-radius:15px;
+  background:rgba(5,16,32,.9);
+}
+
+.panel h2{
+  margin:0 0 16px;
+  padding-bottom:12px;
+  border-bottom:1px solid rgba(162,210,255,.18);
+  font-size:23px;
+}
+
+.panel p{
+  color:#c4dced;
+}
+
+.panel li{
+  margin-bottom:9px;
+  color:#c4dced;
+}
+
+.pending{
+  padding:16px 18px;
+  background:rgba(145,196,239,.06);
+  border-left:3px solid #79bced;
+  color:#b9d3e6;
+}
 
 .entry-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:13px;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
 }
 
 .entry{
-  padding:23px 12px;
-  text-align:center;
+  display:block;
+  min-width:0;
+  padding:22px;
+  border:1px solid rgba(158,210,255,.23);
+  border-radius:12px;
   background:linear-gradient(
     145deg,
     rgba(25,51,80,.8),
-    rgba(7,22,42,.85)
+    rgba(7,22,42,.9)
   );
-  border:1px solid rgba(158,210,255,.2);
-  border-radius:12px;
-  transition:.2s;
+  transition:transform .2s,border-color .2s;
 }
 
 .entry:hover{
   transform:translateY(-3px);
   border-color:#85caff;
-  box-shadow:0 0 20px rgba(73,160,242,.15);
-}
-
-.entry .ico{
-  font-size:29px;
-  margin-bottom:10px;
 }
 
 .entry strong{
   display:block;
-  font-size:17px;
+  font-size:18px;
 }
 
 .entry small{
   display:block;
-  color:#9dbdd6;
+  color:#a8c7de;
   margin-top:8px;
-  font-size:12px;
 }
 
-/* ========================================
-   【08】網站頁尾
-======================================== */
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:16px 0;
+}
+
+.tag{
+  padding:6px 12px;
+  border:1px solid rgba(158,210,255,.2);
+  border-radius:7px;
+  background:rgba(120,190,255,.05);
+  color:#c6e3f6;
+  font-size:14px;
+}
+
+.return-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:28px;
+}
+
+.btn{
+  display:inline-block;
+  padding:11px 22px;
+  border:1px solid #75bbef;
+  border-radius:8px;
+  background:rgba(13,44,76,.9);
+  text-align:center;
+}
+
+.btn:hover{
+  background:rgba(32,83,128,.9);
+}
 
 .footer{
-  padding:38px 20px 50px;
+  padding:25px 20px;
   text-align:center;
-  color:#9eb9d0;
+  border-top:1px solid rgba(145,205,255,.15);
   font-size:13px;
-  border-top:1px solid rgba(145,205,255,.1);
+  color:#9eb9d0;
 }
 
-/* ========================================
-   【09】平板版
-======================================== */
-
-@media(max-width:850px){
+@media(max-width:750px){
+  .entry-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
 
   .nav-inner{
-    flex-direction:column;
-  }
-
-  .nav-links{
     justify-content:center;
-    gap:15px;
+  }
+}
+
+@media(max-width:480px){
+  .page{
+    padding:22px 14px 45px;
   }
 
-  .game-grid{
+  .page-header,
+  .panel{
+    padding:21px 18px;
+  }
+
+  .page-header h1{
+    font-size:27px;
+  }
+
+  .panel h2{
+    font-size:21px;
+  }
+
+  .entry-grid{
     grid-template-columns:1fr;
   }
 
-  .entry-grid{
-    grid-template-columns:repeat(2,1fr);
+  .return-links .btn{
+    flex:1 1 100%;
   }
-
 }
-
-/* ========================================
-   【10】手機版
-======================================== */
-
-@media(max-width:560px){
-
-  .brand{
-    font-size:23px;
-  }
-
-  .nav-links{
-    gap:12px;
-  }
-
-  .nav-links a{
-    font-size:13px;
-  }
-
-  .hero{
-    min-height:385px;
-    padding:55px 14px;
-  }
-
-  .hero h1{
-    letter-spacing:4px;
-  }
-
-  .hero p{
-    font-size:16px;
-    letter-spacing:2px;
-  }
-
-  .hero .eyebrow{
-    font-size:11px;
-    letter-spacing:3px;
-  }
-
-  .hero::before{
-    width:310px;
-    height:310px;
-  }
-
-  .panel{
-    padding:19px;
-  }
-
-  .heading{
-    font-size:22px;
-  }
-
-  .notice{
-    flex-wrap:wrap;
-  }
-
-  .notice .date{
-    width:100%;
-    margin-left:33px;
-  }
-
-  .entry-grid{
-    gap:9px;
-  }
-
-  .entry{
-    padding:19px 8px;
-  }
-
-  .entry strong{
-    font-size:15px;
-  }
-
-}
-
-/* ========================================
-   【11】減少動畫設定
-======================================== */
 
 @media(prefers-reduced-motion:reduce){
-
-  *,
-  *::before,
-  *::after{
-    animation:none!important;
-    scroll-behavior:auto!important;
+  *{
+    transition:none!important;
   }
-
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- =====================================
-     【12】頂部選單
-===================================== -->
-
 <header class="nav">
-
   <div class="nav-inner">
 
-    <a class="brand" href="index.html">
-      龍淵天堂
-    </a>
+    <a class="brand" href="index.html">龍淵天堂</a>
 
     <nav class="nav-links" aria-label="主要選單">
-
       <a href="index.html">首頁</a>
-      <a href="#announcements">公告</a>
-      <a href="#entries">遊戲介紹</a>
-      <a href="#entries">裝備介紹</a>
-      <a href="#entries">下載專區</a>
-      <a href="#entries">贊助專區</a>
-
+      <a href="intro.html">介紹入口</a>
+      <a href="intro.html?page=weapon">武器</a>
+      <a href="intro.html?page=armor">防具</a>
+      <a href="intro.html?page=doll">魔法娃娃</a>
     </nav>
 
   </div>
-
 </header>
 
-<main>
-
-<!-- =====================================
-     【13】首頁主視覺
-===================================== -->
-
-<section class="hero">
-
-  <div class="hero-content">
-
-    <div class="eyebrow">
-      LINEAGE · DRAGON REALM
-    </div>
-
-    <h1>龍淵天堂</h1>
-
-    <p>龍魂覺醒・傳奇再臨</p>
-
-    <div class="hero-actions">
-
-      <a class="btn" href="#entries">
-        探索遊戲
-      </a>
-
-      <a class="btn secondary" href="#announcements">
-        最新公告
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- =====================================
-     【14】最新公告
-===================================== -->
-
-<section class="section" id="announcements">
-
-  <div class="panel">
-
-    <h2 class="heading">
-      📢 最新公告
-    </h2>
-
-    <div class="notice">
-
-      <span class="symbol">📣</span>
-
-      <span>
-        龍淵天堂官方網站建置中，最新資訊敬請期待。
-      </span>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- =====================================
-     【15】遊戲特色
-===================================== -->
-
-<section class="section">
-
-  <div class="panel">
-
-    <h2 class="heading">
-      遊戲特色
-    </h2>
-
-    <div class="game-grid">
-
-      <div class="game-card">
-
-        <div class="ico">🐉</div>
-
-        <h3>龍族世界</h3>
-
-        <p>
-          以龍淵天堂為主題的冒險世界。
-        </p>
-
-      </div>
-
-      <div class="game-card">
-
-        <div class="ico">⚔️</div>
-
-        <h3>裝備養成</h3>
-
-        <p>
-          武器、防具與飾品介紹將依實際遊戲資料建立。
-        </p>
-
-      </div>
-
-      <div class="game-card">
-
-        <div class="ico">✦</div>
-
-        <h3>轉生系統</h3>
-
-        <p>
-          各職業轉生能力及詳細數值將陸續公開。
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- =====================================
-     【16】系統入口
-===================================== -->
-
-<section class="section" id="entries">
-
-  <div class="panel">
-
-    <h2 class="heading">
-      系統入口
-    </h2>
-
-    <div class="entry-grid">
-
-      <a class="entry" href="#announcements">
-        <div class="ico">📢</div>
-        <strong>最新公告</strong>
-        <small>查看網站消息</small>
-      </a>
-
-      <a class="entry" href="#entries">
-        <div class="ico">📖</div>
-        <strong>遊戲介紹</strong>
-        <small>敬請期待</small>
-      </a>
-
-      <a class="entry" href="#entries">
-        <div class="ico">⚔️</div>
-        <strong>武器介紹</strong>
-        <small>敬請期待</small>
-      </a>
-
-      <a class="entry" href="#entries">
-        <div class="ico">🛡️</div>
-        <strong>防具介紹</strong>
-        <small>敬請期待</small>
-      </a>
-
-      <a class="entry" href="#entries">
-        <div class="ico">💎</div>
-        <strong>飾品介紹</strong>
-        <small>敬請期待</small>
-      </a>
-
-      <a class="entry" href="#entries">
-        <div class="ico">✦</div>
-        <strong>轉生系統</strong>
-        <small>敬請期待</small>
-      </a>
-
-      <a class="entry" href="#entries">
-        <div class="ico">🗺️</div>
-        <strong>地圖掉落</strong>
-        <small>敬請期待</small>
-      </a>
-
-      <a class="entry" href="#entries">
-        <div class="ico">📥</div>
-        <strong>下載專區</strong>
-        <small>敬請期待</small>
-      </a>
-
-      <a class="entry" href="#entries">
-        <div class="ico">🐲</div>
-        <strong>古龍系列</strong>
-        <small>敬請期待</small>
-      </a>
-
-      <a class="entry" href="#entries">
-        <div class="ico">🎖️</div>
-        <strong>徽章系統</strong>
-        <small>敬請期待</small>
-      </a>
-
-      <a class="entry" href="#entries">
-        <div class="ico">💬</div>
-        <strong>官方社群</strong>
-        <small>敬請期待</small>
-      </a>
-
-      <a class="entry" href="#entries">
-        <div class="ico">🎁</div>
-        <strong>贊助專區</strong>
-        <small>敬請期待</small>
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
+<main class="page" id="main">
+
+  <nav class="breadcrumb" id="breadcrumb" aria-label="目前位置"></nav>
+
+  <header class="page-header">
+    <p class="eyebrow">LONGYUAN · GAME GUIDE</p>
+    <h1 id="page-title">遊戲介紹</h1>
+    <p id="page-summary">請選擇想查看的介紹。</p>
+    <span class="status" id="page-status">介紹內容整理中</span>
+  </header>
+
+  <div id="page-content"></div>
+
+  <nav class="return-links" aria-label="返回導覽">
+    <a class="btn" id="back-link" href="intro.html">← 返回上一層</a>
+    <a class="btn" href="index.html">返回首頁</a>
+  </nav>
+
+  <noscript>
+    <p class="pending">
+      請啟用 JavaScript 查看分類介紹，或使用上方導覽返回首頁。
+    </p>
+  </noscript>
 
 </main>
 
-<!-- =====================================
-     【17】網站頁尾
-===================================== -->
+<footer class="footer">龍淵天堂 · 官方網站</footer>
 
-<footer class="footer">
-  龍淵天堂 · 官方網站
-</footer>
-
-
-<!-- =====================================================
-     ★★★★★★★★★★★★★★★★★★★★★★★★★★★
-
-     【龍淵天堂特效專區開始】
-
-     以後所有特效統一放在這裡。
-     不需要修改上面的首頁程式。
-
-     目前版本：
-     龍焰隕石雨 V3
-
-     ★★★★★★★★★★★★★★★★★★★★★★★★★★★
-===================================================== -->
-
-<!-- =====================================================
-     龍淵天堂官方網站
-     【V4 微微飄浮火苗特效 開始】
-
-     功能：
-     1. 小火苗緩緩向上飄
-     2. 左右輕微搖晃
-     3. 橘紅色餘燼忽明忽暗
-     4. 自動適應電腦與手機
-     5. 不影響原本 V3 隕石特效
-
-     貼上位置：
-     index.html 最下面的 </body> 正上方
-
-     以後要修改火苗：
-     只替換本區塊，不要重複貼上。
-===================================================== -->
-
-<style id="ly-floating-fire-v4-css">
+<script>
+"use strict";
 
 /* =====================================
-   【火苗 01】特效容器
+   【04】介紹資料編輯區
+
+   title：入口名稱
+   summary：簡介
+   paragraphs：介紹段落
+   points：條列說明
+   children：子分類，可繼續加入 children
+   pending：尚待確認的內容
+
+   不填未確認的數值、機率、價格與網址。
 ===================================== */
 
-#ly-floating-fire-v4{
-  position:absolute;
-  inset:0;
-  overflow:hidden;
-  pointer-events:none;
-  z-index:2;
-}
+const INTRO_DATA = [
+
+  {
+    id:"poly",
+    title:"天M變身",
+    summary:"認識不同變身階級與角色成長方向。",
+    paragraphs:[
+      "變身介紹依階級整理，方便查閱不同階段的外觀與能力。",
+      "龍淵的使用條件、開放階段與能力加成，將在確認後補上。"
+    ],
+    points:[
+      "傳說變身",
+      "神話變身",
+      "覺醒變身",
+      "青變"
+    ],
+    pending:"各階級所需轉生次數、外觀清單與能力數值待公布。"
+  },
+
+  {
+    id:"rebirth",
+    title:"轉生系統",
+    summary:"轉生為角色提供額外數值加成。",
+    paragraphs:[
+      "轉生介紹將依職業分開整理，讓玩家查閱適合自己的成長資訊。",
+      "各階段能力以龍淵實際設定為準。"
+    ],
+    points:[
+      "轉生資格與所需條件",
+      "各職業能力加成",
+      "血量、魔力及其他成長項目",
+      "轉生上限與相關限制"
+    ],
+    pending:"龍淵轉生條件、階段上限與加成表尚待核對，不沿用永翼數值。"
+  },
+
+  {
+    id:"pattern",
+    title:"紋樣系統",
+    summary:"依不同紋樣了解角色養成方向。",
+    paragraphs:[
+      "紋樣介紹依防禦、遠攻、守護、近戰與魔法方向分類。",
+      "各紋樣的等級、升級需求與實際效果，待龍淵資料確認後補上。"
+    ],
+    points:[
+      "馬普勒｜大地防禦紋樣",
+      "沙哈｜風之射手紋樣",
+      "殷海薩｜神聖守護紋樣",
+      "帕格里奧｜火焰戰士紋樣",
+      "伊娃｜水之魔法紋樣"
+    ],
+    pending:"各級能力、升級消耗與開放內容待公布。"
+  },
+
+  {
+    id:"badge",
+    title:"徽章系統",
+    summary:"徽章、符石與魔法符的分類介紹。",
+    paragraphs:[
+      "依系列進入對應介紹，後續可分別補上取得方式與能力表。"
+    ],
+    children:[
+      {id:"normal",title:"一般徽章"},
+      {id:"boss",title:"Boss徽章"},
+      {id:"god",title:"古神的榮耀"},
+      {id:"vip",title:"VIP徽章"},
+      {id:"hexagram",title:"六芒星魔法符"},
+      {id:"superstone",title:"超能符石"},
+      {id:"hecate",title:"赫卡特符文"},
+      {id:"ancient",title:"古代魔石祝福"},
+      {id:"crystal",title:"推廣水晶"}
+    ],
+    pending:"各系列能力、取得管道及升級條件待核對。"
+  },
+
+  {
+    id:"weapon",
+    title:"武器介紹",
+    summary:"選擇武器系列，進入對應的裝備介紹。",
+    paragraphs:[
+      "武器依系列分類，各系列可再新增武器種類及個別裝備。",
+      "正式名稱、適用職業與屬性，將依龍淵武器資料補齊。"
+    ],
+    children:[
+      {
+        id:"fantasy",
+        title:"幻想武器系列",
+        summary:"幻想系列武器介紹。"
+      },
+      {
+        id:"moon",
+        title:"月神武器系列",
+        summary:"月神系列武器介紹。"
+      },
+      {
+        id:"mars",
+        title:"戰神武器系列",
+        summary:"戰神系列武器介紹。"
+      },
+      {
+        id:"dragon",
+        title:"神龍武器系列",
+        summary:"神龍系列武器介紹。"
+      }
+    ],
+    pending:"武器能力、製作材料、進階方式與取得來源待核對。"
+  },
+
+  {
+    id:"armor",
+    title:"防具介紹",
+    summary:"依防具系列查閱裝備資料。",
+    paragraphs:[
+      "選擇下方系列進入介紹。",
+      "防禦、血量、能力加成及其他屬性，以龍淵實際裝備資料為準。"
+    ],
+    children:[
+      {id:"ascley",title:"亞斯克雷系列"},
+      {id:"berserk",title:"狂戰臂甲系列"},
+      {id:"grankein",title:"格蘭肯戰盔系列"},
+      {id:"shadow",title:"獵影之痕T恤系列"},
+      {id:"golden-dragon",title:"聖者金龍盔甲系列"},
+      {id:"einhasad",title:"光之殷海薩腰帶系列"},
+      {id:"dk-greaves",title:"死亡騎士脛甲系列"},
+      {id:"hades",title:"黑帝斯斗蓬系列"}
+    ],
+    pending:"各部位能力、強化效果、製作與進階資料待核對。"
+  },
+
+  {
+    id:"color-scroll",
+    title:"洗色卷軸介紹",
+    summary:"認識武器與防具的品質分類。",
+    paragraphs:[
+      "洗色介紹分為武器與防具，依品質整理附加能力。",
+      "不同部位的可用卷軸、品質效果與相關限制，待龍淵設定確認後公布。"
+    ],
+    points:[
+      "品質分類：金色、紫色、紅色、藍色、綠色、白色。",
+      "武器洗色與防具洗色分開整理。",
+      "各品質的附加能力與機率尚待核對。"
+    ],
+    pending:"洗色機率、能力數值、消耗與適用裝備待公布。"
+  },
+
+  {
+    id:"prestige",
+    title:"威望階級介紹",
+    summary:"查看威望成長與階級資訊。",
+    paragraphs:[
+      "威望介紹將整理各階級名稱、提升方式與角色能力加成。",
+      "尚未核對的階級門檻與能力不先填入。"
+    ],
+    pending:"完整階級表、取得方式與加成數值待公布。"
+  },
+
+  {
+    id:"accessory",
+    title:"飾品系統",
+    summary:"項鍊、戒指與耳環的分類入口。",
+    paragraphs:[
+      "飾品依種類分類，方便比較不同搭配方向。",
+      "各系列的屬性、強化效果與階級上限，待龍淵資料確認後補上。"
+    ],
+    children:[
+      {
+        id:"necklace",
+        title:"永恆項鍊系列",
+        points:["力量","敏捷","智力","體力","魔力"]
+      },
+      {
+        id:"ring",
+        title:"永恆戒指系列",
+        points:["回復","集中","體力","魔力","抗魔"]
+      },
+      {
+        id:"earring",
+        title:"麥斯特耳環系列",
+        points:["紅光耳環","藍光耳環","紫光耳環"]
+      }
+    ],
+    pending:"各款飾品能力、升階需求與取得來源待核對。"
+  },
+
+  {
+    id:"attribute-scroll",
+    title:"屬性卷軸介紹",
+    summary:"地、水、火、風四種武器屬性介紹。",
+    paragraphs:[
+      "屬性卷軸依不同效果方向分類。",
+      "效果數值、觸發條件與適用武器，待龍淵設定確認後公布。"
+    ],
+    points:[
+      "地屬性：束縛效果方向。",
+      "水屬性：吸取魔力方向。",
+      "火屬性：增加傷害方向。",
+      "風屬性：範圍傷害方向。"
+    ],
+    pending:"各階效果、範圍、機率及數值待核對。"
+  },
+
+  {
+    id:"pet",
+    title:"寵物介紹",
+    summary:"寵物分類與進化養成資訊。",
+    paragraphs:[
+      "寵物介紹將整理寵物種類、進化路線及能力。",
+      "捕捉方式、可進化對象與成長數值，待龍淵資料核對後公布。"
+    ],
+    points:[
+      "一般寵物",
+      "龍族寵物",
+      "高等寵物",
+      "進化路線與所需條件"
+    ],
+    pending:"寵物清單、進化條件、材料及成長能力待公布。"
+  },
+
+  {
+    id:"doll",
+    title:"魔法娃娃介紹",
+    summary:"選擇娃娃分類，查看對應介紹。",
+    paragraphs:[
+      "魔法娃娃可提供角色額外能力。",
+      "不同娃娃的能力與培養方向各有差異，實際效果以龍淵設定為準。"
+    ],
+    children:[
+      {
+        id:"blue",
+        title:"藍色娃娃",
+        points:["巨人","阿魯巴","飛龍","食人妖精王"]
+      },
+      {
+        id:"red",
+        title:"紅色娃娃",
+        points:["巫妖","獨眼巨人","騎士范德","幻象眼魔"]
+      },
+      {
+        id:"purple",
+        title:"紫色娃娃",
+        points:["惡魔","死亡騎士"]
+      },
+      {
+        id:"gold",
+        title:"金色娃娃",
+        points:["沙悟淨","豬八戒","孫悟空","唐三藏"]
+      },
+      {
+        id:"dragons",
+        title:"四龍娃娃",
+        points:["安塔瑞斯","法利昂","林德拜爾","巴拉卡斯"]
+      }
+    ],
+    pending:"各娃娃的等級、能力、技能、取得與培養方式待核對。"
+  },
+
+  {
+    id:"helper",
+    title:"隨身祭司介紹",
+    summary:"祭司階級與輔助魔法資訊。",
+    paragraphs:[
+      "隨身祭司屬於輔助系統，依階級整理可使用的輔助內容。",
+      "各階級技能、使用條件及相關消耗，待龍淵設定確認後公布。"
+    ],
+    points:[
+      "初級隨身祭司",
+      "中級隨身祭司",
+      "高級隨身祭司",
+      "頂級隨身祭司"
+    ],
+    pending:"各階技能、取得方式與使用限制待公布。"
+  },
+
+  {
+    id:"taigu-dragon",
+    title:"太古龍神系統",
+    summary:"太古龍神系列裝備與進階介紹。",
+    paragraphs:[
+      "本區分開整理系列武器、防具、覺醒升階與材料資訊。",
+      "裝備屬性、進階資格和材料需求，待龍淵資料確認後補上。"
+    ],
+    children:[
+      {id:"weapons",title:"太古龍神武器"},
+      {
+        id:"armors",
+        title:"太古龍神防具",
+        points:["龍威系列","龍影系列","龍魂系列"]
+      },
+      {id:"awakening",title:"防具覺醒升階"},
+      {id:"materials",title:"進階材料與製作"},
+      {id:"sources",title:"材料取得來源"},
+      {id:"upgrade",title:"武器與防具進階"}
+    ],
+    pending:"完整裝備能力、升階條件與材料取得方式待核對。"
+  },
+
+  {
+    id:"map-drops",
+    title:"地圖掉落查詢",
+    summary:"地圖與怪物掉落資料整理中。",
+    paragraphs:[
+      "本區將整理龍淵各地圖、怪物與掉落道具的對應資訊。",
+      "目前尚未提供可查詢的正式掉落資料。"
+    ],
+    pending:"地圖清單、怪物對應、掉落物品與機率待核對。"
+  },
+
+  {
+    id:"skill-drops",
+    title:"技能書掉落",
+    summary:"各職業技能書來源資料整理中。",
+    paragraphs:[
+      "本區將依職業整理技能書名稱與取得來源。",
+      "目前尚未提供可查詢的正式技能書掉落資料。"
+    ],
+    pending:"技能書清單、怪物來源與取得方式待核對。"
+  },
+
+  {
+    id:"reward",
+    title:"推文獎勵",
+    summary:"推廣活動資訊待公布。",
+    paragraphs:[
+      "活動開放後，將於此公布參加方式、活動規則與獎勵內容。",
+      "目前尚未提供投稿或領獎功能。"
+    ],
+    pending:"活動是否開放、參加資格、獎勵與龍淵專用連結待確認。"
+  },
+
+  {
+    id:"donate",
+    title:"贊助系統",
+    summary:"龍淵儲值與贊助資訊待公布。",
+    paragraphs:[
+      "儲值方式、金額、回饋與注意事項確認後，會於此完整公布。",
+      "目前尚未提供付款入口，也未公布首儲或累積儲值獎勵。"
+    ],
+    pending:"付款方式、價格、回饋內容與客服管道待確認。"
+  },
+
+  {
+    id:"guide",
+    title:"新手攻略",
+    summary:"先認識龍淵，再規劃角色成長方向。",
+    paragraphs:[
+      "開始遊戲前，先查看首頁公告與正式遊戲設定。",
+      "可依自己的玩法，分別閱讀武器、防具、飾品、魔法娃娃及轉生介紹。",
+      "下載與安裝方式，請以後續公布的龍淵專用資訊為準。"
+    ],
+    points:[
+      "查看最新公告。",
+      "確認正式設定及開放內容。",
+      "認識各項裝備與養成系統。",
+      "依官方公布的說明完成下載與安裝。"
+    ],
+    pending:"新手地圖、任務、貨幣與實際成長路線待核對。"
+  }
+
+];
 
 /* =====================================
-   【火苗 02】微微飄浮火苗
+   【05】頁面顯示程式
+   日常編輯通常只需修改上方 INTRO_DATA
 ===================================== */
 
-.ly-v4-flame{
-  position:absolute;
-  bottom:-35px;
+const byId = id => document.getElementById(id);
 
-  width:var(--flame-size,9px);
-  height:calc(var(--flame-size,9px) * 2.1);
+function element(tag,className,text){
+  const item=document.createElement(tag);
 
-  border-radius:65% 25% 65% 40%;
+  if(className){
+    item.className=className;
+  }
 
-  background:linear-gradient(
-    to top,
-    #ff4b12 0%,
-    #ff8a20 35%,
-    #ffd276 70%,
-    rgba(255,236,164,0) 100%
-  );
+  if(text!==undefined){
+    item.textContent=text;
+  }
 
-  box-shadow:
-    0 0 8px rgba(255,100,20,.7),
-    0 0 18px rgba(255,65,0,.25);
-
-  filter:blur(.6px);
-
-  opacity:0;
-
-  transform:rotate(35deg);
-
-  animation:
-    ly-v4-flame-rise
-    var(--flame-duration,8s)
-    ease-in-out
-    var(--flame-delay,0s)
-    infinite;
-
-  will-change:transform,opacity;
+  return item;
 }
 
-/* =====================================
-   【火苗 03】火苗上升動畫
-===================================== */
+function pageURL(page,path=[]){
+  const params=new URLSearchParams();
 
-@keyframes ly-v4-flame-rise{
+  params.set("page",page);
 
-  0%{
-    transform:
-      translate(0,0)
-      rotate(35deg)
-      scale(.65);
-    opacity:0;
+  if(path.length){
+    params.set("path",path.join("/"));
   }
 
-  15%{
-    opacity:.75;
-  }
-
-  35%{
-    transform:
-      translate(12px,-110px)
-      rotate(22deg)
-      scale(1);
-    opacity:.65;
-  }
-
-  60%{
-    transform:
-      translate(-9px,-225px)
-      rotate(43deg)
-      scale(.8);
-    opacity:.4;
-  }
-
-  85%{
-    transform:
-      translate(14px,-340px)
-      rotate(28deg)
-      scale(.5);
-    opacity:.15;
-  }
-
-  100%{
-    transform:
-      translate(4px,-420px)
-      rotate(35deg)
-      scale(.2);
-    opacity:0;
-  }
-
+  return "intro.html?"+params.toString();
 }
 
-/* =====================================
-   【火苗 04】細小餘燼火星
-===================================== */
+function addBreadcrumb(text,url){
+  const container=byId("breadcrumb");
 
-.ly-v4-ember{
-  position:absolute;
-  bottom:-15px;
+  if(container.children.length){
+    const divider=element("span","","›");
+    divider.setAttribute("aria-hidden","true");
+    container.appendChild(divider);
+  }
 
-  width:var(--ember-size,3px);
-  height:var(--ember-size,3px);
+  const item=element(url?"a":"span","",text);
 
-  border-radius:50%;
+  if(url){
+    item.href=url;
+  }else{
+    item.setAttribute("aria-current","page");
+  }
 
-  background:#ffbf60;
-
-  box-shadow:
-    0 0 6px #ff9b31,
-    0 0 13px rgba(255,72,10,.55);
-
-  opacity:0;
-
-  animation:
-    ly-v4-ember-rise
-    var(--ember-duration,10s)
-    linear
-    var(--ember-delay,0s)
-    infinite;
-
-  will-change:transform,opacity;
+  container.appendChild(item);
 }
 
-/* =====================================
-   【火苗 05】餘燼上升動畫
-===================================== */
+function makePanel(title){
+  const section=element("section","panel");
 
-@keyframes ly-v4-ember-rise{
-
-  0%{
-    transform:translate(0,0) scale(.5);
-    opacity:0;
+  if(title){
+    section.appendChild(element("h2","",title));
   }
 
-  15%{
-    opacity:.7;
-  }
-
-  40%{
-    transform:translate(16px,-140px) scale(1);
-    opacity:.8;
-  }
-
-  70%{
-    transform:translate(-12px,-280px) scale(.65);
-    opacity:.35;
-  }
-
-  100%{
-    transform:translate(8px,-440px) scale(.2);
-    opacity:0;
-  }
-
+  return section;
 }
 
-/* =====================================
-   【火苗 06】手機效果調整
-===================================== */
+function addCards(items,page,path=[]){
+  const section=makePanel(page?"選擇分類":"介紹入口");
+  const grid=element("div","entry-grid");
 
-@media(max-width:600px){
+  items.forEach(item=>{
+    const link=element("a","entry");
 
-  .ly-v4-flame{
-    filter:blur(.5px);
-  }
+    link.href=page
+      ?pageURL(page,[...path,item.id])
+      :pageURL(item.id);
 
-  .ly-v4-ember{
-    box-shadow:0 0 7px rgba(255,110,30,.65);
-  }
+    link.appendChild(element("strong","",item.title));
 
+    const description=item.summary ||
+      (item.children?.length
+        ?"進入下一層分類 →"
+        :"查看介紹・詳細資料整理中 →");
+
+    link.appendChild(element("small","",description));
+
+    grid.appendChild(link);
+  });
+
+  section.appendChild(grid);
+  byId("page-content").appendChild(section);
 }
 
-/* =====================================
-   【火苗 07】尊重減少動畫設定
-===================================== */
+function showUnknown(){
+  byId("page-title").textContent="找不到這個介紹項目";
+  byId("page-summary").textContent=
+    "請由介紹入口重新選擇想查看的項目。";
 
-@media(prefers-reduced-motion:reduce){
+  byId("page-status").textContent="項目不存在";
 
-  #ly-floating-fire-v4{
-    display:none!important;
-  }
+  addBreadcrumb("首頁","index.html");
+  addBreadcrumb("介紹入口","intro.html");
+  addBreadcrumb("找不到項目");
 
+  byId("back-link").href="intro.html";
+  document.title="找不到介紹項目｜龍淵天堂";
 }
 
-</style>
+function render(){
+  const params=new URLSearchParams(location.search);
+  const page=params.get("page");
 
-<script id="ly-floating-fire-v4-js">
+  if(!page){
+    byId("page-title").textContent="遊戲介紹入口";
+    byId("page-summary").textContent=
+      "選擇想了解的系統，進入對應介紹。";
 
-(function(){
+    byId("page-status").textContent=
+      "已建立基本介紹・正式設定陸續補齊";
 
-  "use strict";
+    byId("back-link").href="index.html";
 
-  /* =====================================
-     【火苗 08】防止重複產生
-  ===================================== */
+    addBreadcrumb("首頁","index.html");
+    addBreadcrumb("介紹入口");
 
-  if(document.getElementById("ly-floating-fire-v4")){
+    addCards(INTRO_DATA);
+
+    document.title="介紹入口｜龍淵天堂";
     return;
   }
 
-  /* =====================================
-     【火苗 09】尋找首頁主視覺
-  ===================================== */
+  const root=INTRO_DATA.find(item=>item.id===page);
 
-  const hero=document.querySelector(".hero");
-
-  if(!hero){
+  if(!root){
+    showUnknown();
     return;
   }
 
-  /* =====================================
-     【火苗 10】建立特效容器
-  ===================================== */
+  const pathValue=params.get("path")||"";
+  const path=pathValue?pathValue.split("/"):[];
 
-  const layer=document.createElement("div");
+  let current=root;
+  const chain=[root];
 
-  layer.id="ly-floating-fire-v4";
-  layer.setAttribute("aria-hidden","true");
-
-  hero.insertBefore(layer,hero.firstChild);
-
-  /* =====================================
-     【火苗 11】火苗數量設定
-
-     電腦：16 個火苗、22 個火星
-     手機：8 個火苗、12 個火星
-
-     以後想增加或減少數量，
-     修改這裡的數字即可。
-  ===================================== */
-
-  const isMobile=window.matchMedia(
-    "(max-width:600px)"
-  ).matches;
-
-  const flameCount=isMobile ? 8 : 16;
-  const emberCount=isMobile ? 12 : 22;
-
-  /* =====================================
-     【火苗 12】產生固定亂數
-
-     讓每顆火苗的位置與速度不同，
-     但不會因重新整理而亂跳。
-  ===================================== */
-
-  function seededRandom(seed){
-
-    const value=Math.sin(seed*127.1)*43758.5453;
-
-    return value-Math.floor(value);
-
-  }
-
-  /* =====================================
-     【火苗 13】建立小火苗
-  ===================================== */
-
-  for(let i=0;i<flameCount;i++){
-
-    const flame=document.createElement("span");
-
-    flame.className="ly-v4-flame";
-
-    const x=seededRandom(i+10)*100;
-    const size=5+seededRandom(i+30)*7;
-    const duration=7+seededRandom(i+50)*6;
-    const delay=-(seededRandom(i+70)*duration);
-
-    flame.style.left=x+"%";
-
-    flame.style.setProperty(
-      "--flame-size",
-      size+"px"
+  for(const id of path){
+    const child=(current.children||[]).find(
+      item=>item.id===id
     );
 
-    flame.style.setProperty(
-      "--flame-duration",
-      duration+"s"
-    );
+    if(!child){
+      showUnknown();
+      return;
+    }
 
-    flame.style.setProperty(
-      "--flame-delay",
-      delay+"s"
-    );
-
-    layer.appendChild(flame);
-
+    current=child;
+    chain.push(child);
   }
 
-  /* =====================================
-     【火苗 14】建立餘燼火星
-  ===================================== */
+  document.title=current.title+"｜龍淵天堂";
 
-  for(let i=0;i<emberCount;i++){
+  byId("page-title").textContent=current.title;
 
-    const ember=document.createElement("span");
+  byId("page-summary").textContent=
+    current.summary ||
+    root.title+"｜"+current.title+"介紹。";
 
-    ember.className="ly-v4-ember";
+  byId("page-status").textContent=
+    "基本介紹・正式設定待確認";
 
-    const x=seededRandom(i+110)*100;
-    const size=2+seededRandom(i+130)*3;
-    const duration=8+seededRandom(i+150)*8;
-    const delay=-(seededRandom(i+170)*duration);
+  addBreadcrumb("首頁","index.html");
+  addBreadcrumb("介紹入口","intro.html");
 
-    ember.style.left=x+"%";
+  chain.forEach((item,index)=>{
+    const isCurrent=index===chain.length-1;
 
-    ember.style.setProperty(
-      "--ember-size",
-      size+"px"
-    );
+    const url=isCurrent
+      ?null
+      :pageURL(page,path.slice(0,index));
 
-    ember.style.setProperty(
-      "--ember-duration",
-      duration+"s"
-    );
+    addBreadcrumb(item.title,url);
+  });
 
-    ember.style.setProperty(
-      "--ember-delay",
-      delay+"s"
-    );
-
-    layer.appendChild(ember);
-
-  }
-
-})();
-
-</script>
-
-<!-- =====================================================
-     【V4 微微飄浮火苗特效 結束】
-
-     名稱：龍淵天堂・飄浮火苗與餘燼
-     版本：V4
-
-     保留原本 V3 龍焰隕石雨。
-
-     以後修改火苗時：
-     從「V4 微微飄浮火苗特效 開始」
-     到「V4 微微飄浮火苗特效 結束」
-     整段替換即可。
-===================================================== -->
-
-<!-- ==========================================
-     【龍淵天堂 V5 背景圖片 開始】
-
-     圖片名稱：longyuan-bg.png
-     作用：首頁黑龍城堡背景
-     不影響隕石及火苗特效
-========================================== -->
-
-<style id="ly-background-v5">
-
-/* 【01】首頁背景圖片 */
-.hero{
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(4,10,20,.30),
-      rgba(4,10,20,.48)
-    ),
-    url("longyuan-bg.png")
-    center center / cover no-repeat;
-}
-
-/* 【02】標題保持清楚 */
-.hero-content{
-  position:relative;
-  z-index:3;
-}
-
-/* 【03】手機版背景 */
-@media(max-width:600px){
-  .hero{
-    background-position:center center;
-  }
-}
-
-</style>
-
-<!-- ==========================================
-     【龍淵天堂 V5 背景圖片 結束】
-
-     以後要更換背景：
-     只需更換 longyuan-bg.png
-========================================== -->
-
-<!-- ==================================================
-     【龍淵天堂 V6 全站背景與特效 開始】
-
-     功能：
-     1. 黑龍城堡背景鋪滿整個網站
-     2. 背景固定，往下捲動仍然看得到
-     3. 隕石特效擴展到全畫面
-     4. 火苗特效擴展到全畫面
-     5. 保留原本首頁、公告及系統入口
-
-     貼上位置：
-     index.html 最下面 </body> 正上方
-
-     以後修改 V6：
-     整段替換，不要重複貼上
-================================================== -->
-
-<style id="ly-fullscreen-v6-css">
-
-/* ======================================
-   【01】整個網站背景
-====================================== */
-
-html{
-  min-height:100%;
-}
-
-body{
-  min-height:100vh;
-  background:#07111f !important;
-}
-
-/* ======================================
-   【02】黑龍城堡固定背景
-
-   圖片名稱：
-   longyuan-bg.png
-
-   圖片須與 index.html 同一層
-====================================== */
-
-body::before{
-  content:"" !important;
-
-  position:fixed !important;
-  inset:0 !important;
-
-  width:100% !important;
-  height:100vh !important;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(3,9,20,.20),
-      rgba(3,9,20,.52)
-    ),
-    url("longyuan-bg.png")
-    center center / cover no-repeat !important;
-
-  z-index:-2 !important;
-
-  pointer-events:none !important;
-}
-
-/* ======================================
-   【03】移除原本的首頁局部背景
-====================================== */
-
-.hero{
-  background:transparent !important;
-}
-
-/* ======================================
-   【04】讓全站內容保持清楚
-====================================== */
-
-.nav{
-  position:sticky;
-  z-index:20;
-}
-
-main{
-  position:relative;
-  z-index:1;
-}
-
-.panel{
-  background:rgba(5,16,32,.78);
-  backdrop-filter:blur(5px);
-}
-
-/* ======================================
-   【05】全畫面特效容器
-
-   V3 隕石
-   V4 火苗
-====================================== */
-
-#ly-meteor-v3,
-#ly-floating-fire-v4{
-  position:fixed !important;
-
-  inset:0 !important;
-
-  width:100vw !important;
-  height:100vh !important;
-
-  overflow:hidden !important;
-
-  pointer-events:none !important;
-
-  z-index:2 !important;
-}
-
-/* ======================================
-   【06】讓特效不影響點擊
-====================================== */
-
-.hero-content,
-.nav,
-.panel,
-.footer{
-  position:relative;
-  z-index:3;
-}
-
-.nav{
-  position:sticky;
-  z-index:20;
-}
-
-/* ======================================
-   【07】手機版
-====================================== */
-
-@media(max-width:600px){
-
-  body::before{
-    background-position:center center !important;
-  }
-
-}
-
-/* ======================================
-   【08】減少動畫偏好
-====================================== */
-
-@media(prefers-reduced-motion:reduce){
-
-  #ly-meteor-v3,
-  #ly-floating-fire-v4{
-    display:none !important;
-  }
-
-}
-
-</style>
-
-<script id="ly-fullscreen-v6-js">
-
-(function(){
-
-  "use strict";
-
-  /* ======================================
-     【09】把特效移到全站層級
-
-     原本在 .hero 裡面的特效，
-     移到 body 底下。
-
-     不重新建立特效，
-     避免重複產生。
-  ====================================== */
-
-  function moveEffects(){
-
-    const ids=[
-      "ly-meteor-v3",
-      "ly-floating-fire-v4"
+  const paragraphs=current.paragraphs ||
+    [
+      "本區整理"+current.title+"的分類資訊。",
+      "詳細能力、取得方式與相關條件，將於龍淵資料確認後補上。"
     ];
 
-    ids.forEach(function(id){
+  const overview=makePanel("系統介紹");
 
-      const effect=document.getElementById(id);
+  paragraphs.forEach(text=>{
+    overview.appendChild(element("p","",text));
+  });
 
-      if(effect && effect.parentElement!==document.body){
-        document.body.appendChild(effect);
-      }
+  byId("page-content").appendChild(overview);
 
+  if(current.points?.length){
+    const section=makePanel("分類與介紹項目");
+    const list=element("ul");
+
+    current.points.forEach(text=>{
+      list.appendChild(element("li","",text));
     });
 
+    section.appendChild(list);
+    byId("page-content").appendChild(section);
   }
 
-  moveEffects();
-
-  /* ======================================
-     【10】重新設定隕石移動距離
-
-     使用整個螢幕的寬度與高度，
-     不再使用首頁主視覺的尺寸。
-  ====================================== */
-
-  function updateMeteorDistance(){
-
-    const elements=document.querySelectorAll(
-      "#ly-meteor-v3 .ly-v3-rock,"+
-      "#ly-meteor-v3 .ly-v3-spark,"+
-      "#ly-meteor-v3 .ly-v3-smoke"
-    );
-
-    const moveX=-(window.innerWidth+350);
-    const moveY=Math.round(window.innerHeight*.95);
-
-    elements.forEach(function(element){
-
-      element.style.setProperty(
-        "--move-x",
-        moveX+"px"
-      );
-
-      element.style.setProperty(
-        "--move-y",
-        moveY+"px"
-      );
-
-    });
-
+  if(current.children?.length){
+    addCards(current.children,page,path);
   }
 
-  updateMeteorDistance();
+  const pending=makePanel("資料更新狀態");
 
-  window.addEventListener(
-    "resize",
-    updateMeteorDistance,
-    {passive:true}
+  pending.appendChild(
+    element(
+      "p",
+      "pending",
+      current.pending ||
+      root.pending ||
+      "詳細資料整理中。"
+    )
   );
 
-})();
+  byId("page-content").appendChild(pending);
 
+  byId("back-link").href=path.length
+    ?pageURL(page,path.slice(0,-1))
+    :"intro.html";
+}
+
+render();
 </script>
-
-<!-- ==================================================
-     【龍淵天堂 V6 全站背景與特效 結束】
-
-     V3：隕石
-     V4：火苗
-     V5：背景圖片
-     V6：全畫面顯示
-
-     以後修改全站背景及特效範圍，
-     只需要替換這個區塊。
-================================================== -->
 
 </body>
 </html>
