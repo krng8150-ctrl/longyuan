@@ -3227,266 +3227,324 @@ render();
 
 </style>
 
-<!-- ==========================================
-     【龍淵天堂 V5 背景圖片 結束】
+<!-- =========================================
+     龍淵天堂｜飄浮火苗與餘燼
+     貼在每個頁面的 </body> 前面
+========================================= -->
 
-     以後要更換背景：
-     只需更換 longyuan-bg.png
-========================================== -->
+<style id="ly-rising-fire-style">
 
-<!-- ==================================================
-     【龍淵天堂 V6 全站背景與特效 開始】
+/* 特效固定在整個畫面，不影響點擊 */
 
-     功能：
-     1. 黑龍城堡背景鋪滿整個網站
-     2. 背景固定，往下捲動仍然看得到
-     3. 隕石特效擴展到全畫面
-     4. 火苗特效擴展到全畫面
-     5. 保留原本首頁、公告及系統入口
-
-     貼上位置：
-     index.html 最下面 </body> 正上方
-
-     以後修改 V6：
-     整段替換，不要重複貼上
-================================================== -->
-
-<style id="ly-fullscreen-v6-css">
-
-/* ======================================
-   【01】整個網站背景
-====================================== */
-
-html{
-  min-height:100%;
+#ly-rising-fire{
+  position:fixed;
+  inset:0;
+  z-index:5;
+  overflow:hidden;
+  pointer-events:none;
 }
 
-body{
-  min-height:100vh;
-  background:#07111f !important;
+/* 小火苗 */
+
+#ly-rising-fire .ly-fire-flame{
+  position:absolute;
+  bottom:-40px;
+
+  width:var(--fire-size,8px);
+  height:calc(var(--fire-size,8px) * 2.2);
+
+  border-radius:65% 30% 60% 40%;
+
+  background:linear-gradient(
+    to top,
+    #f0440e 0%,
+    #ff7b19 35%,
+    #ffd16d 70%,
+    rgba(255,233,166,0) 100%
+  );
+
+  box-shadow:
+    0 0 7px rgba(255,115,25,.55),
+    0 0 16px rgba(255,65,0,.2);
+
+  filter:blur(.5px);
+  opacity:0;
+
+  animation:
+    ly-fire-flame-rise
+    var(--fire-duration,12s)
+    linear
+    var(--fire-delay,0s)
+    infinite;
 }
 
-/* ======================================
-   【02】黑龍城堡固定背景
+/* 火苗緩緩上升，左右輕微搖晃 */
 
-   圖片名稱：
-   longyuan-bg.png
+@keyframes ly-fire-flame-rise{
 
-   圖片須與 index.html 同一層
-====================================== */
+  0%{
+    transform:translate(0,0) rotate(30deg) scale(.65);
+    opacity:0;
+  }
 
-body::before{
-  content:"" !important;
+  12%{
+    opacity:.55;
+  }
 
-  position:fixed !important;
-  inset:0 !important;
+  35%{
+    transform:
+      translate(12px,calc(var(--fire-travel) * -.35))
+      rotate(18deg)
+      scale(1);
+    opacity:.6;
+  }
 
-  width:100% !important;
-  height:100vh !important;
+  65%{
+    transform:
+      translate(-10px,calc(var(--fire-travel) * -.65))
+      rotate(40deg)
+      scale(.8);
+    opacity:.35;
+  }
 
-  background:
-    linear-gradient(
-      180deg,
-      rgba(3,9,20,.20),
-      rgba(3,9,20,.52)
-    ),
-    url("longyuan-bg.png")
-    center center / cover no-repeat !important;
+  85%{
+    opacity:.12;
+  }
 
-  z-index:-2 !important;
-
-  pointer-events:none !important;
-}
-
-/* ======================================
-   【03】移除原本的首頁局部背景
-====================================== */
-
-.hero{
-  background:transparent !important;
-}
-
-/* ======================================
-   【04】讓全站內容保持清楚
-====================================== */
-
-.nav{
-  position:sticky;
-  z-index:20;
-}
-
-main{
-  position:relative;
-  z-index:1;
-}
-
-.panel{
-  background:rgba(5,16,32,.78);
-  backdrop-filter:blur(5px);
-}
-
-/* ======================================
-   【05】全畫面特效容器
-
-   V3 隕石
-   V4 火苗
-====================================== */
-
-#ly-meteor-v3,
-#ly-floating-fire-v4{
-  position:fixed !important;
-
-  inset:0 !important;
-
-  width:100vw !important;
-  height:100vh !important;
-
-  overflow:hidden !important;
-
-  pointer-events:none !important;
-
-  z-index:2 !important;
-}
-
-/* ======================================
-   【06】讓特效不影響點擊
-====================================== */
-
-.hero-content,
-.nav,
-.panel,
-.footer{
-  position:relative;
-  z-index:3;
-}
-
-.nav{
-  position:sticky;
-  z-index:20;
-}
-
-/* ======================================
-   【07】手機版
-====================================== */
-
-@media(max-width:600px){
-
-  body::before{
-    background-position:center center !important;
+  100%{
+    transform:
+      translate(8px,calc(var(--fire-travel) * -1))
+      rotate(26deg)
+      scale(.25);
+    opacity:0;
   }
 
 }
 
-/* ======================================
-   【08】減少動畫偏好
-====================================== */
+/* 細小餘燼 */
+
+#ly-rising-fire .ly-fire-ember{
+  position:absolute;
+  bottom:-20px;
+
+  width:var(--fire-size,3px);
+  height:var(--fire-size,3px);
+  border-radius:50%;
+
+  background:#ffc875;
+
+  box-shadow:
+    0 0 5px rgba(255,155,49,.7),
+    0 0 10px rgba(255,72,10,.35);
+
+  opacity:0;
+
+  animation:
+    ly-fire-ember-rise
+    var(--fire-duration,15s)
+    linear
+    var(--fire-delay,0s)
+    infinite;
+}
+
+@keyframes ly-fire-ember-rise{
+
+  0%{
+    transform:translate(0,0) scale(.5);
+    opacity:0;
+  }
+
+  15%{
+    opacity:.6;
+  }
+
+  45%{
+    transform:
+      translate(-14px,calc(var(--fire-travel) * -.45))
+      scale(1);
+    opacity:.65;
+  }
+
+  75%{
+    transform:
+      translate(12px,calc(var(--fire-travel) * -.75))
+      scale(.6);
+    opacity:.25;
+  }
+
+  100%{
+    transform:
+      translate(-5px,calc(var(--fire-travel) * -1))
+      scale(.2);
+    opacity:0;
+  }
+
+}
+
+/* 尊重使用者的減少動畫設定 */
 
 @media(prefers-reduced-motion:reduce){
 
-  #ly-meteor-v3,
-  #ly-floating-fire-v4{
-    display:none !important;
+  #ly-rising-fire{
+    display:none!important;
   }
 
 }
 
 </style>
 
-<script id="ly-fullscreen-v6-js">
-
+<script>
 (function(){
 
   "use strict";
 
-  /* ======================================
-     【09】把特效移到全站層級
+  /* 防止同一頁重複產生特效 */
 
-     原本在 .hero 裡面的特效，
-     移到 body 底下。
+  if(document.getElementById("ly-rising-fire")){
+    return;
+  }
 
-     不重新建立特效，
-     避免重複產生。
-  ====================================== */
+  const motionPreference=window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
 
-  function moveEffects(){
+  if(motionPreference.matches){
+    return;
+  }
 
-    const ids=[
-      "ly-meteor-v3",
-      "ly-floating-fire-v4"
-    ];
+  const layer=document.createElement("div");
 
-    ids.forEach(function(id){
+  layer.id="ly-rising-fire";
+  layer.setAttribute("aria-hidden","true");
 
-      const effect=document.getElementById(id);
+  document.body.appendChild(layer);
 
-      if(effect && effect.parentElement!==document.body){
-        document.body.appendChild(effect);
-      }
+  /* =====================================
+     可調整設定
 
-    });
+     電腦：12個火苗、16個餘燼
+     手機：6個火苗、8個餘燼
+
+     想減少特效，調低下面數量即可。
+  ===================================== */
+
+  const mobile=window.matchMedia(
+    "(max-width:600px)"
+  ).matches;
+
+  const flameCount=mobile?6:12;
+  const emberCount=mobile?8:16;
+
+  /* 固定亂數，讓位置自然分散 */
+
+  function random(seed){
+
+    const value=Math.sin(seed*127.1)*43758.5453;
+
+    return value-Math.floor(value);
 
   }
 
-  moveEffects();
+  /* 上升距離依畫面高度調整 */
 
-  /* ======================================
-     【10】重新設定隕石移動距離
+  function updateTravel(){
 
-     使用整個螢幕的寬度與高度，
-     不再使用首頁主視覺的尺寸。
-  ====================================== */
-
-  function updateMeteorDistance(){
-
-    const elements=document.querySelectorAll(
-      "#ly-meteor-v3 .ly-v3-rock,"+
-      "#ly-meteor-v3 .ly-v3-spark,"+
-      "#ly-meteor-v3 .ly-v3-smoke"
+    layer.style.setProperty(
+      "--fire-travel",
+      (window.innerHeight+100)+"px"
     );
 
-    const moveX=-(window.innerWidth+350);
-    const moveY=Math.round(window.innerHeight*.95);
-
-    elements.forEach(function(element){
-
-      element.style.setProperty(
-        "--move-x",
-        moveX+"px"
-      );
-
-      element.style.setProperty(
-        "--move-y",
-        moveY+"px"
-      );
-
-    });
-
   }
 
-  updateMeteorDistance();
+  updateTravel();
 
   window.addEventListener(
     "resize",
-    updateMeteorDistance,
+    updateTravel,
     {passive:true}
   );
 
-})();
+  /* 建立粒子 */
 
+  function createParticle(className,index,offset){
+
+    const particle=document.createElement("span");
+
+    particle.className=className;
+
+    const isFlame=className==="ly-fire-flame";
+
+    const position=random(index+offset)*100;
+
+    const size=isFlame
+      ?4+random(index+offset+20)*5
+      :1.5+random(index+offset+20)*2;
+
+    const duration=isFlame
+      ?11+random(index+offset+40)*8
+      :14+random(index+offset+40)*10;
+
+    const delay=-random(index+offset+60)*duration;
+
+    particle.style.left=position+"%";
+
+    particle.style.setProperty(
+      "--fire-size",
+      size+"px"
+    );
+
+    particle.style.setProperty(
+      "--fire-duration",
+      duration+"s"
+    );
+
+    particle.style.setProperty(
+      "--fire-delay",
+      delay+"s"
+    );
+
+    layer.appendChild(particle);
+
+  }
+
+  for(let i=0;i<flameCount;i++){
+
+    createParticle(
+      "ly-fire-flame",
+      i,
+      10
+    );
+
+  }
+
+  for(let i=0;i<emberCount;i++){
+
+    createParticle(
+      "ly-fire-ember",
+      i,
+      200
+    );
+
+  }
+
+  /* 系統切換為減少動畫時，立即隱藏 */
+
+  function updateMotion(){
+    layer.hidden=motionPreference.matches;
+  }
+
+  if(motionPreference.addEventListener){
+
+    motionPreference.addEventListener(
+      "change",
+      updateMotion
+    );
+
+  }
+
+})();
 </script>
 
-<!-- ==================================================
-     【龍淵天堂 V6 全站背景與特效 結束】
-
-     V3：隕石
-     V4：火苗
-     V5：背景圖片
-     V6：全畫面顯示
-
-     以後修改全站背景及特效範圍，
-     只需要替換這個區塊。
-================================================== -->
-   
-
+<!-- 龍淵天堂｜飄浮火苗與餘燼 結束 -->
 </body>
 </html>
