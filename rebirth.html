@@ -1265,6 +1265,324 @@ renderClassNav();
 renderTables();
 
 </script>
+<!-- =========================================
+     龍淵天堂｜飄浮火苗與餘燼
+     貼在每個頁面的 </body> 前面
+========================================= -->
 
+<style id="ly-rising-fire-style">
+
+/* 特效固定在整個畫面，不影響點擊 */
+
+#ly-rising-fire{
+  position:fixed;
+  inset:0;
+  z-index:5;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+/* 小火苗 */
+
+#ly-rising-fire .ly-fire-flame{
+  position:absolute;
+  bottom:-40px;
+
+  width:var(--fire-size,8px);
+  height:calc(var(--fire-size,8px) * 2.2);
+
+  border-radius:65% 30% 60% 40%;
+
+  background:linear-gradient(
+    to top,
+    #f0440e 0%,
+    #ff7b19 35%,
+    #ffd16d 70%,
+    rgba(255,233,166,0) 100%
+  );
+
+  box-shadow:
+    0 0 7px rgba(255,115,25,.55),
+    0 0 16px rgba(255,65,0,.2);
+
+  filter:blur(.5px);
+  opacity:0;
+
+  animation:
+    ly-fire-flame-rise
+    var(--fire-duration,12s)
+    linear
+    var(--fire-delay,0s)
+    infinite;
+}
+
+/* 火苗緩緩上升，左右輕微搖晃 */
+
+@keyframes ly-fire-flame-rise{
+
+  0%{
+    transform:translate(0,0) rotate(30deg) scale(.65);
+    opacity:0;
+  }
+
+  12%{
+    opacity:.55;
+  }
+
+  35%{
+    transform:
+      translate(12px,calc(var(--fire-travel) * -.35))
+      rotate(18deg)
+      scale(1);
+    opacity:.6;
+  }
+
+  65%{
+    transform:
+      translate(-10px,calc(var(--fire-travel) * -.65))
+      rotate(40deg)
+      scale(.8);
+    opacity:.35;
+  }
+
+  85%{
+    opacity:.12;
+  }
+
+  100%{
+    transform:
+      translate(8px,calc(var(--fire-travel) * -1))
+      rotate(26deg)
+      scale(.25);
+    opacity:0;
+  }
+
+}
+
+/* 細小餘燼 */
+
+#ly-rising-fire .ly-fire-ember{
+  position:absolute;
+  bottom:-20px;
+
+  width:var(--fire-size,3px);
+  height:var(--fire-size,3px);
+  border-radius:50%;
+
+  background:#ffc875;
+
+  box-shadow:
+    0 0 5px rgba(255,155,49,.7),
+    0 0 10px rgba(255,72,10,.35);
+
+  opacity:0;
+
+  animation:
+    ly-fire-ember-rise
+    var(--fire-duration,15s)
+    linear
+    var(--fire-delay,0s)
+    infinite;
+}
+
+@keyframes ly-fire-ember-rise{
+
+  0%{
+    transform:translate(0,0) scale(.5);
+    opacity:0;
+  }
+
+  15%{
+    opacity:.6;
+  }
+
+  45%{
+    transform:
+      translate(-14px,calc(var(--fire-travel) * -.45))
+      scale(1);
+    opacity:.65;
+  }
+
+  75%{
+    transform:
+      translate(12px,calc(var(--fire-travel) * -.75))
+      scale(.6);
+    opacity:.25;
+  }
+
+  100%{
+    transform:
+      translate(-5px,calc(var(--fire-travel) * -1))
+      scale(.2);
+    opacity:0;
+  }
+
+}
+
+/* 尊重使用者的減少動畫設定 */
+
+@media(prefers-reduced-motion:reduce){
+
+  #ly-rising-fire{
+    display:none!important;
+  }
+
+}
+
+</style>
+
+<script>
+(function(){
+
+  "use strict";
+
+  /* 防止同一頁重複產生特效 */
+
+  if(document.getElementById("ly-rising-fire")){
+    return;
+  }
+
+  const motionPreference=window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+  if(motionPreference.matches){
+    return;
+  }
+
+  const layer=document.createElement("div");
+
+  layer.id="ly-rising-fire";
+  layer.setAttribute("aria-hidden","true");
+
+  document.body.appendChild(layer);
+
+  /* =====================================
+     可調整設定
+
+     電腦：12個火苗、16個餘燼
+     手機：6個火苗、8個餘燼
+
+     想減少特效，調低下面數量即可。
+  ===================================== */
+
+  const mobile=window.matchMedia(
+    "(max-width:600px)"
+  ).matches;
+
+  const flameCount=mobile?6:12;
+  const emberCount=mobile?8:16;
+
+  /* 固定亂數，讓位置自然分散 */
+
+  function random(seed){
+
+    const value=Math.sin(seed*127.1)*43758.5453;
+
+    return value-Math.floor(value);
+
+  }
+
+  /* 上升距離依畫面高度調整 */
+
+  function updateTravel(){
+
+    layer.style.setProperty(
+      "--fire-travel",
+      (window.innerHeight+100)+"px"
+    );
+
+  }
+
+  updateTravel();
+
+  window.addEventListener(
+    "resize",
+    updateTravel,
+    {passive:true}
+  );
+
+  /* 建立粒子 */
+
+  function createParticle(className,index,offset){
+
+    const particle=document.createElement("span");
+
+    particle.className=className;
+
+    const isFlame=className==="ly-fire-flame";
+
+    const position=random(index+offset)*100;
+
+    const size=isFlame
+      ?4+random(index+offset+20)*5
+      :1.5+random(index+offset+20)*2;
+
+    const duration=isFlame
+      ?11+random(index+offset+40)*8
+      :14+random(index+offset+40)*10;
+
+    const delay=-random(index+offset+60)*duration;
+
+    particle.style.left=position+"%";
+
+    particle.style.setProperty(
+      "--fire-size",
+      size+"px"
+    );
+
+    particle.style.setProperty(
+      "--fire-duration",
+      duration+"s"
+    );
+
+    particle.style.setProperty(
+      "--fire-delay",
+      delay+"s"
+    );
+
+    layer.appendChild(particle);
+
+  }
+
+  for(let i=0;i<flameCount;i++){
+
+    createParticle(
+      "ly-fire-flame",
+      i,
+      10
+    );
+
+  }
+
+  for(let i=0;i<emberCount;i++){
+
+    createParticle(
+      "ly-fire-ember",
+      i,
+      200
+    );
+
+  }
+
+  /* 系統切換為減少動畫時，立即隱藏 */
+
+  function updateMotion(){
+    layer.hidden=motionPreference.matches;
+  }
+
+  if(motionPreference.addEventListener){
+
+    motionPreference.addEventListener(
+      "change",
+      updateMotion
+    );
+
+  }
+
+})();
+</script>
+
+<!-- 龍淵天堂｜飄浮火苗與餘燼 結束 -->
 </body>
 </html>
