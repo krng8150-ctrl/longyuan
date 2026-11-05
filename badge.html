@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
+
+  <title>徽章系統｜龍淵天堂</title>
+
+  <style>
+    /* =====================================
+       01：基本設定與背景
+    ===================================== */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Microsoft JhengHei", Arial, sans-serif;
+      line-height: 1.8;
+      color: #eaf6ff;
+      background: #07111f;
+      isolation: isolate;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(3, 9, 20, .25),
+          rgba(3, 9, 20, .60)
+        ),
+        url("longyuan-bg.png") center / cover no-repeat;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible {
+      outline: 2px solid #91d4ff;
+      outline-offset: 5px;
+    }
+
+    .emoji {
+      font-family:
+        "Segoe UI Emoji",
+        "Apple Color Emoji",
+        "Noto Color Emoji",
+        sans-serif;
+    }
+
+    /* =====================================
+       02：頂部導覽
+    ===================================== */
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(4, 12, 28, .94);
+      border-bottom: 1px solid rgba(163, 213, 255, .22);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 17px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      white-space: nowrap;
+      text-shadow: 0 0 18px #469de7;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #91d4ff;
+    }
+
+    /* =====================================
+       03：介紹標題
+    ===================================== */
+
+    main {
+      position: relative;
+      z-index: 3;
+      max-width: 1180px;
+      margin: auto;
+      padding: 42px 20px;
+    }
+
+    .intro {
+      padding: 32px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(166, 214, 255, .25);
+      border-radius: 17px;
+      background: rgba(5, 16, 32, .82);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, .22);
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #aedcff;
+      font-size: 12px;
+      letter-spacing: 4px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(28px, 5vw, 40px);
+      letter-spacing: 3px;
+      text-shadow: 0 0 18px rgba(101, 187, 255, .4);
+    }
+
+    .intro p:last-child {
+      margin: 0;
+      color: #bad5e9;
+    }
+
+    /* =====================================
+       04：徽章分類入口
+       每個分類都是獨立介紹頁
+    ===================================== */
+
+    .badge-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-rows: 1fr;
+      gap: 18px;
+    }
+
+    .badge-card {
+      min-width: 0;
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      border: 1px solid rgba(158, 210, 255, .25);
+      border-radius: 15px;
+
+      background: linear-gradient(
+        145deg,
+        rgba(25, 51, 80, .88),
+        rgba(7, 22, 42, .94)
+      );
+
+      box-shadow: 0 8px 25px rgba(0, 0, 0, .18);
+
+      transition:
+        transform .2s,
+        border-color .2s,
+        box-shadow .2s;
+    }
+
+    .badge-card:hover {
+      transform: translateY(-4px);
+      border-color: #85caff;
+      box-shadow: 0 0 24px rgba(73, 160, 242, .22);
+    }
+
+    .badge-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 65px;
+      margin-bottom: 12px;
+      font-size: 45px;
+      filter: drop-shadow(0 0 9px rgba(105, 195, 255, .45));
+    }
+
+    .badge-card h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      overflow-wrap: anywhere;
+    }
+
+    .badge-card p {
+      margin: 0 0 22px;
+      color: #b5d0e3;
+      font-size: 14px;
+    }
+
+    .entry-button {
+      margin-top: auto;
+      display: inline-block;
+      padding: 8px 20px;
+      border: 1px solid #75bbef;
+      border-radius: 7px;
+      color: #eaf6ff;
+
+      background: linear-gradient(
+        135deg,
+        #1d5b91,
+        #0c2d52
+      );
+
+      font-size: 14px;
+    }
+
+    /* =====================================
+       05：返回與頁尾
+    ===================================== */
+
+    .back-area {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 11px 25px;
+      border: 1px solid #75bbef;
+      border-radius: 8px;
+      background: rgba(10, 37, 65, .9);
+    }
+
+    .back-button:hover {
+      background: #174771;
+    }
+
+    footer {
+      position: relative;
+      z-index: 3;
+      padding: 25px 20px 35px;
+      text-align: center;
+      font-size: 13px;
+      color: #b0cadd;
+      border-top: 1px solid rgba(145, 205, 255, .16);
+      background: rgba(4, 12, 25, .7);
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    /* =====================================
+       06：手機排版
+    ===================================== */
+
+    @media (max-width: 850px) {
+      .nav-inner {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .badge-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      main {
+        padding: 25px 14px;
+      }
+
+      .brand {
+        font-size: 23px;
+      }
+
+      .nav-links {
+        gap: 14px;
+        font-size: 13px;
+      }
+
+      .intro {
+        padding: 24px 20px;
+      }
+
+      .eyebrow {
+        font-size: 10px;
+        letter-spacing: 2px;
+      }
+
+      .badge-grid {
+        gap: 12px;
+      }
+
+      .badge-card {
+        padding: 22px 10px;
+      }
+
+      .badge-icon {
+        min-height: 52px;
+        font-size: 36px;
+      }
+
+      .badge-card h2 {
+        font-size: 18px;
+      }
+
+      .badge-card p {
+        font-size: 12px;
+      }
+
+      .entry-button {
+        padding: 7px 12px;
+        font-size: 13px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =====================================
+       07：頂部選單
+  ===================================== -->
+
+  <header class="nav">
+    <div class="nav-inner">
+
+      <a class="brand" href="https://yong-yi.uk/longyuan/">
+        龍淵天堂
+      </a>
+
+      <nav class="nav-links" aria-label="主要選單">
+        <a href="https://yong-yi.uk/longyuan/">
+          首頁
+        </a>
+
+        <a href="https://yong-yi.uk/longyuan/#announcements">
+          最新公告
+        </a>
+
+        <a href="https://yong-yi.uk/longyuan/#entries">
+          系統入口
+        </a>
+
+        <a href="badge.html" aria-current="page">
+          徽章系統
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =====================================
+         08：徽章系統標題
+    ===================================== -->
+
+    <section class="intro" aria-labelledby="page-title">
+
+      <p class="eyebrow">
+        LONGYUAN · BADGE COLLECTION
+      </p>
+
+      <h1 id="page-title">
+        <span class="emoji" aria-hidden="true">🎖️</span>
+        徽章系統
+      </h1>
+
+      <p>
+        徽章、魔法符、符石與符文分類入口。
+        請選擇想查看的系列，進入獨立介紹頁。
+      </p>
+
+    </section>
+
+    <!-- =====================================
+         09：九大分類入口
+
+         所有連結使用相對路徑，
+         會連到 longyuan 資料夾內的介紹頁。
+
+         後續建立子頁時，使用下列檔名：
+         normal.html
+         boss.html
+         god.html
+         vip.html
+         hexagram.html
+         superstone.html
+         murmur.html
+         ancient.html
+         crystal.html
+    ===================================== -->
+
+    <section aria-label="徽章分類">
+      <div class="badge-grid">
+
+        <!-- 01：一般徽章 -->
+        <a class="badge-card" href="normal.html">
+
+          <span class="badge-icon emoji" aria-hidden="true">
+            🎖️
+          </span>
+
+          <h2>一般徽章</h2>
+          <p>查看一般徽章系列介紹</p>
+
+          <span class="entry-button">
+            進入圖鑑 →
+          </span>
+
+        </a>
+
+        <!-- 02：Boss 徽章 -->
+        <a class="badge-card" href="boss.html">
+
+          <span class="badge-icon emoji" aria-hidden="true">
+            👑
+          </span>
+
+          <h2>Boss徽章</h2>
+          <p>查看 Boss 徽章系列介紹</p>
+
+          <span class="entry-button">
+            進入圖鑑 →
+          </span>
+
+        </a>
+
+        <!-- 03：古神的榮耀 -->
+        <a class="badge-card" href="god.html">
+
+          <span class="badge-icon emoji" aria-hidden="true">
+            🏆
+          </span>
+
+          <h2>古神的榮耀</h2>
+          <p>查看古神的榮耀系列介紹</p>
+
+          <span class="entry-button">
+            進入圖鑑 →
+          </span>
+
+        </a>
+
+        <!-- 04：VIP 徽章 -->
+        <a class="badge-card" href="vip.html">
+
+          <span class="badge-icon emoji" aria-hidden="true">
+            💎
+          </span>
+
+          <h2>VIP徽章</h2>
+          <p>查看 VIP 徽章系列介紹</p>
+
+          <span class="entry-button">
+            進入圖鑑 →
+          </span>
+
+        </a>
+
+        <!-- 05：六芒星魔法符 -->
+        <a class="badge-card" href="hexagram.html">
+
+          <span class="badge-icon emoji" aria-hidden="true">
+            ✡️
+          </span>
+
+          <h2>六芒星魔法符</h2>
+          <p>查看六芒星魔法符系列介紹</p>
+
+          <span class="entry-button">
+            進入圖鑑 →
+          </span>
+
+        </a>
+
+        <!-- 06：超能符石 -->
+        <a class="badge-card" href="superstone.html">
+
+          <span class="badge-icon emoji" aria-hidden="true">
+            🔮
+          </span>
+
+          <h2>超能符石</h2>
+          <p>查看超能符石系列介紹</p>
+
+          <span class="entry-button">
+            進入圖鑑 →
+          </span>
+
+        </a>
+
+        <!-- 07：赫卡特符文 -->
+        <a class="badge-card" href="murmur.html">
+
+          <span class="badge-icon emoji" aria-hidden="true">
+            📜
+          </span>
+
+          <h2>赫卡特符文</h2>
+          <p>查看赫卡特符文系列介紹</p>
+
+          <span class="entry-button">
+            進入圖鑑 →
+          </span>
+
+        </a>
+
+        <!-- 08：古代魔石祝福 -->
+        <a class="badge-card" href="ancient.html">
+
+          <span class="badge-icon emoji" aria-hidden="true">
+            🪨
+          </span>
+
+          <h2>古代魔石祝福</h2>
+          <p>查看古代魔石祝福系列介紹</p>
+
+          <span class="entry-button">
+            進入圖鑑 →
+          </span>
+
+        </a>
+
+        <!-- 09：推廣水晶 -->
+        <a class="badge-card" href="crystal.html">
+
+          <span class="badge-icon emoji" aria-hidden="true">
+            ✨
+          </span>
+
+          <h2>推廣水晶</h2>
+          <p>查看推廣水晶系列介紹</p>
+
+          <span class="entry-button">
+            進入圖鑑 →
+          </span>
+
+        </a>
+
+      </div>
+    </section>
+
+    <!-- =====================================
+         10：返回首頁
+    ===================================== -->
+
+    <div class="back-area">
+      <a class="back-button" href="https://yong-yi.uk/longyuan/">
+        ← 返回官方首頁
+      </a>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>龍淵天堂 · 官方網站</p>
+  </footer>
+
+  <!-- =========================================
+       【最下面特效區開始】
+       龍淵天堂｜飄浮火苗與餘燼
+
+       要修改火苗特效，從這裡開始找。
+  ========================================= -->
+
+  <style id="ly-rising-fire-style">
+    #ly-rising-fire {
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    #ly-rising-fire .ly-fire-flame {
+      position: absolute;
+      bottom: -40px;
+      width: var(--fire-size, 8px);
+      height: calc(var(--fire-size, 8px) * 2.2);
+      border-radius: 65% 30% 60% 40%;
+
+      background: linear-gradient(
+        to top,
+        #f0440e 0%,
+        #ff7b19 35%,
+        #ffd16d 70%,
+        rgba(255, 233, 166, 0) 100%
+      );
+
+      box-shadow:
+        0 0 7px rgba(255, 115, 25, .55),
+        0 0 16px rgba(255, 65, 0, .2);
+
+      filter: blur(.5px);
+      opacity: 0;
+
+      animation:
+        ly-fire-flame-rise
+        var(--fire-duration, 12s)
+        linear
+        var(--fire-delay, 0s)
+        infinite;
+    }
+
+    @keyframes ly-fire-flame-rise {
+      0% {
+        transform: translate(0, 0) rotate(30deg) scale(.65);
+        opacity: 0;
+      }
+
+      12% {
+        opacity: .55;
+      }
+
+      35% {
+        transform:
+          translate(12px, calc(var(--fire-travel) * -.35))
+          rotate(18deg)
+          scale(1);
+        opacity: .6;
+      }
+
+      65% {
+        transform:
+          translate(-10px, calc(var(--fire-travel) * -.65))
+          rotate(40deg)
+          scale(.8);
+        opacity: .35;
+      }
+
+      85% {
+        opacity: .12;
+      }
+
+      100% {
+        transform:
+          translate(8px, calc(var(--fire-travel) * -1))
+          rotate(26deg)
+          scale(.25);
+        opacity: 0;
+      }
+    }
+
+    #ly-rising-fire .ly-fire-ember {
+      position: absolute;
+      bottom: -20px;
+      width: var(--fire-size, 3px);
+      height: var(--fire-size, 3px);
+      border-radius: 50%;
+      background: #ffc875;
+
+      box-shadow:
+        0 0 5px rgba(255, 155, 49, .7),
+        0 0 10px rgba(255, 72, 10, .35);
+
+      opacity: 0;
+
+      animation:
+        ly-fire-ember-rise
+        var(--fire-duration, 15s)
+        linear
+        var(--fire-delay, 0s)
+        infinite;
+    }
+
+    @keyframes ly-fire-ember-rise {
+      0% {
+        transform: translate(0, 0) scale(.5);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: .6;
+      }
+
+      45% {
+        transform:
+          translate(-14px, calc(var(--fire-travel) * -.45))
+          scale(1);
+        opacity: .65;
+      }
+
+      75% {
+        transform:
+          translate(12px, calc(var(--fire-travel) * -.75))
+          scale(.6);
+        opacity: .25;
+      }
+
+      100% {
+        transform:
+          translate(-5px, calc(var(--fire-travel) * -1))
+          scale(.2);
+        opacity: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #ly-rising-fire {
+        display: none !important;
+      }
+    }
+  </style>
+
+  <script>
+    (function () {
+      "use strict";
+
+      if (document.getElementById("ly-rising-fire")) {
+        return;
+      }
+
+      const motionPreference = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      );
+
+      const layer = document.createElement("div");
+
+      layer.id = "ly-rising-fire";
+      layer.setAttribute("aria-hidden", "true");
+      layer.hidden = motionPreference.matches;
+
+      document.body.appendChild(layer);
+
+      /* 火苗數量：電腦 12 / 手機 6 */
+      /* 餘燼數量：電腦 16 / 手機 8 */
+
+      const mobile = window.matchMedia(
+        "(max-width: 600px)"
+      ).matches;
+
+      const flameCount = mobile ? 6 : 12;
+      const emberCount = mobile ? 8 : 16;
+
+      function random(seed) {
+        const value = Math.sin(seed * 127.1) * 43758.5453;
+        return value - Math.floor(value);
+      }
+
+      function updateTravel() {
+        layer.style.setProperty(
+          "--fire-travel",
+          (window.innerHeight + 100) + "px"
+        );
+      }
+
+      updateTravel();
+
+      window.addEventListener(
+        "resize",
+        updateTravel,
+        { passive: true }
+      );
+
+      function createParticle(className, index, offset) {
+        const particle = document.createElement("span");
+        particle.className = className;
+
+        const isFlame = className === "ly-fire-flame";
+        const position = random(index + offset) * 100;
+
+        const size = isFlame
+          ? 4 + random(index + offset + 20) * 5
+          : 1.5 + random(index + offset + 20) * 2;
+
+        const duration = isFlame
+          ? 11 + random(index + offset + 40) * 8
+          : 14 + random(index + offset + 40) * 10;
+
+        const delay = -random(index + offset + 60) * duration;
+
+        particle.style.left = position + "%";
+        particle.style.setProperty("--fire-size", size + "px");
+        particle.style.setProperty("--fire-duration", duration + "s");
+        particle.style.setProperty("--fire-delay", delay + "s");
+
+        layer.appendChild(particle);
+      }
+
+      for (let i = 0; i < flameCount; i++) {
+        createParticle("ly-fire-flame", i, 10);
+      }
+
+      for (let i = 0; i < emberCount; i++) {
+        createParticle("ly-fire-ember", i, 200);
+      }
+
+      if (motionPreference.addEventListener) {
+        motionPreference.addEventListener("change", function () {
+          layer.hidden = motionPreference.matches;
+        });
+      }
+    })();
+  </script>
+
+  <!-- 【最下面特效區結束】 -->
+
+</body>
+</html>
