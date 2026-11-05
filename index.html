@@ -1,2481 +1,1227 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#07111f">
-<meta name="description" content="龍淵天堂官方網站，提供最新公告與遊戲系統介紹。">
-
-<title>龍淵天堂｜官方網站</title>
-
-<style>
-
-/* =====================================
-   【01】基本設定
-===================================== */
-
-*{
-  box-sizing:border-box;
-}
-
-html{
-  min-height:100%;
-  scroll-behavior:smooth;
-  scroll-padding-top:110px;
-}
-
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:"Microsoft JhengHei",Arial,sans-serif;
-  color:#eaf6ff;
-  background:#07111f;
-  line-height:1.8;
-  isolation:isolate;
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-2;
-  pointer-events:none;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(3,9,20,.25),
-      rgba(3,9,20,.65)
-    ),
-    url("longyuan-bg.png")
-    center center / cover no-repeat;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-h1,h2,h3,p,strong{
-  overflow-wrap:anywhere;
-}
-
-a:focus-visible{
-  outline:2px solid #91d4ff;
-  outline-offset:5px;
-}
-
-.emoji{
-  font-family:
-    "Segoe UI Emoji",
-    "Apple Color Emoji",
-    "Noto Color Emoji",
-    sans-serif;
-}
-
-/* =====================================
-   【02】頂部導覽
-===================================== */
-
-.nav{
-  position:sticky;
-  top:0;
-  z-index:20;
-
-  background:rgba(4,12,28,.94);
-  border-bottom:1px solid rgba(163,213,255,.22);
-  backdrop-filter:blur(12px);
-}
-
-.nav-inner{
-  max-width:1180px;
-  margin:auto;
-  padding:17px 20px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:18px;
-}
-
-.brand{
-  flex-shrink:0;
-  font-size:27px;
-  font-weight:900;
-  letter-spacing:3px;
-  white-space:nowrap;
-  text-shadow:0 0 18px #469de7;
-}
-
-.nav-links{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:20px;
-  font-size:14px;
-}
-
-.nav-links a:hover{
-  color:#91d4ff;
-}
-
-/* =====================================
-   【03】首頁主視覺
-===================================== */
-
-.hero{
-  position:relative;
-  min-height:480px;
-  padding:85px 20px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  text-align:center;
-  overflow:hidden;
-  isolation:isolate;
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  width:550px;
-  height:550px;
-  border:1px solid rgba(151,213,255,.15);
-  border-radius:50%;
-  pointer-events:none;
-
-  box-shadow:
-    0 0 0 65px rgba(117,193,255,.025),
-    0 0 100px rgba(56,151,244,.2),
-    inset 0 0 90px rgba(68,148,222,.08);
-
-  animation:lyBreathe 5s ease-in-out infinite alternate;
-}
-
-@keyframes lyBreathe{
-  from{
-    opacity:.45;
-    transform:scale(.95);
-  }
-  to{
-    opacity:1;
-    transform:scale(1.05);
-  }
-}
-
-.hero-content{
-  position:relative;
-  z-index:3;
-}
-
-.eyebrow{
-  margin:0 0 20px;
-  color:#aedcff;
-  font-size:14px;
-  letter-spacing:7px;
-}
-
-.hero h1{
-  margin:0;
-  font-size:clamp(48px,8vw,96px);
-  line-height:1.5;
-  letter-spacing:12px;
-
-  color:#fff;
-
-  text-shadow:
-    0 0 12px rgba(255,255,255,.7),
-    0 0 30px #62b7ff,
-    0 0 65px #2675c9;
-}
-
-.hero-tagline{
-  margin:20px 0 30px;
-  font-size:23px;
-  letter-spacing:5px;
-  color:#d6edff;
-}
-
-.hero-actions{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:14px;
-}
-
-.btn{
-  display:inline-block;
-  padding:12px 26px;
-
-  border:1px solid #75bbef;
-  border-radius:9px;
-
-  background:linear-gradient(
-    135deg,
-    #1d5b91,
-    #0c2d52
-  );
-
-  font-weight:bold;
-  box-shadow:0 0 20px rgba(72,163,243,.18);
-
-  transition:transform .2s,filter .2s;
-}
-
-.btn:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.15);
-}
-
-.btn.secondary{
-  background:rgba(6,22,40,.8);
-}
-
-/* =====================================
-   【04】首頁共用區塊
-===================================== */
-
-.section{
-  position:relative;
-  z-index:3;
-
-  max-width:1180px;
-  margin:0 auto 30px;
-  padding:0 20px;
-}
-
-.panel{
-  padding:27px;
-
-  background:rgba(5,16,32,.83);
-  border:1px solid rgba(166,214,255,.22);
-  border-radius:17px;
-
-  backdrop-filter:blur(6px);
-  box-shadow:0 10px 40px rgba(0,0,0,.22);
-}
-
-.heading{
-  margin:0 0 22px;
-  padding-bottom:14px;
-
-  font-size:26px;
-  font-weight:700;
-
-  border-bottom:1px solid rgba(162,210,255,.18);
-  text-shadow:0 0 13px rgba(101,187,255,.45);
-}
-
-.section-note{
-  margin:0 0 20px;
-  font-size:14px;
-  color:#b7d0e3;
-}
-
-/* =====================================
-   【05】公告
-===================================== */
-
-.notice{
-  display:flex;
-  align-items:flex-start;
-  gap:13px;
-
-  padding:16px;
-  background:rgba(126,192,255,.04);
-  border:1px solid rgba(165,216,255,.12);
-  border-radius:10px;
-}
-
-.notice-icon{
-  flex-shrink:0;
-  font-size:20px;
-}
-
-.notice p{
-  margin:0;
-  color:#d3e7f5;
-}
-
-/* =====================================
-   【06】遊戲特色摘要
-===================================== */
-
-.game-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:15px;
-}
-
-.game-card{
-  padding:22px;
-  text-align:center;
-
-  border:1px solid rgba(165,216,255,.14);
-  border-radius:12px;
-  background:rgba(126,192,255,.04);
-}
-
-.game-card .ico{
-  font-size:30px;
-  margin-bottom:10px;
-}
-
-.game-card h3{
-  margin:0 0 10px;
-  font-size:19px;
-}
-
-.game-card p{
-  margin:0;
-  font-size:14px;
-  line-height:1.9;
-  color:#bad5e9;
-}
-
-/* =====================================
-   【07】19個系統入口
-===================================== */
-
-.entry-grid{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:13px;
-}
-
-.entry{
-  position:relative;
-  min-width:0;
-  min-height:155px;
-  padding:22px 12px;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
-  text-align:center;
-
-  background:linear-gradient(
-    145deg,
-    rgba(25,51,80,.8),
-    rgba(7,22,42,.88)
-  );
-
-  border:1px solid rgba(158,210,255,.2);
-  border-radius:12px;
-}
-
-a.entry{
-  transition:
-    transform .2s,
-    border-color .2s,
-    box-shadow .2s;
-}
-
-a.entry:hover{
-  transform:translateY(-3px);
-  border-color:#85caff;
-  box-shadow:0 0 20px rgba(73,160,242,.2);
-}
-
-.entry-icon{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  min-height:45px;
-  margin-bottom:9px;
-  font-size:32px;
-
-  filter:drop-shadow(
-    0 0 7px rgba(105,195,255,.5)
-  );
-}
-
-.entry strong{
-  display:block;
-  font-size:17px;
-  line-height:1.6;
-}
-
-.entry small{
-  display:block;
-  margin-top:8px;
-  font-size:12px;
-  color:#b5d0e3;
-}
-
-.entry.pending{
-  background:linear-gradient(
-    145deg,
-    rgba(22,43,65,.78),
-    rgba(7,20,37,.88)
-  );
-}
-
-.entry-state{
-  display:inline-block;
-  margin-top:10px;
-  padding:2px 9px;
-
-  border:1px solid rgba(180,220,255,.23);
-  border-radius:5px;
-
-  color:#b9d0e1;
-  font-size:11px;
-}
-
-.entry-state.ready{
-  border-color:rgba(117,187,239,.6);
-  color:#a8ddff;
-}
-
-/* =====================================
-   【08】頁尾
-===================================== */
-
-.footer{
-  position:relative;
-  z-index:3;
-
-  padding:30px 20px 45px;
-  text-align:center;
-
-  color:#b0cadd;
-  font-size:13px;
-
-  border-top:1px solid rgba(145,205,255,.16);
-  background:rgba(4,12,25,.7);
-}
-
-.footer p{
-  margin:0 0 10px;
-}
-
-.footer a:hover{
-  color:#91d4ff;
-}
-
-/* =====================================
-   【09】全畫面火苗與餘燼
-===================================== */
-
-#ly-floating-fire{
-  position:fixed;
-  inset:0;
-  z-index:1;
-
-  overflow:hidden;
-  pointer-events:none;
-}
-
-.ly-flame{
-  position:absolute;
-  bottom:-35px;
-
-  width:var(--size);
-  height:calc(var(--size) * 2.1);
-  border-radius:65% 25% 65% 40%;
-
-  background:linear-gradient(
-    to top,
-    #ff4b12,
-    #ff8a20 35%,
-    #ffd276 70%,
-    rgba(255,236,164,0)
-  );
-
-  box-shadow:
-    0 0 8px rgba(255,100,20,.7),
-    0 0 18px rgba(255,65,0,.25);
-
-  filter:blur(.6px);
-  opacity:0;
-
-  animation:
-    lyFlameRise
-    var(--duration)
-    ease-in-out
-    var(--delay)
-    infinite;
-}
-
-@keyframes lyFlameRise{
-  0%{
-    transform:translate(0,0) rotate(35deg) scale(.65);
-    opacity:0;
-  }
-  15%{
-    opacity:.75;
-  }
-  35%{
-    transform:translate(12px,-110px) rotate(22deg) scale(1);
-    opacity:.65;
-  }
-  60%{
-    transform:translate(-9px,-225px) rotate(43deg) scale(.8);
-    opacity:.4;
-  }
-  85%{
-    transform:translate(14px,-340px) rotate(28deg) scale(.5);
-    opacity:.15;
-  }
-  100%{
-    transform:translate(4px,-420px) rotate(35deg) scale(.2);
-    opacity:0;
-  }
-}
-
-.ly-ember{
-  position:absolute;
-  bottom:-15px;
-
-  width:var(--size);
-  height:var(--size);
-  border-radius:50%;
-
-  background:#ffbf60;
-
-  box-shadow:
-    0 0 6px #ff9b31,
-    0 0 13px rgba(255,72,10,.55);
-
-  opacity:0;
-
-  animation:
-    lyEmberRise
-    var(--duration)
-    linear
-    var(--delay)
-    infinite;
-}
-
-@keyframes lyEmberRise{
-  0%{
-    transform:translate(0,0) scale(.5);
-    opacity:0;
-  }
-  15%{
-    opacity:.7;
-  }
-  40%{
-    transform:translate(16px,-140px) scale(1);
-    opacity:.8;
-  }
-  70%{
-    transform:translate(-12px,-280px) scale(.65);
-    opacity:.35;
-  }
-  100%{
-    transform:translate(8px,-440px) scale(.2);
-    opacity:0;
-  }
-}
-
-/* =====================================
-   【10】平板與手機版
-===================================== */
-
-@media(max-width:850px){
-
-  .nav-inner{
-    flex-direction:column;
-    gap:12px;
-  }
-
-  .nav-links{
-    gap:15px;
-  }
-
-  .game-grid{
-    grid-template-columns:1fr;
-  }
-
-  .entry-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-
-}
-
-@media(max-width:560px){
-
-  html{
-    scroll-padding-top:145px;
-  }
-
-  .brand{
-    font-size:23px;
-  }
-
-  .nav-links{
-    gap:10px 14px;
-    font-size:13px;
-  }
-
-  .hero{
-    min-height:385px;
-    padding:55px 14px;
-  }
-
-  .hero h1{
-    letter-spacing:4px;
-  }
-
-  .hero-tagline{
-    font-size:17px;
-    letter-spacing:2px;
-  }
-
-  .eyebrow{
-    font-size:11px;
-    letter-spacing:3px;
-  }
-
-  .hero::before{
-    width:300px;
-    height:300px;
-  }
-
-  .section{
-    padding:0 14px;
-    margin-bottom:24px;
-  }
-
-  .panel{
-    padding:20px 16px;
-  }
-
-  .heading{
-    font-size:23px;
-  }
-
-  .entry-grid{
-    gap:10px;
-  }
-
-  .entry{
-    min-height:150px;
-    padding:18px 8px;
-  }
-
-  .entry strong{
-    font-size:15px;
-  }
-
-  .entry small{
-    font-size:11px;
-  }
-
-  .entry-icon{
-    font-size:29px;
-  }
-
-}
-
-@media(prefers-reduced-motion:reduce){
-
-  html{
-    scroll-behavior:auto;
-  }
-
-  *,
-  *::before,
-  *::after{
-    animation:none!important;
-    transition:none!important;
-  }
-
-  #ly-floating-fire{
-    display:none;
-  }
-
-}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="龍淵天堂官方網站，提供最新公告與遊戲系統介紹。">
+
+  <title>龍淵天堂｜官方網站</title>
+
+  <style>
+    /* =====================================
+       01：基本設定與龍族背景
+    ===================================== */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      scroll-behavior: smooth;
+      scroll-padding-top: 110px;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Microsoft JhengHei", Arial, sans-serif;
+      color: #eaf6ff;
+      background: #07111f;
+      line-height: 1.8;
+      isolation: isolate;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(3, 9, 20, .20),
+          rgba(3, 9, 20, .52)
+        ),
+        url("longyuan-bg.png") center center / cover no-repeat;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    strong {
+      overflow-wrap: anywhere;
+    }
+
+    a:focus-visible {
+      outline: 2px solid #91d4ff;
+      outline-offset: 5px;
+    }
+
+    .emoji {
+      font-family:
+        "Segoe UI Emoji",
+        "Apple Color Emoji",
+        "Noto Color Emoji",
+        sans-serif;
+    }
+
+    /* =====================================
+       02：頂部選單
+    ===================================== */
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(4, 12, 28, .94);
+      border-bottom: 1px solid rgba(163, 213, 255, .22);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 17px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      flex-shrink: 0;
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      white-space: nowrap;
+      text-shadow: 0 0 18px #469de7;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #91d4ff;
+    }
+
+    /* =====================================
+       03：首頁主視覺
+    ===================================== */
+
+    .hero {
+      position: relative;
+      min-height: 480px;
+      padding: 85px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 550px;
+      height: 550px;
+      border: 1px solid rgba(151, 213, 255, .15);
+      border-radius: 50%;
+      pointer-events: none;
+
+      box-shadow:
+        0 0 0 65px rgba(117, 193, 255, .025),
+        0 0 100px rgba(56, 151, 244, .2),
+        inset 0 0 90px rgba(68, 148, 222, .08);
+
+      animation: lyBreathe 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes lyBreathe {
+      from {
+        opacity: .45;
+        transform: scale(.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+    }
+
+    .eyebrow {
+      margin: 0 0 20px;
+      color: #aedcff;
+      font-size: 14px;
+      letter-spacing: 7px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(48px, 8vw, 96px);
+      line-height: 1.5;
+      letter-spacing: 12px;
+      color: #fff;
+
+      text-shadow:
+        0 0 12px rgba(255, 255, 255, .7),
+        0 0 30px #62b7ff,
+        0 0 65px #2675c9;
+    }
+
+    .hero-tagline {
+      margin: 20px 0 30px;
+      font-size: 23px;
+      letter-spacing: 5px;
+      color: #d6edff;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 26px;
+      border: 1px solid #75bbef;
+      border-radius: 9px;
+
+      background: linear-gradient(
+        135deg,
+        #1d5b91,
+        #0c2d52
+      );
+
+      font-weight: bold;
+      box-shadow: 0 0 20px rgba(72, 163, 243, .18);
+      transition: transform .2s, filter .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.15);
+    }
+
+    /* =====================================
+       04：共用內容區塊
+    ===================================== */
+
+    .section {
+      position: relative;
+      z-index: 3;
+      max-width: 1180px;
+      margin: 0 auto 30px;
+      padding: 0 20px;
+    }
+
+    .panel {
+      padding: 27px;
+      background: rgba(5, 16, 32, .78);
+      border: 1px solid rgba(166, 214, 255, .22);
+      border-radius: 17px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, .22);
+    }
+
+    .heading {
+      margin: 0 0 22px;
+      padding-bottom: 14px;
+      font-size: 26px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(162, 210, 255, .18);
+      text-shadow: 0 0 13px rgba(101, 187, 255, .45);
+    }
+
+    .section-note {
+      margin: 0 0 20px;
+      font-size: 14px;
+      color: #b7d0e3;
+    }
+
+    /* =====================================
+       05：最新公告
+    ===================================== */
+
+    .notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 16px;
+      background: rgba(126, 192, 255, .04);
+      border: 1px solid rgba(165, 216, 255, .12);
+      border-radius: 10px;
+    }
+
+    .notice + .notice {
+      margin-top: 12px;
+    }
+
+    .notice-icon {
+      flex-shrink: 0;
+      font-size: 20px;
+    }
+
+    .notice p {
+      margin: 0;
+      color: #d3e7f5;
+    }
+
+    /* =====================================
+       06：遊戲介紹摘要
+    ===================================== */
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .game-card {
+      padding: 22px;
+      text-align: center;
+      border: 1px solid rgba(165, 216, 255, .14);
+      border-radius: 12px;
+      background: rgba(126, 192, 255, .04);
+    }
+
+    .game-card .ico {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .game-card h3 {
+      margin: 0 0 10px;
+      font-size: 19px;
+    }
+
+    .game-card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.9;
+      color: #bad5e9;
+    }
+
+    /* =====================================
+       07：系統入口
+       電腦四欄，手機兩欄
+    ===================================== */
+
+    .entry-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-auto-rows: 1fr;
+      gap: 13px;
+    }
+
+    .entry {
+      position: relative;
+      min-width: 0;
+      min-height: 180px;
+      padding: 22px 12px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      background: linear-gradient(
+        145deg,
+        rgba(25, 51, 80, .8),
+        rgba(7, 22, 42, .88)
+      );
+
+      border: 1px solid rgba(158, 210, 255, .2);
+      border-radius: 12px;
+
+      transition:
+        transform .2s,
+        border-color .2s,
+        box-shadow .2s;
+    }
+
+    .entry:hover {
+      transform: translateY(-3px);
+      border-color: #85caff;
+      box-shadow: 0 0 20px rgba(73, 160, 242, .2);
+    }
+
+    .entry-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 45px;
+      margin-bottom: 9px;
+      font-size: 32px;
+
+      filter: drop-shadow(
+        0 0 7px rgba(105, 195, 255, .5)
+      );
+    }
+
+    .entry strong {
+      display: block;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .entry small {
+      display: block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #b5d0e3;
+    }
+
+    .entry-state {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 2px 9px;
+      border: 1px solid rgba(180, 220, 255, .23);
+      border-radius: 5px;
+      color: #b9d0e1;
+      font-size: 11px;
+    }
+
+    /* =====================================
+       08：頁尾
+    ===================================== */
+
+    .footer {
+      position: relative;
+      z-index: 3;
+      padding: 30px 20px 45px;
+      text-align: center;
+      color: #b0cadd;
+      font-size: 13px;
+      border-top: 1px solid rgba(145, 205, 255, .16);
+      background: rgba(4, 12, 25, .7);
+    }
+
+    .footer p {
+      margin: 0 0 10px;
+    }
+
+    .footer a:hover {
+      color: #91d4ff;
+    }
+
+    /* =====================================
+       09：手機與平板
+    ===================================== */
+
+    @media (max-width: 850px) {
+      .nav-inner {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .game-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .entry-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      html {
+        scroll-padding-top: 145px;
+      }
+
+      .brand {
+        font-size: 23px;
+      }
+
+      .nav-links {
+        gap: 10px 14px;
+        font-size: 13px;
+      }
+
+      .hero {
+        min-height: 385px;
+        padding: 55px 14px;
+      }
+
+      .hero h1 {
+        letter-spacing: 4px;
+      }
+
+      .hero-tagline {
+        font-size: 17px;
+        letter-spacing: 2px;
+      }
+
+      .eyebrow {
+        font-size: 11px;
+        letter-spacing: 3px;
+      }
+
+      .hero::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      .section {
+        padding: 0 14px;
+        margin-bottom: 24px;
+      }
+
+      .panel {
+        padding: 20px 16px;
+      }
+
+      .heading {
+        font-size: 23px;
+      }
+
+      .entry-grid {
+        gap: 10px;
+      }
+
+      .entry {
+        min-height: 170px;
+        padding: 18px 8px;
+      }
+
+      .entry strong {
+        font-size: 15px;
+      }
+
+      .entry small {
+        font-size: 11px;
+      }
+
+      .entry-icon {
+        font-size: 29px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body id="home">
 
-<!-- =====================================
-     【11】頂部選單
-===================================== -->
+  <!-- =====================================
+       10：頂部導覽
+  ===================================== -->
 
-<header class="nav">
+  <header class="nav">
+    <div class="nav-inner">
 
-  <div class="nav-inner">
-
-    <a class="brand" href="index.html">
-      龍淵天堂
-    </a>
-
-    <nav class="nav-links" aria-label="主要選單">
-
-      <a href="index.html" aria-current="page">
-        首頁
+      <a class="brand" href="https://yong-yi.uk/longyuan/">
+        龍淵天堂
       </a>
 
-      <a href="#announcements">
-        最新公告
-      </a>
+      <nav class="nav-links" aria-label="主要選單">
+        <a href="https://yong-yi.uk/longyuan/" aria-current="page">
+          首頁
+        </a>
 
-      <a href="#entries">
-        系統入口
-      </a>
+        <a href="#announcements">
+          最新公告
+        </a>
 
-    </nav>
-
-  </div>
-
-</header>
-
-<main>
-
-<!-- =====================================
-     【12】首頁主視覺
-===================================== -->
-
-<section class="hero" aria-labelledby="hero-title">
-
-  <div class="hero-content">
-
-    <p class="eyebrow">
-      LINEAGE · DRAGON REALM
-    </p>
-
-    <h1 id="hero-title">
-      龍淵天堂
-    </h1>
-
-    <p class="hero-tagline">
-      龍魂覺醒・傳奇再臨
-    </p>
-
-    <div class="hero-actions">
-
-      <a class="btn" href="#entries">
-        查看系統入口
-      </a>
+        <a href="#entries">
+          系統入口
+        </a>
+      </nav>
 
     </div>
+  </header>
 
-  </div>
+  <main>
 
-</section>
+    <!-- =====================================
+         11：首頁主視覺
+    ===================================== -->
 
-<!-- =====================================
-     【13】最新公告
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
 
-     新增正式公告時，可在這裡增加公告區塊。
-===================================== -->
-
-<section
-  class="section"
-  id="announcements"
-  aria-labelledby="news-title">
-
-  <div class="panel">
-
-    <h2 class="heading" id="news-title">
-      <span class="emoji" aria-hidden="true">📣</span>
-      最新公告
-    </h2>
-
-    <div class="notice">
-
-      <span class="notice-icon emoji" aria-hidden="true">
-        📣
-      </span>
-
-      <p>
-        龍淵天堂官方網站內容建置中，
-        各項介紹與正式資訊將陸續補齊。
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- =====================================
-     【14】遊戲特色摘要
-===================================== -->
-
-<section class="section" aria-labelledby="features-title">
-
-  <div class="panel">
-
-    <h2 class="heading" id="features-title">
-      認識龍淵
-    </h2>
-
-    <div class="game-grid">
-
-      <div class="game-card">
-
-        <div class="ico emoji" aria-hidden="true">
-          🐉
-        </div>
-
-        <h3>龍淵世界</h3>
-
-        <p>
-          各項遊戲介紹由下方入口進入，
-          依主題分頁查閱。
+        <p class="eyebrow">
+          LINEAGE · DRAGON REALM
         </p>
 
-      </div>
+        <h1 id="hero-title">
+          龍淵天堂
+        </h1>
 
-      <div class="game-card">
-
-        <div class="ico emoji" aria-hidden="true">
-          ⚔️
-        </div>
-
-        <h3>裝備與道具</h3>
-
-        <p>
-          武器、防具、飾品及其他道具，
-          將依龍淵實際設定整理介紹。
+        <p class="hero-tagline">
+          龍魂覺醒・傳奇再臨
         </p>
 
-      </div>
-
-      <div class="game-card">
-
-        <div class="ico emoji" aria-hidden="true">
-          ✦
+        <div class="hero-actions">
+          <a class="btn" href="#entries">
+            查看系統入口
+          </a>
         </div>
 
-        <h3>轉生與變身</h3>
+      </div>
+    </section>
 
-        <p>
-          轉生能力與變身能力分開介紹，
-          變身頁可查看各階需求與加成。
+    <!-- =====================================
+         12：最新公告
+
+         新增公告：
+         複製一整組 div class="notice" 區塊，
+         貼在現有公告的上方即可。
+    ===================================== -->
+
+    <section
+      class="section"
+      id="announcements"
+      aria-labelledby="news-title"
+    >
+      <div class="panel">
+
+        <h2 class="heading" id="news-title">
+          <span class="emoji" aria-hidden="true">📣</span>
+          最新公告
+        </h2>
+
+        <!-- 公告開始 -->
+        <div class="notice">
+          <span class="notice-icon emoji" aria-hidden="true">
+            📣
+          </span>
+
+          <p>
+            龍淵天堂官方網站內容建置中，
+            各項介紹與正式資訊將陸續補齊。
+          </p>
+        </div>
+        <!-- 公告結束 -->
+
+      </div>
+    </section>
+
+    <!-- =====================================
+         13：認識龍淵
+    ===================================== -->
+
+    <section class="section" aria-labelledby="features-title">
+      <div class="panel">
+
+        <h2 class="heading" id="features-title">
+          認識龍淵
+        </h2>
+
+        <div class="game-grid">
+
+          <div class="game-card">
+            <div class="ico emoji" aria-hidden="true">
+              🐉
+            </div>
+
+            <h3>龍淵世界</h3>
+
+            <p>
+              各項遊戲介紹由下方入口進入，
+              依主題分頁查閱。
+            </p>
+          </div>
+
+          <div class="game-card">
+            <div class="ico emoji" aria-hidden="true">
+              ⚔️
+            </div>
+
+            <h3>裝備與道具</h3>
+
+            <p>
+              武器、防具、飾品及其他道具，
+              將依龍淵實際設定整理介紹。
+            </p>
+          </div>
+
+          <div class="game-card">
+            <div class="ico emoji" aria-hidden="true">
+              ✦
+            </div>
+
+            <h3>轉生與變身</h3>
+
+            <p>
+              轉生能力與變身能力分開介紹，
+              變身頁可查看各階需求與加成。
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =====================================
+         14：系統入口
+
+         全部入口固定連結至獨立 HTML。
+         後續新增介紹頁時，使用對應檔名即可。
+
+         所有入口都必須放在下面這一個
+         div class="entry-grid" 裡面。
+    ===================================== -->
+
+    <section
+      class="section"
+      id="entries"
+      aria-labelledby="entries-title"
+    >
+      <div class="panel">
+
+        <h2 class="heading" id="entries-title">
+          系統入口
+        </h2>
+
+        <p class="section-note">
+          選擇想了解的主題，前往對應介紹頁。
         </p>
 
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- =====================================
-     【15】19個系統入口
-
-     已完成頁面：
-       使用 <a href="檔名.html">
-
-     尚未完成頁面：
-       使用 <div class="entry pending">
-
-     等介紹頁建立完成後，
-     再把對應區塊改成可點擊的 a 連結。
-===================================== -->
-
-<section
-  class="section"
-  id="entries"
-  aria-labelledby="entries-title">
-
-  <div class="panel">
-
-    <h2 class="heading" id="entries-title">
-      系統入口
-    </h2>
-
-    <p class="section-note">
-      點選已開放的入口查看介紹。
-      標示「準備中」的內容將陸續建立。
-    </p>
-
-    <div class="entry-grid">
-
-      <!-- 01：轉生變身，直接進入 poly.html -->
-
-      <a class="entry" href="poly.html">
-
-        <span class="entry-icon emoji" aria-hidden="true">
-          🐉
-        </span>
-
-        <strong>轉生變身介紹</strong>
-
-        <small>各階轉生需求與能力</small>
-
-        <span class="entry-state ready">
-          查看介紹 →
-        </span>
-
-      </a>
-<!-- 02：轉生系統 -->
-
-<a class="entry" href="rebirth.html">
-
-  <span class="entry-icon emoji" aria-hidden="true">
-    ✦
-  </span>
-
-  <strong>轉生系統</strong>
-
-  <small>各職業轉生能力</small>
-
-  <span class="entry-state ready">
-    查看介紹 →
-  </span>
-
-</a>
-
-   <!-- 03：紋樣系統 -->
-
-<a class="entry" href="pattern.html">
-
-  <span class="entry-icon emoji" aria-hidden="true">
-    ✧
-  </span>
-
-  <strong>紋樣系統</strong>
-
-  <small>五大紋樣與各級能力</small>
-
-  <span class="entry-state ready">
-    查看介紹 →
-  </span>
-
-</a>
-
-      <!-- 04：徽章系統 -->
-
-      <div class="entry pending">
-
-        <span class="entry-icon emoji" aria-hidden="true">
-          🎖️
-        </span>
-
-        <strong>徽章系統</strong>
-
-        <small>徽章、符石與魔法符</small>
-
-        <span class="entry-state">準備中</span>
-
-      </div>
-
-      <!-- 05：武器介紹 -->
-
-      <div class="entry pending">
-
-        <span class="entry-icon emoji" aria-hidden="true">
-          ⚔️
-        </span>
-
-        <strong>武器介紹</strong>
-
-        <small>各系列武器資料</small>
-
-        <span class="entry-state">準備中</span>
-
-      </div>
-
-      <!-- 06：防具介紹 -->
-
-      <div class="entry pending">
-
-        <span class="entry-icon emoji" aria-hidden="true">
-          🛡️
-        </span>
-
-        <strong>防具介紹</strong>
-
-        <small>各部位防具資料</small>
-
-        <span class="entry-state">準備中</span>
-
-      </div>
-
-      <!-- 07：洗色卷軸 -->
-
-      <div class="entry pending">
-
-        <span class="entry-icon emoji" aria-hidden="true">
-          🎭
-        </span>
-
-        <strong>洗色卷軸介紹</strong>
-
-        <small>裝備品質與附加能力</small>
-
-        <span class="entry-state">準備中</span>
-
-      </div>
-
-      <!-- 08：威望階級 -->
-
-      <div class="entry pending">
-
-        <span class="entry-icon emoji" aria-hidden="true">
-          🏆
-        </span>
-
-        <strong>威望階級介紹</strong>
-
-        <small>威望階級與能力</small>
-
-        <span class="entry-state">準備中</span>
-
-      </div>
-
-      <!-- 09：飾品系統 -->
-
-      <div class="entry pending">
-
-        <span class="entry-icon emoji" aria-hidden="true">
-          💍
-        </span>
-
-        <strong>飾品系統</strong>
-
-        <small>項鍊、戒指與耳環</small>
-
-        <span class="entry-state">準備中</span>
-
-      </div>
-
-      <!-- 10：屬性卷軸 -->
-
-      <div class="entry pending">
-
-        <span class="entry-icon emoji" aria-hidden="true">
-          ⚡
-        </span>
-
-        <strong>屬性卷軸介紹</strong>
-
-        <small>地、水、火、風屬性</small>
-
-        <span class="entry-state">準備中</span>
-
-      </div>
-
-      <!-- 11：寵物介紹 -->
-
-      <div class="entry pending">
-
-        <span class="entry-icon emoji" aria-hidden="true">
-          🐺
-        </span>
-
-        <strong>寵物介紹</strong>
-
-        <small>寵物種類與進化資訊</small>
-
-        <span class="entry-state">準備中</span>
+        <div class="entry-grid">
+
+          <!-- 01：轉生變身介紹 -->
+          <a class="entry" href="poly.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              🐉
+            </span>
+
+            <strong>轉生變身介紹</strong>
+            <small>各階轉生需求與能力</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 02：轉生系統 -->
+          <a class="entry" href="rebirth.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              ✦
+            </span>
+
+            <strong>轉生系統</strong>
+            <small>各職業轉生能力</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 03：紋樣系統 -->
+          <a class="entry" href="pattern.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              ✧
+            </span>
+
+            <strong>紋樣系統</strong>
+            <small>五大紋樣與各級能力</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 04：徽章系統 -->
+          <a class="entry" href="badge.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              🎖️
+            </span>
+
+            <strong>徽章系統</strong>
+            <small>徽章、符石與魔法符</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 05：武器介紹 -->
+          <a class="entry" href="weapon.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              ⚔️
+            </span>
+
+            <strong>武器介紹</strong>
+            <small>各系列武器資料</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 06：防具介紹 -->
+          <a class="entry" href="armor.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              🛡️
+            </span>
+
+            <strong>防具介紹</strong>
+            <small>各部位防具資料</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 07：洗色卷軸介紹 -->
+          <a class="entry" href="color-scroll.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              🎭
+            </span>
+
+            <strong>洗色卷軸介紹</strong>
+            <small>裝備品質與附加能力</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 08：威望階級介紹 -->
+          <a class="entry" href="prestige.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              🏆
+            </span>
+
+            <strong>威望階級介紹</strong>
+            <small>威望階級與能力</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 09：飾品系統 -->
+          <a class="entry" href="accessory.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              💍
+            </span>
+
+            <strong>飾品系統</strong>
+            <small>項鍊、戒指與耳環</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 10：屬性卷軸介紹 -->
+          <a class="entry" href="attribute-scroll.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              ⚡
+            </span>
+
+            <strong>屬性卷軸介紹</strong>
+            <small>地、水、火、風屬性</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 11：寵物介紹 -->
+          <a class="entry" href="pet.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              🐺
+            </span>
+
+            <strong>寵物介紹</strong>
+            <small>寵物種類與進化資訊</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 12：魔法娃娃介紹 -->
+          <a class="entry" href="doll.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              ✨
+            </span>
+
+            <strong>魔法娃娃介紹</strong>
+            <small>娃娃分類與能力</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 13：隨身祭司介紹 -->
+          <a class="entry" href="helper.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              🧙
+            </span>
+
+            <strong>隨身祭司介紹</strong>
+            <small>祭司階級與輔助內容</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 14：太古龍神系統 -->
+          <a class="entry" href="taigu-dragon.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              🐲
+            </span>
+
+            <strong>太古龍神系統</strong>
+            <small>系列裝備與進階資訊</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 15：地圖掉落查詢 -->
+          <a class="entry" href="map-drops.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              💎
+            </span>
+
+            <strong>地圖掉落查詢</strong>
+            <small>地圖與掉落資料</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 16：技能書掉落 -->
+          <a class="entry" href="skill-drops.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              📘
+            </span>
+
+            <strong>技能書掉落</strong>
+            <small>各職業技能書來源</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 17：推文獎勵 -->
+          <a class="entry" href="reward.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              🎁
+            </span>
+
+            <strong>推文獎勵</strong>
+            <small>活動規則與獎勵資訊</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 18：贊助系統 -->
+          <a class="entry" href="donate.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              ◆
+            </span>
+
+            <strong>贊助系統</strong>
+            <small>龍淵儲值與贊助資訊</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+          <!-- 19：新手攻略 -->
+          <a class="entry" href="guide.html">
+            <span class="entry-icon emoji" aria-hidden="true">
+              📖
+            </span>
+
+            <strong>新手攻略</strong>
+            <small>新手流程與成長方向</small>
+            <span class="entry-state">進入介紹 →</span>
+          </a>
+
+        </div>
+        <!-- 系統入口排列區結束 -->
 
       </div>
-
-      <!-- 12：魔法娃娃 -->
-
-      <div class="entry pending">
-
-        <span class="entry-icon emoji" aria-hidden="true">
-          ✨
-        </span>
-
-        <strong>魔法娃娃介紹</strong>
-
-        <small>娃娃分類與能力</small>
-
-        <span class="entry-state">準備中</span>
-
-      </div>
-
-      <!-- 13：隨身祭司 -->
-
-      <div class="entry pending">
-
-        <span class="entry-icon emoji" aria-hidden="true">
-          🧙
-        </span>
-
-        <strong>隨身祭司介紹</strong>
-
-        <small>祭司階級與輔助內容</small>
-
-        <span class="entry-state">準備中</span>
-
-      </div>
-
-      <!-- 14：太古龍神 -->
-
-      <div class="entry pending">
-
-        <span class="entry-icon emoji" aria-hidden="true">
-          🐲
-        </span>
-
-        <strong>太古龍神系統</strong>
-
-        <small>系列裝備與進階資訊</small>
-
-        <span class="entry-state">準備中</span>
-
-      </div>
-
-      <!-- 15：地圖掉落 -->
-
-      <div class="entry pending">
-
-        <span class="entry-icon emoji" aria-hidden="true">
-          💎
-        </span>
-
-        <strong>地圖掉落查詢</strong>
-
-        <small>地圖與掉落資料</small>
-
-        <span class="entry-state">準備中</span>
-
-      </div>
-
-      <!-- 16：技能書掉落 -->
-
-      <div class="entry pending">
-
-        <span class="entry-icon emoji" aria-hidden="true">
-          📘
-        </span>
-
-        <strong>技能書掉落</strong>
-
-        <small>各職業技能書來源</small>
-
-        <span class="entry-state">準備中</span>
-
-      </div>
-
-      <!-- 17：推文獎勵 -->
-
-      <div class="entry pending">
-
-        <span class="entry-icon emoji" aria-hidden="true">
-          🎁
-        </span>
-
-        <strong>推文獎勵</strong>
-
-        <small>活動規則與獎勵資訊</small>
-
-        <span class="entry-state">待公布</span>
-
-      </div>
-
-      <!-- 18：贊助系統 -->
-
-      <div class="entry pending">
-
-        <span class="entry-icon emoji" aria-hidden="true">
-          ◆
-        </span>
-
-        <strong>贊助系統</strong>
-
-        <small>龍淵儲值與贊助資訊</small>
-
-        <span class="entry-state">待公布</span>
-
-      </div>
-
-      <!-- 19：新手攻略 -->
-
-      <div class="entry pending">
-
-        <span class="entry-icon emoji" aria-hidden="true">
-          📖
-        </span>
-
-        <strong>新手攻略</strong>
-
-        <small>新手流程與成長方向</small>
-
-        <span class="entry-state">準備中</span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-</main>
-
-<!-- =====================================
-     【16】頁尾
-===================================== -->
-
-<footer class="footer">
-
-  <p>龍淵天堂 · 官方網站</p>
-
-  <a href="#home">返回頂端 ↑</a>
-
-</footer>
-
-<!-- =====================================
-     【17】飄浮火苗與餘燼
-===================================== -->
-
-<div id="ly-floating-fire" aria-hidden="true"></div>
-
-<script>
-"use strict";
-
-(function(){
-
-  const layer=document.getElementById(
-    "ly-floating-fire"
-  );
-
-  if(!layer){
-    return;
-  }
-
-  if(window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches){
-    return;
-  }
-
-  const mobile=window.matchMedia(
-    "(max-width:600px)"
-  ).matches;
-
-  const flameCount=mobile?8:16;
-  const emberCount=mobile?12:22;
-
-  function seededRandom(seed){
-
-    const value=
-      Math.sin(seed*127.1)*43758.5453;
-
-    return value-Math.floor(value);
-
-  }
-
-  function addParticle(
-    className,
-    position,
-    size,
-    duration,
-    delay
-  ){
-
-    const particle=document.createElement("span");
-
-    particle.className=className;
-    particle.style.left=position+"%";
-
-    particle.style.setProperty(
-      "--size",
-      size+"px"
-    );
-
-    particle.style.setProperty(
-      "--duration",
-      duration+"s"
-    );
-
-    particle.style.setProperty(
-      "--delay",
-      delay+"s"
-    );
-
-    layer.appendChild(particle);
-
-  }
-
-  for(let i=0;i<flameCount;i++){
-
-    const duration=
-      7+seededRandom(i+50)*6;
-
-    addParticle(
-      "ly-flame",
-      seededRandom(i+10)*100,
-      5+seededRandom(i+30)*7,
-      duration,
-      -(seededRandom(i+70)*duration)
-    );
-
-  }
-
-  for(let i=0;i<emberCount;i++){
-
-    const duration=
-      8+seededRandom(i+150)*8;
-
-    addParticle(
-      "ly-ember",
-      seededRandom(i+110)*100,
-      2+seededRandom(i+130)*3,
-      duration,
-      -(seededRandom(i+170)*duration)
-    );
-
-  }
-
-})();
-</script>
-<!DOCTYPE html>
-<html lang="zh-TW">
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#07111f">
-
-<title>遊戲介紹｜龍淵天堂</title>
-
-<style>
-
-/* =====================================
-   【01】基本設定
-===================================== */
-
-*{
-  box-sizing:border-box;
-}
-
-html{
-  min-height:100%;
-}
-
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:"Microsoft JhengHei",Arial,sans-serif;
-  color:#eaf6ff;
-  background:#07111f;
-  line-height:1.85;
-  isolation:isolate;
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  pointer-events:none;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(3,9,20,.45),
-      rgba(3,9,20,.82)
-    ),
-    url("longyuan-bg.png")
-    center center / cover no-repeat;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-button,input{
-  font:inherit;
-}
-
-a:focus-visible,
-button:focus-visible,
-input:focus-visible{
-  outline:2px solid #91d4ff;
-  outline-offset:5px;
-}
-
-h1,h2,h3,p,a,li{
-  overflow-wrap:anywhere;
-}
-
-/* =====================================
-   【02】頂部導覽
-===================================== */
-
-.nav{
-  position:relative;
-  z-index:10;
-  background:rgba(4,12,28,.94);
-  border-bottom:1px solid rgba(163,213,255,.22);
-  backdrop-filter:blur(10px);
-}
-
-.nav-inner{
-  max-width:1180px;
-  margin:auto;
-  padding:17px 20px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:14px;
-}
-
-.brand{
-  font-size:25px;
-  font-weight:900;
-  letter-spacing:3px;
-  text-shadow:0 0 18px #469de7;
-}
-
-.nav-links{
-  display:flex;
-  flex-wrap:wrap;
-  gap:20px;
-  font-size:14px;
-}
-
-.nav-links a:hover,
-.breadcrumb a:hover{
-  color:#91d4ff;
-}
-
-/* =====================================
-   【03】介紹頁版面
-===================================== */
-
-.page{
-  width:100%;
-  max-width:1180px;
-  margin:auto;
-  padding:30px 20px 65px;
-}
-
-.breadcrumb{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  gap:9px;
-
-  margin-bottom:22px;
-  color:#b8d7ed;
-  font-size:13px;
-}
-
-.page-header{
-  padding:30px;
-  margin-bottom:24px;
-  background:rgba(5,16,32,.86);
-  border:1px solid rgba(166,214,255,.25);
-  border-radius:16px;
-  backdrop-filter:blur(5px);
-}
-
-.eyebrow{
-  margin:0 0 10px;
-  font-size:11px;
-  letter-spacing:4px;
-  color:#a6d4f5;
-}
-
-.title-row{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-.page-icon{
-  flex-shrink:0;
-  font-family:
-    "Segoe UI Emoji",
-    "Apple Color Emoji",
-    "Noto Color Emoji",
-    sans-serif;
-  font-size:35px;
-  line-height:1.4;
-  filter:drop-shadow(0 0 8px rgba(105,195,255,.45));
-}
-
-.page-header h1{
-  margin:0;
-  font-size:34px;
-  line-height:1.5;
-  text-shadow:0 0 18px rgba(98,183,255,.6);
-}
-
-.page-header p:last-of-type{
-  margin-bottom:0;
-  color:#c2dbed;
-}
-
-.status{
-  display:inline-block;
-  margin-top:14px;
-  padding:4px 10px;
-
-  border:1px solid rgba(245,195,117,.4);
-  border-radius:6px;
-  color:#f5d39d;
-  font-size:12px;
-}
-
-.panel{
-  margin-bottom:22px;
-  padding:26px;
-
-  border:1px solid rgba(166,214,255,.2);
-  border-radius:15px;
-  background:rgba(5,16,32,.87);
-  backdrop-filter:blur(5px);
-
-  box-shadow:0 10px 35px rgba(0,0,0,.18);
-}
-
-.panel h2{
-  margin:0 0 20px;
-  padding-bottom:12px;
-
-  border-bottom:1px solid rgba(162,210,255,.18);
-  font-size:23px;
-  text-shadow:0 0 12px rgba(101,187,255,.35);
-}
-
-.panel p{
-  color:#c4dced;
-}
-
-.panel li{
-  margin-bottom:9px;
-  color:#c4dced;
-}
-
-.pending{
-  margin-bottom:0;
-  padding:16px 18px;
-
-  background:rgba(145,196,239,.06);
-  border-left:3px solid #79bced;
-  color:#bfd8eb;
-}
-
-/* =====================================
-   【04】系統入口與小圖示
-===================================== */
-
-.entry-grid{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:14px;
-}
-
-.entry{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
-  min-width:0;
-  min-height:150px;
-  padding:22px 14px;
-  text-align:center;
-
-  border:1px solid rgba(158,210,255,.23);
-  border-radius:12px;
-
-  background:linear-gradient(
-    145deg,
-    rgba(25,51,80,.72),
-    rgba(7,22,42,.86)
-  );
-
-  transition:
-    transform .2s,
-    border-color .2s,
-    box-shadow .2s;
-}
-
-.entry:hover{
-  transform:translateY(-3px);
-  border-color:#85caff;
-  box-shadow:0 0 20px rgba(73,160,242,.18);
-}
-
-.entry-icon{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  min-height:46px;
-  margin-bottom:10px;
-
-  font-family:
-    "Segoe UI Emoji",
-    "Apple Color Emoji",
-    "Noto Color Emoji",
-    sans-serif;
-
-  font-size:32px;
-  line-height:1.4;
-
-  filter:drop-shadow(
-    0 0 7px rgba(105,195,255,.5)
-  );
-}
-
-.entry strong{
-  display:block;
-  font-size:17px;
-  line-height:1.6;
-}
-
-.entry small{
-  display:block;
-  margin-top:8px;
-  color:#b0cee3;
-  font-size:12px;
-  line-height:1.7;
-}
-
-/* =====================================
-   【05】返回導覽
-===================================== */
-
-.return-links{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:28px;
-}
-
-.btn{
-  display:inline-block;
-  padding:11px 22px;
-  border:1px solid #75bbef;
-  border-radius:8px;
-  background:rgba(13,44,76,.9);
-  text-align:center;
-}
-
-.btn:hover{
-  background:rgba(32,83,128,.9);
-}
-
-.footer{
-  padding:25px 20px;
-  text-align:center;
-  border-top:1px solid rgba(145,205,255,.15);
-  font-size:13px;
-  color:#aac6dc;
-}
-
-/* =====================================
-   【06】平板與手機版
-===================================== */
-
-@media(max-width:900px){
-
-  .entry-grid{
-    grid-template-columns:repeat(3,minmax(0,1fr));
-  }
-
-}
-
-@media(max-width:700px){
-
-  .nav-inner{
-    justify-content:center;
-  }
-
-  .nav-links{
-    justify-content:center;
-    gap:15px;
-  }
-
-  .entry-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-
-}
-
-@media(max-width:480px){
-
-  .page{
-    padding:22px 14px 45px;
-  }
-
-  .brand{
-    font-size:23px;
-  }
-
-  .nav-links{
-    font-size:13px;
-    gap:12px;
-  }
-
-  .page-header,
-  .panel{
-    padding:21px 16px;
-  }
-
-  .page-header h1{
-    font-size:26px;
-  }
-
-  .page-icon{
-    font-size:28px;
-  }
-
-  .title-row{
-    gap:10px;
-  }
-
-  .panel h2{
-    font-size:21px;
-  }
-
-  .entry-grid{
-    gap:10px;
-  }
-
-  .entry{
-    min-height:145px;
-    padding:18px 9px;
-  }
-
-  .entry strong{
-    font-size:15px;
-  }
-
-  .entry small{
-    font-size:11px;
-  }
-
-  .entry-icon{
-    font-size:29px;
-  }
-
-  .return-links .btn{
-    flex:1 1 100%;
-  }
-
-}
-
-@media(prefers-reduced-motion:reduce){
-
-  *{
-    transition:none!important;
-  }
-
-}
-
-</style>
-</head>
-
-<body>
-
-</main>
-</script>
-<!-- =====================================================
-     龍淵天堂官方網站
-     【V4 微微飄浮火苗特效 開始】
-
-     功能：
-     1. 小火苗緩緩向上飄
-     2. 左右輕微搖晃
-     3. 橘紅色餘燼忽明忽暗
-     4. 自動適應電腦與手機
-     5. 不影響原本 V3 隕石特效
-
-     貼上位置：
-     index.html 最下面的 </body> 正上方
-
-     以後要修改火苗：
-     只替換本區塊，不要重複貼上。
-===================================================== -->
-
-<style id="ly-floating-fire-v4-css">
-
-/* =====================================
-   【火苗 01】特效容器
-===================================== */
-
-#ly-floating-fire-v4{
-  position:absolute;
-  inset:0;
-  overflow:hidden;
-  pointer-events:none;
-  z-index:2;
-}
-
-/* =====================================
-   【火苗 02】微微飄浮火苗
-===================================== */
-
-.ly-v4-flame{
-  position:absolute;
-  bottom:-35px;
-
-  width:var(--flame-size,9px);
-  height:calc(var(--flame-size,9px) * 2.1);
-
-  border-radius:65% 25% 65% 40%;
-
-  background:linear-gradient(
-    to top,
-    #ff4b12 0%,
-    #ff8a20 35%,
-    #ffd276 70%,
-    rgba(255,236,164,0) 100%
-  );
-
-  box-shadow:
-    0 0 8px rgba(255,100,20,.7),
-    0 0 18px rgba(255,65,0,.25);
-
-  filter:blur(.6px);
-
-  opacity:0;
-
-  transform:rotate(35deg);
-
-  animation:
-    ly-v4-flame-rise
-    var(--flame-duration,8s)
-    ease-in-out
-    var(--flame-delay,0s)
-    infinite;
-
-  will-change:transform,opacity;
-}
-
-/* =====================================
-   【火苗 03】火苗上升動畫
-===================================== */
-
-@keyframes ly-v4-flame-rise{
-
-  0%{
-    transform:
-      translate(0,0)
-      rotate(35deg)
-      scale(.65);
-    opacity:0;
-  }
-
-  15%{
-    opacity:.75;
-  }
-
-  35%{
-    transform:
-      translate(12px,-110px)
-      rotate(22deg)
-      scale(1);
-    opacity:.65;
-  }
-
-  60%{
-    transform:
-      translate(-9px,-225px)
-      rotate(43deg)
-      scale(.8);
-    opacity:.4;
-  }
-
-  85%{
-    transform:
-      translate(14px,-340px)
-      rotate(28deg)
-      scale(.5);
-    opacity:.15;
-  }
-
-  100%{
-    transform:
-      translate(4px,-420px)
-      rotate(35deg)
-      scale(.2);
-    opacity:0;
-  }
-
-}
-
-/* =====================================
-   【火苗 04】細小餘燼火星
-===================================== */
-
-.ly-v4-ember{
-  position:absolute;
-  bottom:-15px;
-
-  width:var(--ember-size,3px);
-  height:var(--ember-size,3px);
-
-  border-radius:50%;
-
-  background:#ffbf60;
-
-  box-shadow:
-    0 0 6px #ff9b31,
-    0 0 13px rgba(255,72,10,.55);
-
-  opacity:0;
-
-  animation:
-    ly-v4-ember-rise
-    var(--ember-duration,10s)
-    linear
-    var(--ember-delay,0s)
-    infinite;
-
-  will-change:transform,opacity;
-}
-
-/* =====================================
-   【火苗 05】餘燼上升動畫
-===================================== */
-
-@keyframes ly-v4-ember-rise{
-
-  0%{
-    transform:translate(0,0) scale(.5);
-    opacity:0;
-  }
-
-  15%{
-    opacity:.7;
-  }
-
-  40%{
-    transform:translate(16px,-140px) scale(1);
-    opacity:.8;
-  }
-
-  70%{
-    transform:translate(-12px,-280px) scale(.65);
-    opacity:.35;
-  }
-
-  100%{
-    transform:translate(8px,-440px) scale(.2);
-    opacity:0;
-  }
-
-}
-
-/* =====================================
-   【火苗 06】手機效果調整
-===================================== */
-
-@media(max-width:600px){
-
-  .ly-v4-flame{
-    filter:blur(.5px);
-  }
-
-  .ly-v4-ember{
-    box-shadow:0 0 7px rgba(255,110,30,.65);
-  }
-
-}
-
-/* =====================================
-   【火苗 07】尊重減少動畫設定
-===================================== */
-
-@media(prefers-reduced-motion:reduce){
-
-  #ly-floating-fire-v4{
-    display:none!important;
-  }
-
-}
-
-</style>
-
-<script id="ly-floating-fire-v4-js">
-
-(function(){
-
-  "use strict";
-
-  /* =====================================
-     【火苗 08】防止重複產生
-  ===================================== */
-
-  if(document.getElementById("ly-floating-fire-v4")){
-    return;
-  }
-
-  /* =====================================
-     【火苗 09】尋找首頁主視覺
-  ===================================== */
-
-  const hero=document.querySelector(".hero");
-
-  if(!hero){
-    return;
-  }
-
-  /* =====================================
-     【火苗 10】建立特效容器
-  ===================================== */
-
-  const layer=document.createElement("div");
-
-  layer.id="ly-floating-fire-v4";
-  layer.setAttribute("aria-hidden","true");
-
-  hero.insertBefore(layer,hero.firstChild);
-
-  /* =====================================
-     【火苗 11】火苗數量設定
-
-     電腦：16 個火苗、22 個火星
-     手機：8 個火苗、12 個火星
-
-     以後想增加或減少數量，
-     修改這裡的數字即可。
-  ===================================== */
-
-  const isMobile=window.matchMedia(
-    "(max-width:600px)"
-  ).matches;
-
-  const flameCount=isMobile ? 8 : 16;
-  const emberCount=isMobile ? 12 : 22;
-
-  /* =====================================
-     【火苗 12】產生固定亂數
-
-     讓每顆火苗的位置與速度不同，
-     但不會因重新整理而亂跳。
-  ===================================== */
-
-  function seededRandom(seed){
-
-    const value=Math.sin(seed*127.1)*43758.5453;
-
-    return value-Math.floor(value);
-
-  }
-
-  /* =====================================
-     【火苗 13】建立小火苗
-  ===================================== */
-
-  for(let i=0;i<flameCount;i++){
-
-    const flame=document.createElement("span");
-
-    flame.className="ly-v4-flame";
-
-    const x=seededRandom(i+10)*100;
-    const size=5+seededRandom(i+30)*7;
-    const duration=7+seededRandom(i+50)*6;
-    const delay=-(seededRandom(i+70)*duration);
-
-    flame.style.left=x+"%";
-
-    flame.style.setProperty(
-      "--flame-size",
-      size+"px"
-    );
-
-    flame.style.setProperty(
-      "--flame-duration",
-      duration+"s"
-    );
-
-    flame.style.setProperty(
-      "--flame-delay",
-      delay+"s"
-    );
-
-    layer.appendChild(flame);
-
-  }
-
-  /* =====================================
-     【火苗 14】建立餘燼火星
-  ===================================== */
-
-  for(let i=0;i<emberCount;i++){
-
-    const ember=document.createElement("span");
-
-    ember.className="ly-v4-ember";
-
-    const x=seededRandom(i+110)*100;
-    const size=2+seededRandom(i+130)*3;
-    const duration=8+seededRandom(i+150)*8;
-    const delay=-(seededRandom(i+170)*duration);
-
-    ember.style.left=x+"%";
-
-    ember.style.setProperty(
-      "--ember-size",
-      size+"px"
-    );
-
-    ember.style.setProperty(
-      "--ember-duration",
-      duration+"s"
-    );
-
-    ember.style.setProperty(
-      "--ember-delay",
-      delay+"s"
-    );
-
-    layer.appendChild(ember);
-
-  }
-
-})();
-
-</script>
-
-<!-- =====================================================
-     【V4 微微飄浮火苗特效 結束】
-
-     名稱：龍淵天堂・飄浮火苗與餘燼
-     版本：V4
-
-     保留原本 V3 龍焰隕石雨。
-
-     以後修改火苗時：
-     從「V4 微微飄浮火苗特效 開始」
-     到「V4 微微飄浮火苗特效 結束」
-     整段替換即可。
-===================================================== -->
-
-<!-- ==========================================
-     【龍淵天堂 V5 背景圖片 開始】
-
-     圖片名稱：longyuan-bg.png
-     作用：首頁黑龍城堡背景
-     不影響隕石及火苗特效
-========================================== -->
-
-<style id="ly-background-v5">
-
-/* 【01】首頁背景圖片 */
-.hero{
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(4,10,20,.30),
-      rgba(4,10,20,.48)
-    ),
-    url("longyuan-bg.png")
-    center center / cover no-repeat;
-}
-
-/* 【02】標題保持清楚 */
-.hero-content{
-  position:relative;
-  z-index:3;
-}
-
-/* 【03】手機版背景 */
-@media(max-width:600px){
-  .hero{
-    background-position:center center;
-  }
-}
-
-</style>
-
-<!-- ==========================================
-     【龍淵天堂 V5 背景圖片 結束】
-
-     以後要更換背景：
-     只需更換 longyuan-bg.png
-========================================== -->
-
-<!-- ==================================================
-     【龍淵天堂 V6 全站背景與特效 開始】
-
-     功能：
-     1. 黑龍城堡背景鋪滿整個網站
-     2. 背景固定，往下捲動仍然看得到
-     3. 隕石特效擴展到全畫面
-     4. 火苗特效擴展到全畫面
-     5. 保留原本首頁、公告及系統入口
-
-     貼上位置：
-     index.html 最下面 </body> 正上方
-
-     以後修改 V6：
-     整段替換，不要重複貼上
-================================================== -->
-
-<style id="ly-fullscreen-v6-css">
-
-/* ======================================
-   【01】整個網站背景
-====================================== */
-
-html{
-  min-height:100%;
-}
-
-body{
-  min-height:100vh;
-  background:#07111f !important;
-}
-
-/* ======================================
-   【02】黑龍城堡固定背景
-
-   圖片名稱：
-   longyuan-bg.png
-
-   圖片須與 index.html 同一層
-====================================== */
-
-body::before{
-  content:"" !important;
-
-  position:fixed !important;
-  inset:0 !important;
-
-  width:100% !important;
-  height:100vh !important;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(3,9,20,.20),
-      rgba(3,9,20,.52)
-    ),
-    url("longyuan-bg.png")
-    center center / cover no-repeat !important;
-
-  z-index:-2 !important;
-
-  pointer-events:none !important;
-}
-
-/* ======================================
-   【03】移除原本的首頁局部背景
-====================================== */
-
-.hero{
-  background:transparent !important;
-}
-
-/* ======================================
-   【04】讓全站內容保持清楚
-====================================== */
-
-.nav{
-  position:sticky;
-  z-index:20;
-}
-
-main{
-  position:relative;
-  z-index:1;
-}
-
-.panel{
-  background:rgba(5,16,32,.78);
-  backdrop-filter:blur(5px);
-}
-
-/* ======================================
-   【05】全畫面特效容器
-
-   V3 隕石
-   V4 火苗
-====================================== */
-
-#ly-meteor-v3,
-#ly-floating-fire-v4{
-  position:fixed !important;
-
-  inset:0 !important;
-
-  width:100vw !important;
-  height:100vh !important;
-
-  overflow:hidden !important;
-
-  pointer-events:none !important;
-
-  z-index:2 !important;
-}
-
-/* ======================================
-   【06】讓特效不影響點擊
-====================================== */
-
-.hero-content,
-.nav,
-.panel,
-.footer{
-  position:relative;
-  z-index:3;
-}
-
-.nav{
-  position:sticky;
-  z-index:20;
-}
-
-/* ======================================
-   【07】手機版
-====================================== */
-
-@media(max-width:600px){
-
-  body::before{
-    background-position:center center !important;
-  }
-
-}
-
-/* ======================================
-   【08】減少動畫偏好
-====================================== */
-
-@media(prefers-reduced-motion:reduce){
-
-  #ly-meteor-v3,
-  #ly-floating-fire-v4{
-    display:none !important;
-  }
-
-}
-
-</style>
-
-<script id="ly-fullscreen-v6-js">
-
-(function(){
-
-  "use strict";
-
-  /* ======================================
-     【09】把特效移到全站層級
-
-     原本在 .hero 裡面的特效，
-     移到 body 底下。
-
-     不重新建立特效，
-     避免重複產生。
-  ====================================== */
-
-  function moveEffects(){
-
-    const ids=[
-      "ly-meteor-v3",
-      "ly-floating-fire-v4"
-    ];
-
-    ids.forEach(function(id){
-
-      const effect=document.getElementById(id);
-
-      if(effect && effect.parentElement!==document.body){
-        document.body.appendChild(effect);
+    </section>
+
+  </main>
+
+  <!-- =====================================
+       15：頁尾
+  ===================================== -->
+
+  <footer class="footer">
+    <p>龍淵天堂 · 官方網站</p>
+    <a href="#home">返回頂端 ↑</a>
+  </footer>
+
+  <!-- =========================================
+       【最下面特效區開始】
+       龍淵天堂｜飄浮火苗與餘燼
+
+       特效集中放在這裡，方便日後修改。
+       只有向上飄浮的火苗與餘燼。
+  ========================================= -->
+
+  <style id="ly-rising-fire-style">
+    #ly-rising-fire {
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    /* 小火苗 */
+
+    #ly-rising-fire .ly-fire-flame {
+      position: absolute;
+      bottom: -40px;
+
+      width: var(--fire-size, 8px);
+      height: calc(var(--fire-size, 8px) * 2.2);
+
+      border-radius: 65% 30% 60% 40%;
+
+      background: linear-gradient(
+        to top,
+        #f0440e 0%,
+        #ff7b19 35%,
+        #ffd16d 70%,
+        rgba(255, 233, 166, 0) 100%
+      );
+
+      box-shadow:
+        0 0 7px rgba(255, 115, 25, .55),
+        0 0 16px rgba(255, 65, 0, .2);
+
+      filter: blur(.5px);
+      opacity: 0;
+
+      animation:
+        ly-fire-flame-rise
+        var(--fire-duration, 12s)
+        linear
+        var(--fire-delay, 0s)
+        infinite;
+    }
+
+    @keyframes ly-fire-flame-rise {
+      0% {
+        transform: translate(0, 0) rotate(30deg) scale(.65);
+        opacity: 0;
       }
 
-    });
+      12% {
+        opacity: .55;
+      }
 
-  }
+      35% {
+        transform:
+          translate(12px, calc(var(--fire-travel) * -.35))
+          rotate(18deg)
+          scale(1);
 
-  moveEffects();
+        opacity: .6;
+      }
 
-  /* ======================================
-     【10】重新設定隕石移動距離
+      65% {
+        transform:
+          translate(-10px, calc(var(--fire-travel) * -.65))
+          rotate(40deg)
+          scale(.8);
 
-     使用整個螢幕的寬度與高度，
-     不再使用首頁主視覺的尺寸。
-  ====================================== */
+        opacity: .35;
+      }
 
-  function updateMeteorDistance(){
+      85% {
+        opacity: .12;
+      }
 
-    const elements=document.querySelectorAll(
-      "#ly-meteor-v3 .ly-v3-rock,"+
-      "#ly-meteor-v3 .ly-v3-spark,"+
-      "#ly-meteor-v3 .ly-v3-smoke"
-    );
+      100% {
+        transform:
+          translate(8px, calc(var(--fire-travel) * -1))
+          rotate(26deg)
+          scale(.25);
 
-    const moveX=-(window.innerWidth+350);
-    const moveY=Math.round(window.innerHeight*.95);
+        opacity: 0;
+      }
+    }
 
-    elements.forEach(function(element){
+    /* 細小餘燼 */
 
-      element.style.setProperty(
-        "--move-x",
-        moveX+"px"
+    #ly-rising-fire .ly-fire-ember {
+      position: absolute;
+      bottom: -20px;
+
+      width: var(--fire-size, 3px);
+      height: var(--fire-size, 3px);
+      border-radius: 50%;
+
+      background: #ffc875;
+
+      box-shadow:
+        0 0 5px rgba(255, 155, 49, .7),
+        0 0 10px rgba(255, 72, 10, .35);
+
+      opacity: 0;
+
+      animation:
+        ly-fire-ember-rise
+        var(--fire-duration, 15s)
+        linear
+        var(--fire-delay, 0s)
+        infinite;
+    }
+
+    @keyframes ly-fire-ember-rise {
+      0% {
+        transform: translate(0, 0) scale(.5);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: .6;
+      }
+
+      45% {
+        transform:
+          translate(-14px, calc(var(--fire-travel) * -.45))
+          scale(1);
+
+        opacity: .65;
+      }
+
+      75% {
+        transform:
+          translate(12px, calc(var(--fire-travel) * -.75))
+          scale(.6);
+
+        opacity: .25;
+      }
+
+      100% {
+        transform:
+          translate(-5px, calc(var(--fire-travel) * -1))
+          scale(.2);
+
+        opacity: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #ly-rising-fire {
+        display: none !important;
+      }
+    }
+  </style>
+
+  <script>
+    (function () {
+      "use strict";
+
+      /* 防止重複產生特效 */
+      if (document.getElementById("ly-rising-fire")) {
+        return;
+      }
+
+      const motionPreference = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
       );
 
-      element.style.setProperty(
-        "--move-y",
-        moveY+"px"
+      const layer = document.createElement("div");
+
+      layer.id = "ly-rising-fire";
+      layer.setAttribute("aria-hidden", "true");
+      layer.hidden = motionPreference.matches;
+
+      document.body.appendChild(layer);
+
+      /* =====================================
+         火苗數量設定
+
+         電腦：12 個火苗、16 個餘燼
+         手機：6 個火苗、8 個餘燼
+      ===================================== */
+
+      const mobile = window.matchMedia(
+        "(max-width: 600px)"
+      ).matches;
+
+      const flameCount = mobile ? 6 : 12;
+      const emberCount = mobile ? 8 : 16;
+
+      function random(seed) {
+        const value = Math.sin(seed * 127.1) * 43758.5453;
+        return value - Math.floor(value);
+      }
+
+      function updateTravel() {
+        layer.style.setProperty(
+          "--fire-travel",
+          (window.innerHeight + 100) + "px"
+        );
+      }
+
+      updateTravel();
+
+      window.addEventListener(
+        "resize",
+        updateTravel,
+        { passive: true }
       );
 
-    });
+      function createParticle(className, index, offset) {
+        const particle = document.createElement("span");
 
-  }
+        particle.className = className;
 
-  updateMeteorDistance();
+        const isFlame = className === "ly-fire-flame";
+        const position = random(index + offset) * 100;
 
-  window.addEventListener(
-    "resize",
-    updateMeteorDistance,
-    {passive:true}
-  );
+        const size = isFlame
+          ? 4 + random(index + offset + 20) * 5
+          : 1.5 + random(index + offset + 20) * 2;
 
-})();
+        const duration = isFlame
+          ? 11 + random(index + offset + 40) * 8
+          : 14 + random(index + offset + 40) * 10;
 
-</script>
+        const delay = -random(index + offset + 60) * duration;
 
-<!-- ==================================================
-     【龍淵天堂 V6 全站背景與特效 結束】
+        particle.style.left = position + "%";
 
-     V3：隕石
-     V4：火苗
-     V5：背景圖片
-     V6：全畫面顯示
+        particle.style.setProperty(
+          "--fire-size",
+          size + "px"
+        );
 
-     以後修改全站背景及特效範圍，
-     只需要替換這個區塊。
-================================================== -->
-   
-<style>
-/* 統一系統入口大小與排列 */
+        particle.style.setProperty(
+          "--fire-duration",
+          duration + "s"
+        );
 
-#entries .entry-grid{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:13px;
-}
+        particle.style.setProperty(
+          "--fire-delay",
+          delay + "s"
+        );
 
-#entries .entry-grid > .entry{
-  width:100%;
-  min-width:0;
-  min-height:155px;
-  margin:0;
-  padding:22px 12px;
-  grid-column:auto;
-}
+        layer.appendChild(particle);
+      }
 
-@media(max-width:850px){
-  #entries .entry-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-}
-</style>
+      for (let i = 0; i < flameCount; i++) {
+        createParticle("ly-fire-flame", i, 10);
+      }
+
+      for (let i = 0; i < emberCount; i++) {
+        createParticle("ly-fire-ember", i, 200);
+      }
+
+      function updateMotion() {
+        layer.hidden = motionPreference.matches;
+      }
+
+      if (motionPreference.addEventListener) {
+        motionPreference.addEventListener(
+          "change",
+          updateMotion
+        );
+      }
+    })();
+  </script>
+
+  <!-- 【最下面特效區結束】 -->
+
 </body>
 </html>
