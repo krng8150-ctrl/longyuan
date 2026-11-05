@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
+  <title>古神的榮耀｜龍淵天堂</title>
+
+  <style>
+    /* =====================================
+       01：基本設定與背景
+    ===================================== */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 110px;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Microsoft JhengHei", Arial, sans-serif;
+      line-height: 1.8;
+      color: #eaf6ff;
+      background: #07111f;
+      isolation: isolate;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(3, 9, 20, .25),
+          rgba(3, 9, 20, .60)
+        ),
+        url("longyuan-bg.png") center / cover no-repeat;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible {
+      outline: 2px solid #91d4ff;
+      outline-offset: 4px;
+    }
+
+    .emoji {
+      font-family:
+        "Segoe UI Emoji",
+        "Apple Color Emoji",
+        "Noto Color Emoji",
+        sans-serif;
+    }
+
+    /* =====================================
+       02：頂部導覽
+    ===================================== */
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(4, 12, 28, .95);
+      border-bottom: 1px solid rgba(163, 213, 255, .22);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 17px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      white-space: nowrap;
+      text-shadow: 0 0 18px #469de7;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #91d4ff;
+    }
+
+    /* =====================================
+       03：頁面介紹
+    ===================================== */
+
+    main {
+      position: relative;
+      z-index: 3;
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .panel {
+      padding: 30px;
+      border: 1px solid rgba(166, 214, 255, .25);
+      border-radius: 16px;
+      background: rgba(5, 16, 32, .84);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, .22);
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: #aedcff;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 5vw, 40px);
+      letter-spacing: 3px;
+      text-shadow: 0 0 18px rgba(101, 187, 255, .4);
+    }
+
+    .description {
+      margin: 0;
+      color: #bad5e9;
+    }
+
+    /* =====================================
+       04：等級快速導覽
+    ===================================== */
+
+    .level-nav {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .level-nav a {
+      min-width: 64px;
+      padding: 6px 12px;
+      text-align: center;
+      font-size: 13px;
+      border: 1px solid rgba(158, 210, 255, .3);
+      border-radius: 6px;
+      background: rgba(20, 49, 76, .8);
+      transition: background .2s;
+    }
+
+    .level-nav a:hover {
+      background: #225680;
+    }
+
+    /* =====================================
+       05：各級能力區塊
+    ===================================== */
+
+    .level-grid {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+
+    .level-card {
+      min-width: 0;
+      overflow: hidden;
+      scroll-margin-top: 110px;
+      border: 1px solid rgba(158, 210, 255, .28);
+      border-radius: 14px;
+      background: rgba(6, 21, 39, .94);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, .2);
+    }
+
+    .level-header {
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid rgba(158, 210, 255, .2);
+      background: linear-gradient(135deg, #193e60, #0b233d);
+    }
+
+    .level-header h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #d8efff;
+    }
+
+    .level-badge {
+      flex-shrink: 0;
+      padding: 2px 10px;
+      color: #ffe0a0;
+      font-size: 13px;
+      border: 1px solid rgba(255, 218, 148, .4);
+      border-radius: 5px;
+      background: rgba(0, 0, 0, .18);
+    }
+
+    .ability-list {
+      margin: 0;
+      padding: 9px 22px;
+    }
+
+    .ability-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(158, 210, 255, .12);
+    }
+
+    .ability-row:last-child {
+      border-bottom: 0;
+    }
+
+    .ability-row dt {
+      color: #bdd4e6;
+      font-size: 14px;
+    }
+
+    .ability-row dd {
+      margin: 0;
+      color: #ffe0a0;
+      font-weight: 700;
+      font-size: 16px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* =====================================
+       06：返回按鈕與頁尾
+    ===================================== */
+
+    .back-area {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 11px 23px;
+      border: 1px solid #75bbef;
+      border-radius: 8px;
+      background: rgba(10, 37, 65, .92);
+      transition: background .2s, transform .2s;
+    }
+
+    .button:hover {
+      background: #174771;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      position: relative;
+      z-index: 3;
+      padding: 25px 20px 35px;
+      text-align: center;
+      color: #b0cadd;
+      font-size: 13px;
+      background: rgba(4, 12, 25, .7);
+      border-top: 1px solid rgba(145, 205, 255, .16);
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    /* =====================================
+       07：手機版
+    ===================================== */
+
+    @media (max-width: 850px) {
+      .nav-inner {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .nav-links {
+        gap: 12px 16px;
+      }
+
+      html {
+        scroll-padding-top: 150px;
+      }
+
+      .level-card {
+        scroll-margin-top: 150px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 25px 14px;
+      }
+
+      .brand {
+        font-size: 23px;
+      }
+
+      .nav-links {
+        font-size: 13px;
+      }
+
+      .panel {
+        padding: 23px 18px;
+      }
+
+      .eyebrow {
+        font-size: 10px;
+        letter-spacing: 2px;
+      }
+
+      .level-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .level-header {
+        padding: 16px 18px;
+      }
+
+      .level-header h2 {
+        font-size: 19px;
+      }
+
+      .ability-list {
+        padding: 8px 18px;
+      }
+
+      .button {
+        padding: 10px 17px;
+        font-size: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =====================================
+       08：頂部選單
+  ===================================== -->
+
+  <header class="nav">
+    <div class="nav-inner">
+
+      <a class="brand" href="https://yong-yi.uk/longyuan/">
+        龍淵天堂
+      </a>
+
+      <nav class="nav-links" aria-label="主要選單">
+        <a href="https://yong-yi.uk/longyuan/">
+          首頁
+        </a>
+
+        <a href="https://yong-yi.uk/longyuan/#entries">
+          系統入口
+        </a>
+
+        <a href="badge.html">
+          徽章系統
+        </a>
+
+        <a href="god.html" aria-current="page">
+          古神的榮耀
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =====================================
+         09：古神的榮耀介紹
+    ===================================== -->
+
+    <section class="panel" aria-labelledby="page-title">
+
+      <p class="eyebrow">
+        LONGYUAN · GLORY OF THE ANCIENT GOD
+      </p>
+
+      <h1 id="page-title">
+        <span class="emoji" aria-hidden="true">🏆</span>
+        古神的榮耀
+      </h1>
+
+      <p class="description">
+        查看古神的榮耀 Lv1～Lv10 各級能力加成。
+      </p>
+
+      <nav class="level-nav" aria-label="徽章等級快速導覽">
+        <a href="#level-1">Lv1</a>
+        <a href="#level-2">Lv2</a>
+        <a href="#level-3">Lv3</a>
+        <a href="#level-4">Lv4</a>
+        <a href="#level-5">Lv5</a>
+        <a href="#level-6">Lv6</a>
+        <a href="#level-7">Lv7</a>
+        <a href="#level-8">Lv8</a>
+        <a href="#level-9">Lv9</a>
+        <a href="#level-10">Lv10</a>
+      </nav>
+
+    </section>
+
+    <!-- 各級能力由下方資料自動產生，數值為 0 的項目不顯示 -->
+
+    <div class="level-grid" id="glory-levels"></div>
+
+    <noscript>
+      <p class="panel">
+        請啟用瀏覽器 JavaScript，以查看各級徽章能力。
+      </p>
+    </noscript>
+
+    <!-- =====================================
+         10：返回導覽
+    ===================================== -->
+
+    <div class="back-area">
+      <a class="button" href="badge.html">
+        ← 返回徽章分類
+      </a>
+
+      <a class="button" href="https://yong-yi.uk/longyuan/">
+        返回官方首頁
+      </a>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>龍淵天堂 · 官方網站</p>
+  </footer>
+
+  <!-- =====================================
+       11：古神的榮耀能力資料
+
+       每一行依序代表：
+       血量、魔量、回血、回魔、
+       近戰傷害、近戰命中、
+       遠距離傷害、遠距離命中、
+       傷害減免、魔法防禦、魔法攻擊。
+
+       能力數值為 0 時，自動不顯示。
+  ===================================== -->
+
+  <script>
+    (function () {
+      "use strict";
+
+      const abilityNames = [
+        "血量",
+        "魔量",
+        "回血",
+        "回魔",
+        "近戰傷害",
+        "近戰命中",
+        "遠距離傷害",
+        "遠距離命中",
+        "傷害減免",
+        "魔法防禦",
+        "魔法攻擊"
+      ];
+
+      const levels = [
+        // Lv1
+        [15, 10, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+
+        // Lv2
+        [20, 15, 2, 2, 0, 0, 0, 0, 0, 0, 0],
+
+        // Lv3
+        [30, 20, 3, 3, 0, 0, 0, 0, 0, 0, 0],
+
+        // Lv4
+        [40, 25, 3, 3, 1, 0, 1, 0, 0, 0, 1],
+
+        // Lv5
+        [50, 30, 4, 4, 1, 1, 1, 1, 0, 0, 1],
+
+        // Lv6
+        [60, 35, 4, 4, 1, 1, 1, 1, 0, 1, 1],
+
+        // Lv7
+        [70, 40, 5, 5, 2, 1, 2, 1, 1, 2, 2],
+
+        // Lv8
+        [80, 45, 5, 5, 2, 2, 2, 2, 2, 3, 2],
+
+        // Lv9
+        [90, 50, 5, 5, 3, 2, 3, 2, 2, 4, 3],
+
+        // Lv10
+        [100, 60, 5, 5, 3, 3, 3, 3, 3, 5, 3]
+      ];
+
+      const container = document.getElementById("glory-levels");
+      const fragment = document.createDocumentFragment();
+
+      levels.forEach(function (values, index) {
+        const level = index + 1;
+
+        const card = document.createElement("section");
+        card.className = "level-card";
+        card.id = "level-" + level;
+        card.setAttribute("aria-labelledby", "level-title-" + level);
+
+        const header = document.createElement("div");
+        header.className = "level-header";
+
+        const title = document.createElement("h2");
+        title.id = "level-title-" + level;
+        title.textContent = "古神的榮耀";
+
+        const badge = document.createElement("span");
+        badge.className = "level-badge";
+        badge.textContent = "Lv" + level;
+
+        header.append(title, badge);
+
+        const list = document.createElement("dl");
+        list.className = "ability-list";
+
+        values.forEach(function (value, abilityIndex) {
+          if (value === 0) {
+            return;
+          }
+
+          const row = document.createElement("div");
+          row.className = "ability-row";
+
+          const name = document.createElement("dt");
+          name.textContent = abilityNames[abilityIndex];
+
+          const amount = document.createElement("dd");
+          amount.textContent = "+" + value;
+
+          row.append(name, amount);
+          list.appendChild(row);
+        });
+
+        card.append(header, list);
+        fragment.appendChild(card);
+      });
+
+      container.appendChild(fragment);
+    })();
+  </script>
+
+  <!-- =========================================
+       【最下面特效區開始】
+       龍淵天堂｜飄浮火苗與餘燼
+
+       電腦：12 個火苗、16 個餘燼
+       手機：6 個火苗、8 個餘燼
+  ========================================= -->
+
+  <style id="ly-rising-fire-style">
+    #ly-rising-fire {
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    #ly-rising-fire .ly-fire-flame {
+      position: absolute;
+      bottom: -40px;
+      width: var(--fire-size, 8px);
+      height: calc(var(--fire-size, 8px) * 2.2);
+      border-radius: 65% 30% 60% 40%;
+
+      background: linear-gradient(
+        to top,
+        #f0440e 0%,
+        #ff7b19 35%,
+        #ffd16d 70%,
+        rgba(255, 233, 166, 0) 100%
+      );
+
+      box-shadow:
+        0 0 7px rgba(255, 115, 25, .55),
+        0 0 16px rgba(255, 65, 0, .2);
+
+      filter: blur(.5px);
+      opacity: 0;
+
+      animation:
+        ly-fire-flame-rise
+        var(--fire-duration, 12s)
+        linear
+        var(--fire-delay, 0s)
+        infinite;
+    }
+
+    @keyframes ly-fire-flame-rise {
+      0% {
+        transform: translate(0, 0) rotate(30deg) scale(.65);
+        opacity: 0;
+      }
+
+      12% {
+        opacity: .55;
+      }
+
+      35% {
+        transform:
+          translate(12px, calc(var(--fire-travel) * -.35))
+          rotate(18deg)
+          scale(1);
+        opacity: .6;
+      }
+
+      65% {
+        transform:
+          translate(-10px, calc(var(--fire-travel) * -.65))
+          rotate(40deg)
+          scale(.8);
+        opacity: .35;
+      }
+
+      85% {
+        opacity: .12;
+      }
+
+      100% {
+        transform:
+          translate(8px, calc(var(--fire-travel) * -1))
+          rotate(26deg)
+          scale(.25);
+        opacity: 0;
+      }
+    }
+
+    #ly-rising-fire .ly-fire-ember {
+      position: absolute;
+      bottom: -20px;
+      width: var(--fire-size, 3px);
+      height: var(--fire-size, 3px);
+      border-radius: 50%;
+      background: #ffc875;
+
+      box-shadow:
+        0 0 5px rgba(255, 155, 49, .7),
+        0 0 10px rgba(255, 72, 10, .35);
+
+      opacity: 0;
+
+      animation:
+        ly-fire-ember-rise
+        var(--fire-duration, 15s)
+        linear
+        var(--fire-delay, 0s)
+        infinite;
+    }
+
+    @keyframes ly-fire-ember-rise {
+      0% {
+        transform: translate(0, 0) scale(.5);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: .6;
+      }
+
+      45% {
+        transform:
+          translate(-14px, calc(var(--fire-travel) * -.45))
+          scale(1);
+        opacity: .65;
+      }
+
+      75% {
+        transform:
+          translate(12px, calc(var(--fire-travel) * -.75))
+          scale(.6);
+        opacity: .25;
+      }
+
+      100% {
+        transform:
+          translate(-5px, calc(var(--fire-travel) * -1))
+          scale(.2);
+        opacity: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #ly-rising-fire {
+        display: none !important;
+      }
+    }
+  </style>
+
+  <script>
+    (function () {
+      "use strict";
+
+      if (document.getElementById("ly-rising-fire")) {
+        return;
+      }
+
+      const motionPreference = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      );
+
+      const layer = document.createElement("div");
+      layer.id = "ly-rising-fire";
+      layer.setAttribute("aria-hidden", "true");
+      layer.hidden = motionPreference.matches;
+      document.body.appendChild(layer);
+
+      /* 在這裡調整火苗與餘燼數量 */
+
+      const mobile = window.matchMedia(
+        "(max-width: 600px)"
+      ).matches;
+
+      const flameCount = mobile ? 6 : 12;
+      const emberCount = mobile ? 8 : 16;
+
+      function random(seed) {
+        const value = Math.sin(seed * 127.1) * 43758.5453;
+        return value - Math.floor(value);
+      }
+
+      function updateTravel() {
+        layer.style.setProperty(
+          "--fire-travel",
+          (window.innerHeight + 100) + "px"
+        );
+      }
+
+      updateTravel();
+
+      window.addEventListener(
+        "resize",
+        updateTravel,
+        { passive: true }
+      );
+
+      function createParticle(className, index, offset) {
+        const particle = document.createElement("span");
+        particle.className = className;
+
+        const isFlame = className === "ly-fire-flame";
+        const position = random(index + offset) * 100;
+
+        const size = isFlame
+          ? 4 + random(index + offset + 20) * 5
+          : 1.5 + random(index + offset + 20) * 2;
+
+        const duration = isFlame
+          ? 11 + random(index + offset + 40) * 8
+          : 14 + random(index + offset + 40) * 10;
+
+        const delay = -random(index + offset + 60) * duration;
+
+        particle.style.left = position + "%";
+        particle.style.setProperty("--fire-size", size + "px");
+        particle.style.setProperty("--fire-duration", duration + "s");
+        particle.style.setProperty("--fire-delay", delay + "s");
+
+        layer.appendChild(particle);
+      }
+
+      for (let i = 0; i < flameCount; i++) {
+        createParticle("ly-fire-flame", i, 10);
+      }
+
+      for (let i = 0; i < emberCount; i++) {
+        createParticle("ly-fire-ember", i, 200);
+      }
+
+      if (motionPreference.addEventListener) {
+        motionPreference.addEventListener("change", function () {
+          layer.hidden = motionPreference.matches;
+        });
+      }
+    })();
+  </script>
+
+  <!-- 【最下面特效區結束】 -->
+
+</body>
+</html>
