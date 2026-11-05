@@ -39,7 +39,6 @@ body::before{
   inset:0;
   z-index:-1;
   pointer-events:none;
-
   background:
     linear-gradient(
       180deg,
@@ -79,7 +78,6 @@ h1,h2,h3,p,li{
   max-width:1280px;
   margin:auto;
   padding:17px 20px;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -132,7 +130,6 @@ h1,h2,h3,p,li{
   font-size:clamp(34px,5vw,54px);
   line-height:1.5;
   letter-spacing:4px;
-
   text-shadow:
     0 0 12px rgba(143,210,255,.65),
     0 0 28px rgba(45,125,255,.45);
@@ -145,28 +142,24 @@ h1,h2,h3,p,li{
 }
 
 /* =====================================
-   【04】內容區塊
+   【04】內容區塊與開放公告
 ===================================== */
 
 .panel{
   margin-bottom:26px;
   padding:28px;
-
   background:rgba(8,18,38,.89);
   border:1px solid rgba(180,220,255,.2);
   border-radius:18px;
   backdrop-filter:blur(6px);
-
   box-shadow:0 10px 30px rgba(0,0,0,.22);
 }
 
 .section-title{
   margin:0 0 18px;
   padding-bottom:12px;
-
   border-bottom:1px solid rgba(180,220,255,.18);
   font-size:27px;
-
   text-shadow:0 0 10px rgba(112,196,255,.5);
 }
 
@@ -177,11 +170,9 @@ h1,h2,h3,p,li{
 .open-notice{
   margin-bottom:24px;
   padding:22px 25px;
-
   border:1px solid rgba(255,205,126,.55);
   border-left:5px solid #ffd083;
   border-radius:12px;
-
   background:rgba(48,34,15,.9);
 }
 
@@ -216,17 +207,14 @@ h1,h2,h3,p,li{
   flex-wrap:wrap;
   justify-content:center;
   gap:10px;
-
   margin-top:22px;
 }
 
 .class-nav a{
   padding:9px 18px;
-
   border:1px solid rgba(180,220,255,.28);
   border-radius:9px;
   background:rgba(15,43,72,.9);
-
   font-size:14px;
 }
 
@@ -309,16 +297,6 @@ tbody tr:hover td{
   color:#c0ccda;
 }
 
-.future-divider td{
-  padding:15px;
-  text-align:left;
-  white-space:normal;
-
-  background:rgba(83,58,24,.6);
-  color:#ffda9e;
-  font-size:14px;
-}
-
 .state{
   display:inline-block;
   padding:3px 9px;
@@ -353,7 +331,6 @@ tbody tr:hover td{
   display:inline-block;
   margin-top:8px;
   padding:11px 22px;
-
   border:1px solid rgba(180,220,255,.35);
   border-radius:9px;
   background:rgba(15,47,79,.94);
@@ -373,10 +350,8 @@ tbody tr:hover td{
   display:inline-block;
   min-width:210px;
   padding:13px 26px;
-
   text-align:center;
   border-radius:10px;
-
   background:rgba(15,47,79,.94);
   border:1px solid rgba(180,220,255,.35);
 }
@@ -628,9 +603,7 @@ tbody tr:hover td{
 
 <nav class="back-wrap" aria-label="返回導覽">
 
-  <a
-    class="back-btn"
-    href="https://yong-yi.uk/longyuan/">
+  <a class="back-btn" href="https://yong-yi.uk/longyuan/">
     返回官方首頁
   </a>
 
@@ -647,9 +620,6 @@ tbody tr:hover td{
 
 /* =====================================
    【16】目前開放轉數
-
-   後續正式開放時，再修改此數字，
-   並同步更新頁面上方的開放公告。
 ===================================== */
 
 const OPEN_TURNS=10;
@@ -657,11 +627,8 @@ const OPEN_TURNS=10;
 /* =====================================
    【17】各職業轉生資料
 
-   數值依提供的轉生資料逐筆整理。
-   每列第一個數字是轉數，
+   每列第一個數字為轉數，
    其後依 columns 的欄位順序排列。
-
-   未收錄戰士。
 ===================================== */
 
 const CLASS_DATA=[
@@ -853,13 +820,7 @@ const CLASS_DATA=[
   {
     id:"darkelf",
     name:"黑妖",
-
-    columns:[
-      "血量",
-      "魔量",
-      "力量",
-      "近距離傷害"
-    ],
+    columns:["血量","魔量","力量","近距離傷害"],
 
     rows:[
       [1,270,200,1,1],
@@ -900,13 +861,7 @@ const CLASS_DATA=[
   {
     id:"dragonknight",
     name:"龍騎士",
-
-    columns:[
-      "血量",
-      "魔量",
-      "力量",
-      "近距離傷害"
-    ],
+    columns:["血量","魔量","力量","近距離傷害"],
 
     rows:[
       [1,400,100,1,1],
@@ -1014,11 +969,9 @@ function element(tag,className,text){
 
 function displayValue(value){
 
-  if(value>0){
-    return "+"+value;
-  }
-
-  return String(value);
+  return value>0
+    ?"+"+value
+    :String(value);
 
 }
 
@@ -1028,19 +981,13 @@ function displayValue(value){
 
 function renderClassNav(){
 
-  const nav=document.getElementById(
-    "class-nav"
-  );
+  const nav=document.getElementById("class-nav");
 
   nav.replaceChildren();
 
   CLASS_DATA.forEach(job=>{
 
-    const link=element(
-      "a",
-      "",
-      job.name
-    );
+    const link=element("a","",job.name);
 
     link.href="#"+job.id;
 
@@ -1051,7 +998,10 @@ function renderClassNav(){
 }
 
 /* =====================================
-   【20】建立各職業轉生能力表
+   【20】建立各職業能力表
+
+   已移除表格中重複的提醒橫條。
+   保留各列的開放狀態。
 ===================================== */
 
 function renderTables(){
@@ -1096,10 +1046,7 @@ function renderTables(){
 
     );
 
-    const wrap=element(
-      "div",
-      "table-wrap"
-    );
+    const wrap=element("div","table-wrap");
 
     wrap.setAttribute("tabindex","0");
     wrap.setAttribute("role","region");
@@ -1135,11 +1082,7 @@ function renderTables(){
 
     headings.forEach(label=>{
 
-      const th=element(
-        "th",
-        "",
-        label
-      );
+      const th=element("th","",label);
 
       th.setAttribute("scope","col");
 
@@ -1157,28 +1100,6 @@ function renderTables(){
       const turns=data[0];
       const future=turns>OPEN_TURNS;
 
-      /* 在未開放範圍前插入提醒 */
-
-      if(turns===OPEN_TURNS+1){
-
-        const divider=element(
-          "tr",
-          "future-divider"
-        );
-
-        const message=element(
-          "td",
-          "",
-          "以下為後續規劃內容，目前尚未開放。後續將陸續新增，請留意官方公告。"
-        );
-
-        message.colSpan=headings.length;
-
-        divider.appendChild(message);
-        tbody.appendChild(divider);
-
-      }
-
       const row=element(
         "tr",
         future
@@ -1194,14 +1115,9 @@ function renderTables(){
         turns+"轉"
       );
 
-      turnCell.setAttribute(
-        "scope",
-        "row"
-      );
+      turnCell.setAttribute("scope","row");
 
       row.appendChild(turnCell);
-
-      /* 每列明確顯示開放狀態 */
 
       const statusCell=element("td");
 
@@ -1216,8 +1132,6 @@ function renderTables(){
       );
 
       row.appendChild(statusCell);
-
-      /* 能力數值 */
 
       data.slice(1).forEach(value=>{
 
@@ -1265,14 +1179,15 @@ renderClassNav();
 renderTables();
 
 </script>
+
 <!-- =========================================
+     【最下面特效區開始】
      龍淵天堂｜飄浮火苗與餘燼
-     貼在每個頁面的 </body> 前面
+
+     更換特效時，只替換這個區塊。
 ========================================= -->
 
 <style id="ly-rising-fire-style">
-
-/* 特效固定在整個畫面，不影響點擊 */
 
 #ly-rising-fire{
   position:fixed;
@@ -1282,15 +1197,11 @@ renderTables();
   pointer-events:none;
 }
 
-/* 小火苗 */
-
 #ly-rising-fire .ly-fire-flame{
   position:absolute;
   bottom:-40px;
-
   width:var(--fire-size,8px);
   height:calc(var(--fire-size,8px) * 2.2);
-
   border-radius:65% 30% 60% 40%;
 
   background:linear-gradient(
@@ -1315,8 +1226,6 @@ renderTables();
     var(--fire-delay,0s)
     infinite;
 }
-
-/* 火苗緩緩上升，左右輕微搖晃 */
 
 @keyframes ly-fire-flame-rise{
 
@@ -1359,16 +1268,12 @@ renderTables();
 
 }
 
-/* 細小餘燼 */
-
 #ly-rising-fire .ly-fire-ember{
   position:absolute;
   bottom:-20px;
-
   width:var(--fire-size,3px);
   height:var(--fire-size,3px);
   border-radius:50%;
-
   background:#ffc875;
 
   box-shadow:
@@ -1419,8 +1324,6 @@ renderTables();
 
 }
 
-/* 尊重使用者的減少動畫設定 */
-
 @media(prefers-reduced-motion:reduce){
 
   #ly-rising-fire{
@@ -1435,8 +1338,6 @@ renderTables();
 (function(){
 
   "use strict";
-
-  /* 防止同一頁重複產生特效 */
 
   if(document.getElementById("ly-rising-fire")){
     return;
@@ -1457,14 +1358,7 @@ renderTables();
 
   document.body.appendChild(layer);
 
-  /* =====================================
-     可調整設定
-
-     電腦：12個火苗、16個餘燼
-     手機：6個火苗、8個餘燼
-
-     想減少特效，調低下面數量即可。
-  ===================================== */
+  /* 電腦12個火苗、16個餘燼；手機6個火苗、8個餘燼 */
 
   const mobile=window.matchMedia(
     "(max-width:600px)"
@@ -1473,17 +1367,14 @@ renderTables();
   const flameCount=mobile?6:12;
   const emberCount=mobile?8:16;
 
-  /* 固定亂數，讓位置自然分散 */
-
   function random(seed){
 
-    const value=Math.sin(seed*127.1)*43758.5453;
+    const value=
+      Math.sin(seed*127.1)*43758.5453;
 
     return value-Math.floor(value);
 
   }
-
-  /* 上升距離依畫面高度調整 */
 
   function updateTravel(){
 
@@ -1502,17 +1393,21 @@ renderTables();
     {passive:true}
   );
 
-  /* 建立粒子 */
-
-  function createParticle(className,index,offset){
+  function createParticle(
+    className,
+    index,
+    offset
+  ){
 
     const particle=document.createElement("span");
 
     particle.className=className;
 
-    const isFlame=className==="ly-fire-flame";
+    const isFlame=
+      className==="ly-fire-flame";
 
-    const position=random(index+offset)*100;
+    const position=
+      random(index+offset)*100;
 
     const size=isFlame
       ?4+random(index+offset+20)*5
@@ -1522,7 +1417,8 @@ renderTables();
       ?11+random(index+offset+40)*8
       :14+random(index+offset+40)*10;
 
-    const delay=-random(index+offset+60)*duration;
+    const delay=
+      -random(index+offset+60)*duration;
 
     particle.style.left=position+"%";
 
@@ -1565,8 +1461,6 @@ renderTables();
 
   }
 
-  /* 系統切換為減少動畫時，立即隱藏 */
-
   function updateMotion(){
     layer.hidden=motionPreference.matches;
   }
@@ -1583,6 +1477,10 @@ renderTables();
 })();
 </script>
 
-<!-- 龍淵天堂｜飄浮火苗與餘燼 結束 -->
+<!-- =========================================
+     【最下面特效區結束】
+     龍淵天堂｜飄浮火苗與餘燼
+========================================= -->
+
 </body>
 </html>
