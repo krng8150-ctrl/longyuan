@@ -1,853 +1,164 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#07111f">
-  <title>武器介紹｜龍淵天堂</title>
-
-  <style>
-    /* =====================================
-       01：基本設定與龍淵背景
-    ===================================== */
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 130px;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: "Microsoft JhengHei", Arial, sans-serif;
-      line-height: 1.8;
-      color: #eaf6ff;
-      background: #07111f;
-      isolation: isolate;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      pointer-events: none;
-
-      background:
-        linear-gradient(
-          180deg,
-          rgba(3, 9, 20, .25),
-          rgba(3, 9, 20, .60)
-        ),
-        url("longyuan-bg.png") center / cover no-repeat;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    a:focus-visible {
-      outline: 2px solid #91d4ff;
-      outline-offset: 5px;
-    }
-
-    .emoji {
-      font-family:
-        "Segoe UI Emoji",
-        "Apple Color Emoji",
-        "Noto Color Emoji",
-        sans-serif;
-    }
-
-    /* =====================================
-       02：頂部導覽
-    ===================================== */
-
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(4, 12, 28, .95);
-      border-bottom: 1px solid rgba(163, 213, 255, .22);
-      backdrop-filter: blur(12px);
-    }
-
-    .nav-inner {
-      max-width: 1200px;
-      margin: auto;
-      padding: 17px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      font-size: 26px;
-      font-weight: 900;
-      letter-spacing: 3px;
-      white-space: nowrap;
-      text-shadow: 0 0 18px #469de7;
-    }
-
-    .nav-links {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 18px;
-      font-size: 14px;
-    }
-
-    .nav-links a:hover {
-      color: #91d4ff;
-    }
-
-    /* =====================================
-       03：介紹標題
-    ===================================== */
-
-    main {
-      position: relative;
-      z-index: 3;
-      max-width: 1200px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    .panel {
-      padding: 30px;
-      border: 1px solid rgba(166, 214, 255, .25);
-      border-radius: 16px;
-      background: rgba(5, 16, 32, .84);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 10px 35px rgba(0, 0, 0, .22);
-    }
-
-    .eyebrow {
-      margin: 0 0 12px;
-      color: #aedcff;
-      font-size: 12px;
-      letter-spacing: 4px;
-    }
-
-    h1 {
-      margin: 0 0 12px;
-      font-size: clamp(28px, 5vw, 40px);
-      letter-spacing: 3px;
-      text-shadow: 0 0 18px rgba(101, 187, 255, .4);
-    }
-
-    .description {
-      margin: 0;
-      color: #bad5e9;
-    }
-
-    /* =====================================
-       04：武器系列入口
-    ===================================== */
-
-    .series-panel {
-      margin-top: 24px;
-    }
-
-    .section-title {
-      margin: 0 0 12px;
-      padding-bottom: 14px;
-      font-size: 25px;
-      border-bottom: 1px solid rgba(162, 210, 255, .18);
-    }
-
-    .section-note {
-      margin: 0 0 22px;
-      color: #bad5e9;
-      font-size: 14px;
-    }
-
-    .weapon-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      grid-auto-rows: 1fr;
-      gap: 18px;
-    }
-
-    .weapon-card {
-      min-width: 0;
-      min-height: 245px;
-      padding: 26px 18px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-
-      border: 1px solid rgba(158, 210, 255, .25);
-      border-radius: 14px;
-
-      background: linear-gradient(
-        145deg,
-        rgba(25, 51, 80, .88),
-        rgba(7, 22, 42, .94)
-      );
-
-      box-shadow: 0 8px 25px rgba(0, 0, 0, .18);
-
-      transition:
-        transform .2s,
-        border-color .2s,
-        box-shadow .2s;
-    }
-
-    .weapon-card:hover {
-      transform: translateY(-4px);
-      border-color: #85caff;
-      box-shadow: 0 0 24px rgba(73, 160, 242, .22);
-    }
-
-    .weapon-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 62px;
-      margin-bottom: 12px;
-      font-size: 43px;
-      filter: drop-shadow(
-        0 0 9px rgba(105, 195, 255, .45)
-      );
-    }
-
-    .weapon-card h3 {
-      margin: 0 0 10px;
-      font-size: 21px;
-      overflow-wrap: anywhere;
-    }
-
-    .weapon-card p {
-      margin: 0 0 22px;
-      color: #b5d0e3;
-      font-size: 14px;
-    }
-
-    .entry-button {
-      display: inline-block;
-      margin-top: auto;
-      padding: 8px 19px;
-      border: 1px solid #75bbef;
-      border-radius: 7px;
-
-      background: linear-gradient(
-        135deg,
-        #1d5b91,
-        #0c2d52
-      );
-
-      color: #eaf6ff;
-      font-size: 14px;
-    }
-
-    /* 太古龍神系列入口 */
-
-    .weapon-card.ancient {
-      border-color: rgba(173, 161, 255, .45);
-
-      background: linear-gradient(
-        145deg,
-        rgba(43, 40, 83, .9),
-        rgba(12, 23, 45, .94)
-      );
-    }
-
-    .weapon-card.ancient:hover {
-      border-color: #c0b4ff;
-      box-shadow: 0 0 24px rgba(151, 120, 255, .24);
-    }
-
-    /* =====================================
-       05：返回導覽與頁尾
-    ===================================== */
-
-    .back-area {
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 11px 23px;
-      border: 1px solid #75bbef;
-      border-radius: 8px;
-      background: rgba(10, 37, 65, .92);
-      transition: background .2s, transform .2s;
-    }
-
-    .button:hover {
-      background: #174771;
-      transform: translateY(-2px);
-    }
-
-    footer {
-      position: relative;
-      z-index: 3;
-      padding: 25px 20px 35px;
-      text-align: center;
-      color: #b0cadd;
-      font-size: 13px;
-      background: rgba(4, 12, 25, .7);
-      border-top: 1px solid rgba(145, 205, 255, .16);
-    }
-
-    footer p {
-      margin: 0;
-    }
-
-    /* =====================================
-       06：手機與平板
-    ===================================== */
-
-    @media (max-width: 850px) {
-      .nav-inner {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .nav-links {
-        gap: 12px 16px;
-      }
-
-      .weapon-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      html {
-        scroll-padding-top: 160px;
-      }
-    }
-
-    @media (max-width: 560px) {
-      main {
-        padding: 25px 14px;
-      }
-
-      .brand {
-        font-size: 23px;
-      }
-
-      .nav-links {
-        font-size: 13px;
-      }
-
-      .panel {
-        padding: 23px 16px;
-      }
-
-      .eyebrow {
-        font-size: 10px;
-        letter-spacing: 2px;
-      }
-
-      .section-title {
-        font-size: 22px;
-      }
-
-      .weapon-grid {
-        gap: 12px;
-      }
-
-      .weapon-card {
-        min-height: 225px;
-        padding: 22px 10px;
-      }
-
-      .weapon-icon {
-        min-height: 52px;
-        font-size: 35px;
-      }
-
-      .weapon-card h3 {
-        font-size: 17px;
-      }
-
-      .weapon-card p {
-        font-size: 12px;
-      }
-
-      .entry-button {
-        padding: 7px 12px;
-        font-size: 13px;
-      }
-
-      .button {
-        padding: 10px 17px;
-        font-size: 14px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        animation: none !important;
-        transition: none !important;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07111f">
+<title>武器介紹｜龍淵天堂</title>
+<style>
+/* 01：龍淵背景與共用版面 */
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:145px}body{margin:0;min-height:100vh;background:#07111f;color:#eaf6ff;font-family:"Microsoft JhengHei",Arial,sans-serif;line-height:1.8;isolation:isolate}body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(180deg,rgba(3,9,20,.25),rgba(3,9,20,.60)),url("longyuan-bg.png") center/cover no-repeat}a{color:inherit;text-decoration:none}a:focus-visible{outline:2px solid #91d4ff;outline-offset:5px}.emoji{font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}.nav{position:sticky;top:0;z-index:20;background:rgba(4,12,28,.95);border-bottom:1px solid #a3d5ff38;backdrop-filter:blur(12px)}.nav-inner{max-width:1200px;margin:auto;padding:17px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-size:26px;font-weight:900;letter-spacing:3px;white-space:nowrap;text-shadow:0 0 18px #469de7}.nav-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 18px;font-size:14px}.nav-links a:hover,.breadcrumb a:hover{color:#91d4ff}main{position:relative;z-index:3;max-width:1200px;margin:auto;padding:32px 20px 40px}.breadcrumb{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;font-size:13px;color:#bad5e9}.panel{padding:28px;border:1px solid #a6d6ff40;border-radius:16px;background:rgba(5,16,32,.84);backdrop-filter:blur(6px);box-shadow:0 10px 35px #0004}.eyebrow{margin:0 0 10px;color:#aedcff;font-size:11px;letter-spacing:3px}h1{margin:0 0 12px;font-size:clamp(27px,5vw,38px);line-height:1.5;letter-spacing:2px;overflow-wrap:anywhere;text-shadow:0 0 18px #65bbff66}.description{margin:0;color:#bad5e9}.section-title{margin:0 0 18px;font-size:23px}.spaced{margin-top:24px}
+/* 02：系列與武器入口 */
+.entry-grid{margin-top:24px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;gap:16px}.entry{min-width:0;min-height:210px;padding:25px 17px;display:flex;flex-direction:column;align-items:center;text-align:center;background:linear-gradient(145deg,rgba(25,51,80,.9),rgba(7,22,42,.95));border:1px solid #9ed2ff40;border-radius:14px;transition:transform .2s,border-color .2s}.entry:hover{transform:translateY(-3px);border-color:#85caff}.entry .icon{font-size:36px;margin-bottom:12px;filter:drop-shadow(0 0 9px #69c3ff70)}.entry h2{margin:0 0 9px;font-size:20px;overflow-wrap:anywhere}.entry p{margin:0 0 20px;color:#b5d0e3;font-size:13px}.entry-button{margin-top:auto;padding:6px 15px;font-size:13px;border:1px solid #75bbef;border-radius:6px;background:#103657}.level-nav{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.level-nav a{padding:5px 14px;border:1px solid #9ed2ff55;border-radius:6px;background:#14314c;font-size:13px}.level-nav a:hover{background:#225680}
+/* 03：武器能力；不顯示0值 */
+.level-grid{margin-top:24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}.level-card{min-width:0;overflow:hidden;border:1px solid #9ed2ff48;border-radius:14px;background:rgba(6,21,39,.95);box-shadow:0 8px 25px #0003}.level-header{padding:18px 20px;border-bottom:1px solid #9ed2ff33;background:linear-gradient(135deg,#193e60,#0b233d)}.level-header h2{margin:0;font-size:20px;overflow-wrap:anywhere}.classes{margin:12px 20px 4px;color:#bad5e9;font-size:13px}.class-chip{display:inline-block;margin:3px 4px 3px 0;padding:1px 8px;background:#183c5e;border-radius:5px;color:#d8efff}.ability-list{margin:0;padding:6px 20px 12px}.ability-row{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:9px 0;border-bottom:1px solid #9ed2ff20}.ability-row:last-child{border-bottom:0}.ability-row dt{color:#bdd4e6;font-size:14px}.ability-row dd{margin:0;color:#ffe0a0;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}.back-area{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:30px}.button{display:inline-block;padding:10px 21px;border:1px solid #75bbef;border-radius:8px;background:rgba(10,37,65,.92)}.button:hover{background:#174771}footer{position:relative;z-index:3;padding:25px 20px 35px;text-align:center;font-size:13px;color:#b0cadd;background:#040c19b3;border-top:1px solid #91cdff29}footer p{margin:0}
+/* 04：手機與平板 */
+@media(max-width:850px){.nav-inner{flex-direction:column;gap:10px}.entry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}html{scroll-padding-top:175px}}
+@media(max-width:600px){main{padding:25px 14px}.brand{font-size:23px}.nav-links{font-size:13px;gap:8px 13px}.panel{padding:22px 17px}.entry-grid{gap:11px}.entry{padding:22px 10px;min-height:205px}.entry h2{font-size:17px}.entry p{font-size:12px}.level-grid{grid-template-columns:1fr;gap:16px}.level-header h2{font-size:18px}.ability-list{padding:6px 17px 12px}.eyebrow{font-size:10px;letter-spacing:2px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
 </head>
-
-<body>
-
-  <!-- =====================================
-       07：頂部選單
-  ===================================== -->
-
-  <header class="nav">
-    <div class="nav-inner">
-
-      <a class="brand" href="https://yong-yi.uk/longyuan/">
-        龍淵天堂
-      </a>
-
-      <nav class="nav-links" aria-label="主要選單">
-        <a href="https://yong-yi.uk/longyuan/">
-          首頁
-        </a>
-
-        <a href="https://yong-yi.uk/longyuan/#announcements">
-          最新公告
-        </a>
-
-        <a href="https://yong-yi.uk/longyuan/#entries">
-          系統入口
-        </a>
-
-        <a href="weapon.html" aria-current="page">
-          武器介紹
-        </a>
-      </nav>
-
-    </div>
-  </header>
-
-  <main>
-
-    <!-- =====================================
-         08：武器介紹標題
-    ===================================== -->
-
-    <section class="panel" aria-labelledby="page-title">
-
-      <p class="eyebrow">
-        LONGYUAN · WEAPON COLLECTION
-      </p>
-
-      <h1 id="page-title">
-        <span class="emoji" aria-hidden="true">⚔️</span>
-        武器介紹
-      </h1>
-
-      <p class="description">
-        選擇武器系列，前往查看各系列武器介紹。
-      </p>
-
-    </section>
-
-    <!-- =====================================
-         09：五大武器系列入口
-
-         對應檔名：
-
-         幻想武器：
-         fantasy-weapons.html
-
-         月神武器：
-         moon-weapons.html
-
-         戰神武器：
-         mars-weapons.html
-
-         神龍武器：
-         dragon-weapons.html
-
-         太古龍神武器：
-         ancient-dragon-weapons.html
-
-         後續建立系列頁時使用以上檔名，
-         就不需要再修改本頁入口。
-    ===================================== -->
-
-    <section
-      class="panel series-panel"
-      aria-labelledby="series-title"
-    >
-
-      <h2 class="section-title" id="series-title">
-        武器系列入口
-      </h2>
-
-      <p class="section-note">
-        點選下方系列，進入對應分類。
-      </p>
-
-      <div class="weapon-grid">
-
-        <!-- 01：幻想武器系列 -->
-
-        <a class="weapon-card" href="fantasy-weapons.html">
-
-          <span class="weapon-icon emoji" aria-hidden="true">
-            ⚔️
-          </span>
-
-          <h3>幻想武器系列</h3>
-
-          <p>查看幻想系列武器介紹</p>
-
-          <span class="entry-button">
-            查看系列 →
-          </span>
-
-        </a>
-
-        <!-- 02：月神武器系列 -->
-
-        <a class="weapon-card" href="moon-weapons.html">
-
-          <span class="weapon-icon emoji" aria-hidden="true">
-            🌙
-          </span>
-
-          <h3>月神武器系列</h3>
-
-          <p>查看月神系列武器介紹</p>
-
-          <span class="entry-button">
-            查看系列 →
-          </span>
-
-        </a>
-
-        <!-- 03：戰神武器系列 -->
-
-        <a class="weapon-card" href="mars-weapons.html">
-
-          <span class="weapon-icon emoji" aria-hidden="true">
-            🔱
-          </span>
-
-          <h3>戰神武器系列</h3>
-
-          <p>查看戰神系列武器介紹</p>
-
-          <span class="entry-button">
-            查看系列 →
-          </span>
-
-        </a>
-
-        <!-- 04：神龍武器系列 -->
-
-        <a class="weapon-card" href="dragon-weapons.html">
-
-          <span class="weapon-icon emoji" aria-hidden="true">
-            🐉
-          </span>
-
-          <h3>神龍武器系列</h3>
-
-          <p>查看神龍系列武器介紹</p>
-
-          <span class="entry-button">
-            查看系列 →
-          </span>
-
-        </a>
-
-        <!-- 05：太古龍神武器系列 -->
-
-        <a
-          class="weapon-card ancient"
-          href="ancient-dragon-weapons.html"
-        >
-
-          <span class="weapon-icon emoji" aria-hidden="true">
-            🐲
-          </span>
-
-          <h3>太古龍神武器系列</h3>
-
-          <p>查看太古龍神系列武器介紹</p>
-
-          <span class="entry-button">
-            查看系列 →
-          </span>
-
-        </a>
-
-      </div>
-
-    </section>
-
-    <!-- =====================================
-         10：返回官方首頁
-    ===================================== -->
-
-    <div class="back-area">
-      <a class="button" href="https://yong-yi.uk/longyuan/">
-        ← 返回官方首頁
-      </a>
-    </div>
-
-  </main>
-
-  <footer>
-    <p>龍淵天堂 · 官方網站</p>
-  </footer>
-
-  <!-- =========================================
-       【最下面特效區開始】
-       龍淵天堂｜飄浮火苗與餘燼
-
-       電腦：12 個火苗、16 個餘燼
-       手機：6 個火苗、8 個餘燼
-  ========================================= -->
-
-  <style id="ly-rising-fire-style">
-    #ly-rising-fire {
-      position: fixed;
-      inset: 0;
-      z-index: 5;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    #ly-rising-fire .ly-fire-flame {
-      position: absolute;
-      bottom: -40px;
-      width: var(--fire-size, 8px);
-      height: calc(var(--fire-size, 8px) * 2.2);
-      border-radius: 65% 30% 60% 40%;
-
-      background: linear-gradient(
-        to top,
-        #f0440e 0%,
-        #ff7b19 35%,
-        #ffd16d 70%,
-        rgba(255, 233, 166, 0) 100%
-      );
-
-      box-shadow:
-        0 0 7px rgba(255, 115, 25, .55),
-        0 0 16px rgba(255, 65, 0, .2);
-
-      filter: blur(.5px);
-      opacity: 0;
-
-      animation:
-        ly-fire-flame-rise
-        var(--fire-duration, 12s)
-        linear
-        var(--fire-delay, 0s)
-        infinite;
-    }
-
-    @keyframes ly-fire-flame-rise {
-      0% {
-        transform: translate(0, 0) rotate(30deg) scale(.65);
-        opacity: 0;
-      }
-
-      12% {
-        opacity: .55;
-      }
-
-      35% {
-        transform:
-          translate(12px, calc(var(--fire-travel) * -.35))
-          rotate(18deg)
-          scale(1);
-        opacity: .6;
-      }
-
-      65% {
-        transform:
-          translate(-10px, calc(var(--fire-travel) * -.65))
-          rotate(40deg)
-          scale(.8);
-        opacity: .35;
-      }
-
-      85% {
-        opacity: .12;
-      }
-
-      100% {
-        transform:
-          translate(8px, calc(var(--fire-travel) * -1))
-          rotate(26deg)
-          scale(.25);
-        opacity: 0;
-      }
-    }
-
-    #ly-rising-fire .ly-fire-ember {
-      position: absolute;
-      bottom: -20px;
-      width: var(--fire-size, 3px);
-      height: var(--fire-size, 3px);
-      border-radius: 50%;
-      background: #ffc875;
-
-      box-shadow:
-        0 0 5px rgba(255, 155, 49, .7),
-        0 0 10px rgba(255, 72, 10, .35);
-
-      opacity: 0;
-
-      animation:
-        ly-fire-ember-rise
-        var(--fire-duration, 15s)
-        linear
-        var(--fire-delay, 0s)
-        infinite;
-    }
-
-    @keyframes ly-fire-ember-rise {
-      0% {
-        transform: translate(0, 0) scale(.5);
-        opacity: 0;
-      }
-
-      15% {
-        opacity: .6;
-      }
-
-      45% {
-        transform:
-          translate(-14px, calc(var(--fire-travel) * -.45))
-          scale(1);
-        opacity: .65;
-      }
-
-      75% {
-        transform:
-          translate(12px, calc(var(--fire-travel) * -.75))
-          scale(.6);
-        opacity: .25;
-      }
-
-      100% {
-        transform:
-          translate(-5px, calc(var(--fire-travel) * -1))
-          scale(.2);
-        opacity: 0;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      #ly-rising-fire {
-        display: none !important;
-      }
-    }
-  </style>
-
-  <script>
-    (function () {
-      "use strict";
-
-      if (document.getElementById("ly-rising-fire")) {
-        return;
-      }
-
-      const motionPreference = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      );
-
-      const layer = document.createElement("div");
-      layer.id = "ly-rising-fire";
-      layer.setAttribute("aria-hidden", "true");
-      layer.hidden = motionPreference.matches;
-      document.body.appendChild(layer);
-
-      /* 在這裡調整火苗與餘燼數量 */
-
-      const mobile = window.matchMedia(
-        "(max-width: 600px)"
-      ).matches;
-
-      const flameCount = mobile ? 6 : 12;
-      const emberCount = mobile ? 8 : 16;
-
-      function random(seed) {
-        const value = Math.sin(seed * 127.1) * 43758.5453;
-        return value - Math.floor(value);
-      }
-
-      function updateTravel() {
-        layer.style.setProperty(
-          "--fire-travel",
-          (window.innerHeight + 100) + "px"
-        );
-      }
-
-      updateTravel();
-
-      window.addEventListener(
-        "resize",
-        updateTravel,
-        { passive: true }
-      );
-
-      function createParticle(className, index, offset) {
-        const particle = document.createElement("span");
-        particle.className = className;
-
-        const isFlame = className === "ly-fire-flame";
-        const position = random(index + offset) * 100;
-
-        const size = isFlame
-          ? 4 + random(index + offset + 20) * 5
-          : 1.5 + random(index + offset + 20) * 2;
-
-        const duration = isFlame
-          ? 11 + random(index + offset + 40) * 8
-          : 14 + random(index + offset + 40) * 10;
-
-        const delay = -random(index + offset + 60) * duration;
-
-        particle.style.left = position + "%";
-        particle.style.setProperty("--fire-size", size + "px");
-        particle.style.setProperty("--fire-duration", duration + "s");
-        particle.style.setProperty("--fire-delay", delay + "s");
-
-        layer.appendChild(particle);
-      }
-
-      for (let i = 0; i < flameCount; i++) {
-        createParticle("ly-fire-flame", i, 10);
-      }
-
-      for (let i = 0; i < emberCount; i++) {
-        createParticle("ly-fire-ember", i, 200);
-      }
-
-      if (motionPreference.addEventListener) {
-        motionPreference.addEventListener("change", function () {
-          layer.hidden = motionPreference.matches;
-        });
-      }
-    })();
-  </script>
-
-  <!-- 【最下面特效區結束】 -->
-
+<body id="top">
+<!-- 頂部選單：官方首頁固定返回 /longyuan/ -->
+<header class="nav"><div class="nav-inner">
+<a class="brand" href="https://yong-yi.uk/longyuan/">龍淵天堂</a>
+<nav class="nav-links" aria-label="主要選單"><a href="https://yong-yi.uk/longyuan/">首頁</a><a href="https://yong-yi.uk/longyuan/#entries">系統入口</a><a href="weapon.html" aria-current="page">武器介紹</a></nav>
+</div></header>
+<main>
+<nav class="breadcrumb" aria-label="所在位置"><a href="https://yong-yi.uk/longyuan/">首頁</a><span aria-hidden="true">›</span><span aria-current="page">武器介紹</span></nav>
+<section class="panel" aria-labelledby="page-title"><p class="eyebrow">LONGYUAN · WEAPON COLLECTION</p><h1 id="page-title"><span class="emoji" aria-hidden="true">⚔️</span> 武器介紹</h1><p class="description">選擇武器系列，前往各把武器的能力介紹。</p></section><section class="spaced" aria-label="五大武器系列"><div class="entry-grid"><a class="entry" href="fantasy-weapons.html"><span class="icon emoji" aria-hidden="true">⚔️</span><h2>幻想武器系列</h2><p>查看系列武器</p><span class="entry-button">查看介紹 →</span></a>
+<a class="entry" href="moon-weapons.html"><span class="icon emoji" aria-hidden="true">🌙</span><h2>月神武器系列</h2><p>查看系列武器</p><span class="entry-button">查看介紹 →</span></a>
+<a class="entry" href="mars-weapons.html"><span class="icon emoji" aria-hidden="true">🔱</span><h2>戰神武器系列</h2><p>查看系列武器</p><span class="entry-button">查看介紹 →</span></a>
+<a class="entry" href="dragon-weapons.html"><span class="icon emoji" aria-hidden="true">🐉</span><h2>神龍武器系列</h2><p>查看系列武器</p><span class="entry-button">查看介紹 →</span></a>
+<a class="entry" href="ancient-dragon-weapons.html"><span class="icon emoji" aria-hidden="true">🐲</span><h2>太古龍神武器系列</h2><p>查看系列武器</p><span class="entry-button">查看介紹 →</span></a></div></section><div class="back-area"><a class="button" href="https://yong-yi.uk/longyuan/">返回官方首頁</a><a class="button" href="#top">返回頂端 ↑</a></div>
+</main>
+<footer><p>龍淵天堂 · 官方網站</p></footer>
+
+<!-- =========================================
+     【最下面特效區開始】龍淵天堂｜飄浮火苗與餘燼
+     火苗只往上飄；不影響點擊。數量在下方設定。
+========================================= -->
+<style id="ly-rising-fire-style">
+#ly-rising-fire{position:fixed;inset:0;z-index:5;overflow:hidden;pointer-events:none}
+#ly-rising-fire .ly-fire-flame{position:absolute;bottom:-40px;width:var(--fire-size,8px);height:calc(var(--fire-size,8px)*2.2);border-radius:65% 30% 60% 40%;background:linear-gradient(to top,#f0440e 0%,#ff7b19 35%,#ffd16d 70%,rgba(255,233,166,0) 100%);box-shadow:0 0 7px #ff73198c,0 0 16px #ff410033;filter:blur(.5px);opacity:0;animation:ly-fire-flame-rise var(--fire-duration,12s) linear var(--fire-delay,0s) infinite}
+@keyframes ly-fire-flame-rise{0%{transform:translate(0,0) rotate(30deg) scale(.65);opacity:0}12%{opacity:.55}35%{transform:translate(12px,calc(var(--fire-travel)*-.35)) rotate(18deg) scale(1);opacity:.6}65%{transform:translate(-10px,calc(var(--fire-travel)*-.65)) rotate(40deg) scale(.8);opacity:.35}85%{opacity:.12}100%{transform:translate(8px,calc(var(--fire-travel)*-1)) rotate(26deg) scale(.25);opacity:0}}
+#ly-rising-fire .ly-fire-ember{position:absolute;bottom:-20px;width:var(--fire-size,3px);height:var(--fire-size,3px);border-radius:50%;background:#ffc875;box-shadow:0 0 5px #ff9b31b3,0 0 10px #ff480a59;opacity:0;animation:ly-fire-ember-rise var(--fire-duration,15s) linear var(--fire-delay,0s) infinite}
+@keyframes ly-fire-ember-rise{0%{transform:translate(0,0) scale(.5);opacity:0}15%{opacity:.6}45%{transform:translate(-14px,calc(var(--fire-travel)*-.45)) scale(1);opacity:.65}75%{transform:translate(12px,calc(var(--fire-travel)*-.75)) scale(.6);opacity:.25}100%{transform:translate(-5px,calc(var(--fire-travel)*-1)) scale(.2);opacity:0}}
+@media(prefers-reduced-motion:reduce){#ly-rising-fire{display:none!important}}
+</style>
+<script>
+(function(){
+  "use strict";
+  if(document.getElementById("ly-rising-fire"))return;
+  const preference=window.matchMedia("(prefers-reduced-motion: reduce)");
+  const layer=document.createElement("div");
+  layer.id="ly-rising-fire";
+  layer.setAttribute("aria-hidden","true");
+  layer.hidden=preference.matches;
+  document.body.appendChild(layer);
+  // 可調整：電腦12火苗/16餘燼；手機6火苗/8餘燼
+  const mobile=window.matchMedia("(max-width:600px)").matches;
+  const flameCount=mobile?6:12,emberCount=mobile?8:16;
+  function random(seed){const v=Math.sin(seed*127.1)*43758.5453;return v-Math.floor(v)}
+  function resize(){layer.style.setProperty("--fire-travel",(window.innerHeight+100)+"px")}
+  resize();window.addEventListener("resize",resize,{passive:true});
+  function create(className,index,offset){
+    const p=document.createElement("span"),flame=className==="ly-fire-flame";
+    const duration=flame?11+random(index+offset+40)*8:14+random(index+offset+40)*10;
+    p.className=className;p.style.left=random(index+offset)*100+"%";
+    p.style.setProperty("--fire-size",(flame?4+random(index+offset+20)*5:1.5+random(index+offset+20)*2)+"px");
+    p.style.setProperty("--fire-duration",duration+"s");
+    p.style.setProperty("--fire-delay",-random(index+offset+60)*duration+"s");
+    layer.appendChild(p);
+  }
+  for(let i=0;i<flameCount;i++)create("ly-fire-flame",i,10);
+  for(let i=0;i<emberCount;i++)create("ly-fire-ember",i,200);
+  if(preference.addEventListener)preference.addEventListener("change",()=>{layer.hidden=preference.matches});
+})();
+</script>
+<!-- 【最下面特效區結束】 -->
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07111f">
+<title>武器介紹｜龍淵天堂</title>
+<style>
+/* 01：龍淵背景與共用版面 */
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:145px}body{margin:0;min-height:100vh;background:#07111f;color:#eaf6ff;font-family:"Microsoft JhengHei",Arial,sans-serif;line-height:1.8;isolation:isolate}body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(180deg,rgba(3,9,20,.25),rgba(3,9,20,.60)),url("longyuan-bg.png") center/cover no-repeat}a{color:inherit;text-decoration:none}a:focus-visible{outline:2px solid #91d4ff;outline-offset:5px}.emoji{font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}.nav{position:sticky;top:0;z-index:20;background:rgba(4,12,28,.95);border-bottom:1px solid #a3d5ff38;backdrop-filter:blur(12px)}.nav-inner{max-width:1200px;margin:auto;padding:17px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-size:26px;font-weight:900;letter-spacing:3px;white-space:nowrap;text-shadow:0 0 18px #469de7}.nav-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 18px;font-size:14px}.nav-links a:hover,.breadcrumb a:hover{color:#91d4ff}main{position:relative;z-index:3;max-width:1200px;margin:auto;padding:32px 20px 40px}.breadcrumb{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;font-size:13px;color:#bad5e9}.panel{padding:28px;border:1px solid #a6d6ff40;border-radius:16px;background:rgba(5,16,32,.84);backdrop-filter:blur(6px);box-shadow:0 10px 35px #0004}.eyebrow{margin:0 0 10px;color:#aedcff;font-size:11px;letter-spacing:3px}h1{margin:0 0 12px;font-size:clamp(27px,5vw,38px);line-height:1.5;letter-spacing:2px;overflow-wrap:anywhere;text-shadow:0 0 18px #65bbff66}.description{margin:0;color:#bad5e9}.section-title{margin:0 0 18px;font-size:23px}.spaced{margin-top:24px}
+/* 02：系列與武器入口 */
+.entry-grid{margin-top:24px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;gap:16px}.entry{min-width:0;min-height:210px;padding:25px 17px;display:flex;flex-direction:column;align-items:center;text-align:center;background:linear-gradient(145deg,rgba(25,51,80,.9),rgba(7,22,42,.95));border:1px solid #9ed2ff40;border-radius:14px;transition:transform .2s,border-color .2s}.entry:hover{transform:translateY(-3px);border-color:#85caff}.entry .icon{font-size:36px;margin-bottom:12px;filter:drop-shadow(0 0 9px #69c3ff70)}.entry h2{margin:0 0 9px;font-size:20px;overflow-wrap:anywhere}.entry p{margin:0 0 20px;color:#b5d0e3;font-size:13px}.entry-button{margin-top:auto;padding:6px 15px;font-size:13px;border:1px solid #75bbef;border-radius:6px;background:#103657}.level-nav{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.level-nav a{padding:5px 14px;border:1px solid #9ed2ff55;border-radius:6px;background:#14314c;font-size:13px}.level-nav a:hover{background:#225680}
+/* 03：武器能力；不顯示0值 */
+.level-grid{margin-top:24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}.level-card{min-width:0;overflow:hidden;border:1px solid #9ed2ff48;border-radius:14px;background:rgba(6,21,39,.95);box-shadow:0 8px 25px #0003}.level-header{padding:18px 20px;border-bottom:1px solid #9ed2ff33;background:linear-gradient(135deg,#193e60,#0b233d)}.level-header h2{margin:0;font-size:20px;overflow-wrap:anywhere}.classes{margin:12px 20px 4px;color:#bad5e9;font-size:13px}.class-chip{display:inline-block;margin:3px 4px 3px 0;padding:1px 8px;background:#183c5e;border-radius:5px;color:#d8efff}.ability-list{margin:0;padding:6px 20px 12px}.ability-row{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:9px 0;border-bottom:1px solid #9ed2ff20}.ability-row:last-child{border-bottom:0}.ability-row dt{color:#bdd4e6;font-size:14px}.ability-row dd{margin:0;color:#ffe0a0;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}.back-area{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:30px}.button{display:inline-block;padding:10px 21px;border:1px solid #75bbef;border-radius:8px;background:rgba(10,37,65,.92)}.button:hover{background:#174771}footer{position:relative;z-index:3;padding:25px 20px 35px;text-align:center;font-size:13px;color:#b0cadd;background:#040c19b3;border-top:1px solid #91cdff29}footer p{margin:0}
+/* 04：手機與平板 */
+@media(max-width:850px){.nav-inner{flex-direction:column;gap:10px}.entry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}html{scroll-padding-top:175px}}
+@media(max-width:600px){main{padding:25px 14px}.brand{font-size:23px}.nav-links{font-size:13px;gap:8px 13px}.panel{padding:22px 17px}.entry-grid{gap:11px}.entry{padding:22px 10px;min-height:205px}.entry h2{font-size:17px}.entry p{font-size:12px}.level-grid{grid-template-columns:1fr;gap:16px}.level-header h2{font-size:18px}.ability-list{padding:6px 17px 12px}.eyebrow{font-size:10px;letter-spacing:2px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body id="top">
+<!-- 頂部選單：官方首頁固定返回 /longyuan/ -->
+<header class="nav"><div class="nav-inner">
+<a class="brand" href="https://yong-yi.uk/longyuan/">龍淵天堂</a>
+<nav class="nav-links" aria-label="主要選單"><a href="https://yong-yi.uk/longyuan/">首頁</a><a href="https://yong-yi.uk/longyuan/#entries">系統入口</a><a href="weapon.html" aria-current="page">武器介紹</a></nav>
+</div></header>
+<main>
+<nav class="breadcrumb" aria-label="所在位置"><a href="https://yong-yi.uk/longyuan/">首頁</a><span aria-hidden="true">›</span><span aria-current="page">武器介紹</span></nav>
+<section class="panel" aria-labelledby="page-title"><p class="eyebrow">LONGYUAN · WEAPON COLLECTION</p><h1 id="page-title"><span class="emoji" aria-hidden="true">⚔️</span> 武器介紹</h1><p class="description">選擇武器系列，前往各把武器的能力介紹。</p></section><section class="spaced" aria-label="五大武器系列"><div class="entry-grid"><a class="entry" href="fantasy-weapons.html"><span class="icon emoji" aria-hidden="true">⚔️</span><h2>幻想武器系列</h2><p>查看系列武器</p><span class="entry-button">查看介紹 →</span></a>
+<a class="entry" href="moon-weapons.html"><span class="icon emoji" aria-hidden="true">🌙</span><h2>月神武器系列</h2><p>查看系列武器</p><span class="entry-button">查看介紹 →</span></a>
+<a class="entry" href="mars-weapons.html"><span class="icon emoji" aria-hidden="true">🔱</span><h2>戰神武器系列</h2><p>查看系列武器</p><span class="entry-button">查看介紹 →</span></a>
+<a class="entry" href="dragon-weapons.html"><span class="icon emoji" aria-hidden="true">🐉</span><h2>神龍武器系列</h2><p>查看系列武器</p><span class="entry-button">查看介紹 →</span></a>
+<a class="entry" href="ancient-dragon-weapons.html"><span class="icon emoji" aria-hidden="true">🐲</span><h2>太古龍神武器系列</h2><p>查看系列武器</p><span class="entry-button">查看介紹 →</span></a></div></section><div class="back-area"><a class="button" href="https://yong-yi.uk/longyuan/">返回官方首頁</a><a class="button" href="#top">返回頂端 ↑</a></div>
+</main>
+<footer><p>龍淵天堂 · 官方網站</p></footer>
+
+<!-- =========================================
+     【最下面特效區開始】龍淵天堂｜飄浮火苗與餘燼
+     火苗只往上飄；不影響點擊。數量在下方設定。
+========================================= -->
+<style id="ly-rising-fire-style">
+#ly-rising-fire{position:fixed;inset:0;z-index:5;overflow:hidden;pointer-events:none}
+#ly-rising-fire .ly-fire-flame{position:absolute;bottom:-40px;width:var(--fire-size,8px);height:calc(var(--fire-size,8px)*2.2);border-radius:65% 30% 60% 40%;background:linear-gradient(to top,#f0440e 0%,#ff7b19 35%,#ffd16d 70%,rgba(255,233,166,0) 100%);box-shadow:0 0 7px #ff73198c,0 0 16px #ff410033;filter:blur(.5px);opacity:0;animation:ly-fire-flame-rise var(--fire-duration,12s) linear var(--fire-delay,0s) infinite}
+@keyframes ly-fire-flame-rise{0%{transform:translate(0,0) rotate(30deg) scale(.65);opacity:0}12%{opacity:.55}35%{transform:translate(12px,calc(var(--fire-travel)*-.35)) rotate(18deg) scale(1);opacity:.6}65%{transform:translate(-10px,calc(var(--fire-travel)*-.65)) rotate(40deg) scale(.8);opacity:.35}85%{opacity:.12}100%{transform:translate(8px,calc(var(--fire-travel)*-1)) rotate(26deg) scale(.25);opacity:0}}
+#ly-rising-fire .ly-fire-ember{position:absolute;bottom:-20px;width:var(--fire-size,3px);height:var(--fire-size,3px);border-radius:50%;background:#ffc875;box-shadow:0 0 5px #ff9b31b3,0 0 10px #ff480a59;opacity:0;animation:ly-fire-ember-rise var(--fire-duration,15s) linear var(--fire-delay,0s) infinite}
+@keyframes ly-fire-ember-rise{0%{transform:translate(0,0) scale(.5);opacity:0}15%{opacity:.6}45%{transform:translate(-14px,calc(var(--fire-travel)*-.45)) scale(1);opacity:.65}75%{transform:translate(12px,calc(var(--fire-travel)*-.75)) scale(.6);opacity:.25}100%{transform:translate(-5px,calc(var(--fire-travel)*-1)) scale(.2);opacity:0}}
+@media(prefers-reduced-motion:reduce){#ly-rising-fire{display:none!important}}
+</style>
+<script>
+(function(){
+  "use strict";
+  if(document.getElementById("ly-rising-fire"))return;
+  const preference=window.matchMedia("(prefers-reduced-motion: reduce)");
+  const layer=document.createElement("div");
+  layer.id="ly-rising-fire";
+  layer.setAttribute("aria-hidden","true");
+  layer.hidden=preference.matches;
+  document.body.appendChild(layer);
+  // 可調整：電腦12火苗/16餘燼；手機6火苗/8餘燼
+  const mobile=window.matchMedia("(max-width:600px)").matches;
+  const flameCount=mobile?6:12,emberCount=mobile?8:16;
+  function random(seed){const v=Math.sin(seed*127.1)*43758.5453;return v-Math.floor(v)}
+  function resize(){layer.style.setProperty("--fire-travel",(window.innerHeight+100)+"px")}
+  resize();window.addEventListener("resize",resize,{passive:true});
+  function create(className,index,offset){
+    const p=document.createElement("span"),flame=className==="ly-fire-flame";
+    const duration=flame?11+random(index+offset+40)*8:14+random(index+offset+40)*10;
+    p.className=className;p.style.left=random(index+offset)*100+"%";
+    p.style.setProperty("--fire-size",(flame?4+random(index+offset+20)*5:1.5+random(index+offset+20)*2)+"px");
+    p.style.setProperty("--fire-duration",duration+"s");
+    p.style.setProperty("--fire-delay",-random(index+offset+60)*duration+"s");
+    layer.appendChild(p);
+  }
+  for(let i=0;i<flameCount;i++)create("ly-fire-flame",i,10);
+  for(let i=0;i<emberCount;i++)create("ly-fire-ember",i,200);
+  if(preference.addEventListener)preference.addEventListener("change",()=>{layer.hidden=preference.matches});
+})();
+</script>
+<!-- 【最下面特效區結束】 -->
+</body>
+</html>
+
