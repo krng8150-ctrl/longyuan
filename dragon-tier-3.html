@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="theme-color" content="#07111f"><title>神龍武器系列・三階｜龍淵天堂</title>
+<style>
+/* 01：龍淵背景與共用版面 */
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:145px}body{margin:0;min-height:100vh;background:#07111f;color:#eaf6ff;font-family:"Microsoft JhengHei",Arial,sans-serif;line-height:1.8;isolation:isolate}body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(180deg,rgba(3,9,20,.25),rgba(3,9,20,.60)),url("longyuan-bg.png") center/cover no-repeat}a{color:inherit;text-decoration:none}a:focus-visible{outline:2px solid #91d4ff;outline-offset:5px}.emoji{font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}.nav{position:sticky;top:0;z-index:20;background:rgba(4,12,28,.95);border-bottom:1px solid #a3d5ff38;backdrop-filter:blur(12px)}.nav-inner{max-width:1200px;margin:auto;padding:17px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-size:26px;font-weight:900;letter-spacing:3px;white-space:nowrap;text-shadow:0 0 18px #469de7}.nav-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 18px;font-size:14px}.nav-links a:hover,.breadcrumb a:hover{color:#91d4ff}main{position:relative;z-index:3;max-width:1200px;margin:auto;padding:32px 20px 40px}.breadcrumb{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;font-size:13px;color:#bad5e9}.panel{padding:28px;border:1px solid #a6d6ff40;border-radius:16px;background:rgba(5,16,32,.84);backdrop-filter:blur(6px);box-shadow:0 10px 35px #0004}.eyebrow{margin:0 0 10px;color:#aedcff;font-size:11px;letter-spacing:3px}h1{margin:0 0 12px;font-size:clamp(27px,5vw,38px);line-height:1.5;letter-spacing:2px;overflow-wrap:anywhere;text-shadow:0 0 18px #65bbff66}.description{margin:0;color:#bad5e9}.section-title{margin:0 0 18px;font-size:23px}.spaced{margin-top:24px}
+/* 02：系列與武器入口 */
+.entry-grid{margin-top:24px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;gap:16px}.entry{min-width:0;min-height:210px;padding:25px 17px;display:flex;flex-direction:column;align-items:center;text-align:center;background:linear-gradient(145deg,rgba(25,51,80,.9),rgba(7,22,42,.95));border:1px solid #9ed2ff40;border-radius:14px;transition:transform .2s,border-color .2s}.entry:hover{transform:translateY(-3px);border-color:#85caff}.entry .icon{font-size:36px;margin-bottom:12px;filter:drop-shadow(0 0 9px #69c3ff70)}.entry h2{margin:0 0 9px;font-size:20px;overflow-wrap:anywhere}.entry p{margin:0 0 20px;color:#b5d0e3;font-size:13px}.entry-button{margin-top:auto;padding:6px 15px;font-size:13px;border:1px solid #75bbef;border-radius:6px;background:#103657}.level-nav{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.level-nav a{padding:5px 14px;border:1px solid #9ed2ff55;border-radius:6px;background:#14314c;font-size:13px}.level-nav a:hover{background:#225680}
+/* 03：武器能力；不顯示0值 */
+.level-grid{margin-top:24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}.level-card{min-width:0;overflow:hidden;border:1px solid #9ed2ff48;border-radius:14px;background:rgba(6,21,39,.95);box-shadow:0 8px 25px #0003}.level-header{padding:18px 20px;border-bottom:1px solid #9ed2ff33;background:linear-gradient(135deg,#193e60,#0b233d)}.level-header h2{margin:0;font-size:20px;overflow-wrap:anywhere}.classes{margin:12px 20px 4px;color:#bad5e9;font-size:13px}.class-chip{display:inline-block;margin:3px 4px 3px 0;padding:1px 8px;background:#183c5e;border-radius:5px;color:#d8efff}.ability-list{margin:0;padding:6px 20px 12px}.ability-row{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:9px 0;border-bottom:1px solid #9ed2ff20}.ability-row:last-child{border-bottom:0}.ability-row dt{color:#bdd4e6;font-size:14px}.ability-row dd{margin:0;color:#ffe0a0;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}.back-area{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:30px}.button{display:inline-block;padding:10px 21px;border:1px solid #75bbef;border-radius:8px;background:rgba(10,37,65,.92)}.button:hover{background:#174771}footer{position:relative;z-index:3;padding:25px 20px 35px;text-align:center;font-size:13px;color:#b0cadd;background:#040c19b3;border-top:1px solid #91cdff29}footer p{margin:0}
+/* 04：手機與平板 */
+@media(max-width:850px){.nav-inner{flex-direction:column;gap:10px}.entry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}html{scroll-padding-top:175px}}
+@media(max-width:600px){main{padding:25px 14px}.brand{font-size:23px}.nav-links{font-size:13px;gap:8px 13px}.panel{padding:22px 17px}.entry-grid{gap:11px}.entry{padding:22px 10px;min-height:205px}.entry h2{font-size:17px}.entry p{font-size:12px}.level-grid{grid-template-columns:1fr;gap:16px}.level-header h2{font-size:18px}.ability-list{padding:6px 17px 12px}.eyebrow{font-size:10px;letter-spacing:2px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+.level-header h2{font-size:19px}.tier-links{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.tier-links a,.tier-current{padding:5px 14px;border:1px solid #9ed2ff55;border-radius:6px;background:#14314c;font-size:13px}.tier-links a:hover{background:#225680}.tier-current{background:#285f89;border-color:#91d4ff;color:#fff}
+</style></head><body id="top">
+<header class="nav"><div class="nav-inner"><a class="brand" href="https://yong-yi.uk/longyuan/">龍淵天堂</a><nav class="nav-links" aria-label="主要選單"><a href="https://yong-yi.uk/longyuan/">首頁</a><a href="https://yong-yi.uk/longyuan/#entries">系統入口</a><a href="weapon.html">武器介紹</a><a href="dragon-weapons.html">神龍武器系列</a></nav></div></header>
+<main><nav class="breadcrumb" aria-label="所在位置"><a href="https://yong-yi.uk/longyuan/">首頁</a><span aria-hidden="true">›</span><a href="weapon.html">武器介紹</a><span aria-hidden="true">›</span><a href="dragon-weapons.html">神龍武器系列</a><span aria-hidden="true">›</span><span aria-current="page">神龍武器系列・三階</span></nav>
+<section class="panel"><p class="eyebrow">LONGYUAN · WEAPON COLLECTION</p><h1><span class="emoji" aria-hidden="true">🐉</span> 神龍武器系列・三階</h1><p class="description">下方直接顯示本階七把武器的能力，無須逐把點入。</p><nav class="tier-links" aria-label="切換武器階級"><a href="dragon-tier-1.html">一階</a><a href="dragon-tier-2.html">二階</a><span class="tier-current" aria-current="page">三階</span><a href="dragon-tier-4.html">四階</a><a href="dragon-tier-5.html">五階</a></nav></section><div class="level-grid"><section class="level-card" id="dragon-mie-shi-tier-3" aria-labelledby="dragon-mie-shi-title-3"><header class="level-header"><h2 id="dragon-mie-shi-title-3">（三階）神龍滅世之刃</h2></header><p class="classes">可使用職業：<span class="class-chip">王族</span><span class="class-chip">騎士</span><span class="class-chip">龍騎</span></p><dl class="ability-list"><div class="ability-row"><dt>最小傷害</dt><dd>28</dd></div>
+<div class="ability-row"><dt>最大傷害</dt><dd>35</dd></div>
+<div class="ability-row"><dt>攻擊距離</dt><dd>1</dd></div>
+<div class="ability-row"><dt>安定值</dt><dd>6</dd></div>
+<div class="ability-row"><dt>命中</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>額外傷害</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>力量</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>體質</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>血量</dt><dd>+42</dd></div>
+<div class="ability-row"><dt>魔量</dt><dd>+42</dd></div>
+<div class="ability-row"><dt>回血</dt><dd>+30</dd></div>
+<div class="ability-row"><dt>PVP額外傷害</dt><dd>+6</dd></div></dl></section>
+<section class="level-card" id="dragon-huan-mie-tier-3" aria-labelledby="dragon-huan-mie-title-3"><header class="level-header"><h2 id="dragon-huan-mie-title-3">（三階）神龍幻滅之弓</h2></header><p class="classes">可使用職業：<span class="class-chip">王族</span><span class="class-chip">妖精</span><span class="class-chip">黑妖</span><span class="class-chip">幻術</span></p><dl class="ability-list"><div class="ability-row"><dt>最小傷害</dt><dd>22</dd></div>
+<div class="ability-row"><dt>最大傷害</dt><dd>28</dd></div>
+<div class="ability-row"><dt>攻擊距離</dt><dd>-1</dd></div>
+<div class="ability-row"><dt>安定值</dt><dd>6</dd></div>
+<div class="ability-row"><dt>命中</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>額外傷害</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>敏捷</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>精神</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>血量</dt><dd>+42</dd></div>
+<div class="ability-row"><dt>魔量</dt><dd>+42</dd></div>
+<div class="ability-row"><dt>回血</dt><dd>+30</dd></div>
+<div class="ability-row"><dt>PVP額外傷害</dt><dd>+6</dd></div></dl></section>
+<section class="level-card" id="dragon-tian-fa-tier-3" aria-labelledby="dragon-tian-fa-title-3"><header class="level-header"><h2 id="dragon-tian-fa-title-3">（三階）神龍天罰之杖</h2></header><p class="classes">可使用職業：<span class="class-chip">法師</span><span class="class-chip">幻術</span></p><dl class="ability-list"><div class="ability-row"><dt>最小傷害</dt><dd>23</dd></div>
+<div class="ability-row"><dt>最大傷害</dt><dd>29</dd></div>
+<div class="ability-row"><dt>攻擊距離</dt><dd>1</dd></div>
+<div class="ability-row"><dt>安定值</dt><dd>6</dd></div>
+<div class="ability-row"><dt>命中</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>額外傷害</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>智力</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>精神</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>血量</dt><dd>+42</dd></div>
+<div class="ability-row"><dt>魔量</dt><dd>+42</dd></div>
+<div class="ability-row"><dt>回血</dt><dd>+30</dd></div>
+<div class="ability-row"><dt>回魔</dt><dd>+30</dd></div>
+<div class="ability-row"><dt>魔攻</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>PVP額外傷害</dt><dd>+6</dd></div></dl></section>
+<section class="level-card" id="dragon-ba-tian-tier-3" aria-labelledby="dragon-ba-tian-title-3"><header class="level-header"><h2 id="dragon-ba-tian-title-3">（三階）神龍霸天之劍</h2></header><p class="classes">可使用職業：<span class="class-chip">王族</span><span class="class-chip">騎士</span><span class="class-chip">妖精</span></p><dl class="ability-list"><div class="ability-row"><dt>最小傷害</dt><dd>26</dd></div>
+<div class="ability-row"><dt>最大傷害</dt><dd>34</dd></div>
+<div class="ability-row"><dt>攻擊距離</dt><dd>1</dd></div>
+<div class="ability-row"><dt>安定值</dt><dd>6</dd></div>
+<div class="ability-row"><dt>命中</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>額外傷害</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>力量</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>體質</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>血量</dt><dd>+42</dd></div>
+<div class="ability-row"><dt>魔量</dt><dd>+42</dd></div>
+<div class="ability-row"><dt>回血</dt><dd>+30</dd></div>
+<div class="ability-row"><dt>PVP額外傷害</dt><dd>+6</dd></div></dl></section>
+<section class="level-card" id="dragon-ying-sha-tier-3" aria-labelledby="dragon-ying-sha-title-3"><header class="level-header"><h2 id="dragon-ying-sha-title-3">（三階）神龍影殺雙刀</h2></header><p class="classes">可使用職業：<span class="class-chip">黑妖</span></p><dl class="ability-list"><div class="ability-row"><dt>最小傷害</dt><dd>27</dd></div>
+<div class="ability-row"><dt>最大傷害</dt><dd>34</dd></div>
+<div class="ability-row"><dt>攻擊距離</dt><dd>1</dd></div>
+<div class="ability-row"><dt>安定值</dt><dd>6</dd></div>
+<div class="ability-row"><dt>命中</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>額外傷害</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>力量</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>敏捷</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>血量</dt><dd>+42</dd></div>
+<div class="ability-row"><dt>魔量</dt><dd>+42</dd></div>
+<div class="ability-row"><dt>回血</dt><dd>+30</dd></div>
+<div class="ability-row"><dt>雙刀爪暴擊率</dt><dd>20%</dd></div>
+<div class="ability-row"><dt>PVP額外傷害</dt><dd>+6</dd></div></dl></section>
+<section class="level-card" id="dragon-lie-kong-tier-3" aria-labelledby="dragon-lie-kong-title-3"><header class="level-header"><h2 id="dragon-lie-kong-title-3">（三階）神龍裂空鎖鏈劍</h2></header><p class="classes">可使用職業：<span class="class-chip">龍騎</span></p><dl class="ability-list"><div class="ability-row"><dt>最小傷害</dt><dd>27</dd></div>
+<div class="ability-row"><dt>最大傷害</dt><dd>33</dd></div>
+<div class="ability-row"><dt>攻擊距離</dt><dd>2</dd></div>
+<div class="ability-row"><dt>安定值</dt><dd>6</dd></div>
+<div class="ability-row"><dt>命中</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>額外傷害</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>力量</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>體質</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>血量</dt><dd>+42</dd></div>
+<div class="ability-row"><dt>魔量</dt><dd>+42</dd></div>
+<div class="ability-row"><dt>回血</dt><dd>+30</dd></div>
+<div class="ability-row"><dt>PVP額外傷害</dt><dd>+6</dd></div></dl></section>
+<section class="level-card" id="dragon-mie-hun-tier-3" aria-labelledby="dragon-mie-hun-title-3"><header class="level-header"><h2 id="dragon-mie-hun-title-3">（三階）神龍滅魂奇古獸</h2></header><p class="classes">可使用職業：<span class="class-chip">幻術</span></p><dl class="ability-list"><div class="ability-row"><dt>最小傷害</dt><dd>28</dd></div>
+<div class="ability-row"><dt>最大傷害</dt><dd>34</dd></div>
+<div class="ability-row"><dt>攻擊距離</dt><dd>1</dd></div>
+<div class="ability-row"><dt>安定值</dt><dd>6</dd></div>
+<div class="ability-row"><dt>命中</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>額外傷害</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>智力</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>精神</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>血量</dt><dd>+42</dd></div>
+<div class="ability-row"><dt>魔量</dt><dd>+42</dd></div>
+<div class="ability-row"><dt>回血</dt><dd>+30</dd></div>
+<div class="ability-row"><dt>回魔</dt><dd>+30</dd></div>
+<div class="ability-row"><dt>魔攻</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>PVP額外傷害</dt><dd>+6</dd></div></dl></section></div>
+<div class="back-area"><a class="button" href="dragon-weapons.html">← 返回神龍武器系列</a><a class="button" href="https://yong-yi.uk/longyuan/">返回官方首頁</a><a class="button" href="#top">返回頂端 ↑</a></div></main><footer><p>龍淵天堂 · 官方網站</p></footer>
+<!-- =========================================
+     【最下面特效區開始】龍淵天堂｜飄浮火苗與餘燼
+     火苗只往上飄；不影響點擊。數量在下方設定。
+========================================= -->
+<style id="ly-rising-fire-style">
+#ly-rising-fire{position:fixed;inset:0;z-index:5;overflow:hidden;pointer-events:none}
+#ly-rising-fire .ly-fire-flame{position:absolute;bottom:-40px;width:var(--fire-size,8px);height:calc(var(--fire-size,8px)*2.2);border-radius:65% 30% 60% 40%;background:linear-gradient(to top,#f0440e 0%,#ff7b19 35%,#ffd16d 70%,rgba(255,233,166,0) 100%);box-shadow:0 0 7px #ff73198c,0 0 16px #ff410033;filter:blur(.5px);opacity:0;animation:ly-fire-flame-rise var(--fire-duration,12s) linear var(--fire-delay,0s) infinite}
+@keyframes ly-fire-flame-rise{0%{transform:translate(0,0) rotate(30deg) scale(.65);opacity:0}12%{opacity:.55}35%{transform:translate(12px,calc(var(--fire-travel)*-.35)) rotate(18deg) scale(1);opacity:.6}65%{transform:translate(-10px,calc(var(--fire-travel)*-.65)) rotate(40deg) scale(.8);opacity:.35}85%{opacity:.12}100%{transform:translate(8px,calc(var(--fire-travel)*-1)) rotate(26deg) scale(.25);opacity:0}}
+#ly-rising-fire .ly-fire-ember{position:absolute;bottom:-20px;width:var(--fire-size,3px);height:var(--fire-size,3px);border-radius:50%;background:#ffc875;box-shadow:0 0 5px #ff9b31b3,0 0 10px #ff480a59;opacity:0;animation:ly-fire-ember-rise var(--fire-duration,15s) linear var(--fire-delay,0s) infinite}
+@keyframes ly-fire-ember-rise{0%{transform:translate(0,0) scale(.5);opacity:0}15%{opacity:.6}45%{transform:translate(-14px,calc(var(--fire-travel)*-.45)) scale(1);opacity:.65}75%{transform:translate(12px,calc(var(--fire-travel)*-.75)) scale(.6);opacity:.25}100%{transform:translate(-5px,calc(var(--fire-travel)*-1)) scale(.2);opacity:0}}
+@media(prefers-reduced-motion:reduce){#ly-rising-fire{display:none!important}}
+</style>
+<script>
+(function(){
+  "use strict";
+  if(document.getElementById("ly-rising-fire"))return;
+  const preference=window.matchMedia("(prefers-reduced-motion: reduce)");
+  const layer=document.createElement("div");
+  layer.id="ly-rising-fire";
+  layer.setAttribute("aria-hidden","true");
+  layer.hidden=preference.matches;
+  document.body.appendChild(layer);
+  // 可調整：電腦12火苗/16餘燼；手機6火苗/8餘燼
+  const mobile=window.matchMedia("(max-width:600px)").matches;
+  const flameCount=mobile?6:12,emberCount=mobile?8:16;
+  function random(seed){const v=Math.sin(seed*127.1)*43758.5453;return v-Math.floor(v)}
+  function resize(){layer.style.setProperty("--fire-travel",(window.innerHeight+100)+"px")}
+  resize();window.addEventListener("resize",resize,{passive:true});
+  function create(className,index,offset){
+    const p=document.createElement("span"),flame=className==="ly-fire-flame";
+    const duration=flame?11+random(index+offset+40)*8:14+random(index+offset+40)*10;
+    p.className=className;p.style.left=random(index+offset)*100+"%";
+    p.style.setProperty("--fire-size",(flame?4+random(index+offset+20)*5:1.5+random(index+offset+20)*2)+"px");
+    p.style.setProperty("--fire-duration",duration+"s");
+    p.style.setProperty("--fire-delay",-random(index+offset+60)*duration+"s");
+    layer.appendChild(p);
+  }
+  for(let i=0;i<flameCount;i++)create("ly-fire-flame",i,10);
+  for(let i=0;i<emberCount;i++)create("ly-fire-ember",i,200);
+  if(preference.addEventListener)preference.addEventListener("change",()=>{layer.hidden=preference.matches});
+})();
+</script>
+<!-- 【最下面特效區結束】 -->
+</body></html>
