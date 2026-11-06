@@ -18,13 +18,210 @@
 /* 防具系列版面 */
 .group-heading{margin:0;font-size:25px;color:#d8efff}.group-note{margin:8px 0 0;color:#bad5e9;font-size:14px}.series-group{margin-top:24px}.series-group .entry-grid{margin-top:17px}.ancient-entry{border-color:#ada1ff73;background:linear-gradient(145deg,rgba(43,40,83,.9),rgba(12,23,45,.94))}.ancient-entry:hover{border-color:#c0b4ff}.content-note{margin:0;color:#c4dcec}.section-caption{margin:0 0 14px;font-size:22px}.content-area{margin-top:24px}
 @media(max-width:600px){.entry h2{font-size:16px}.group-heading{font-size:22px}}
+
+/* SQL對照後的裝備能力：所有0值隱藏 */
+.equipment-tools{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}.equipment-tools label{display:flex;flex-direction:column;gap:5px;flex:1;min-width:170px;font-size:13px;color:#bad5e9}.equipment-tools input,.equipment-tools select{width:100%;font:inherit;font-size:15px;background:#0c243c;border:1px solid #47799d;color:#eff8ff;border-radius:8px;padding:10px 12px}.equipment-tools input:focus-visible,.equipment-tools select:focus-visible{outline:2px solid #91d4ff;outline-offset:3px}.equipment-count{margin:15px 0 0;color:#b8d8ed;font-size:13px}.group-links{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.group-links a{padding:6px 12px;border:1px solid #9ed2ff55;border-radius:7px;background:#14314c;font-size:13px}.group-links a:hover{background:#225680}.equipment-group{margin-top:30px}.equipment-group>h2{padding:14px 18px;margin:0 0 15px;border-left:4px solid #8dcaff;border-radius:8px;background:#091e34f0;font-size:24px}.equipment-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}.equipment-card{min-width:0;border:1px solid #9ed2ff48;border-radius:14px;overflow:hidden;background:#061527f5}.equipment-header{padding:16px 19px;background:linear-gradient(135deg,#193e60,#0b233d);border-bottom:1px solid #9ed2ff33}.equipment-header h3{margin:0;font-size:18px;line-height:1.7;overflow-wrap:anywhere}.equipment-rank{display:inline-block;padding:1px 9px;margin-bottom:8px;color:#ffe0a0;border:1px solid #ffe0a050;border-radius:5px;font-size:12px}.equipment-meta{padding:12px 19px 0;margin:0;color:#bdd4e6;font-size:13px}.equipment-card .ability-list{padding:6px 19px 14px}.source-note{margin:16px 0 0;font-size:13px;color:#adc9df}.empty-search{padding:25px;text-align:center;color:#c4dcec;border:1px solid #9ed2ff40;border-radius:12px;background:#061527f0}[hidden]{display:none!important}@media(max-width:600px){.equipment-grid{grid-template-columns:1fr}.equipment-group>h2{font-size:21px}.equipment-tools label{min-width:0;flex-basis:100%}}
+
 </style></head>
 <body id="top">
 <!-- 頂部導覽：官方首頁固定返回龍淵網站 -->
 <header class="nav"><div class="nav-inner"><a class="brand" href="https://yong-yi.uk/longyuan/">龍淵天堂</a><nav class="nav-links" aria-label="主要選單"><a href="https://yong-yi.uk/longyuan/">首頁</a><a href="https://yong-yi.uk/longyuan/#announcements">最新公告</a><a href="https://yong-yi.uk/longyuan/#entries">系統入口</a><a href="armor.html">防具介紹</a></nav></div></header>
 <main><nav class="breadcrumb" aria-label="所在位置"><a href="https://yong-yi.uk/longyuan/">首頁</a><span aria-hidden="true">›</span><a href="armor.html">防具介紹</a><span aria-hidden="true">›</span><span aria-current="page">聖者金龍盔甲系列</span></nav>
-<section class="panel" aria-labelledby="page-title"><p class="eyebrow">LONGYUAN · ARMOR COLLECTION</p><h1 id="page-title"><span class="emoji" aria-hidden="true">🐉</span> 聖者金龍盔甲系列</h1><p class="description">龍淵天堂防具系列介紹。</p></section><!-- 後續在此區加入龍淵實際裝備名稱、階級與能力；不引用其他伺服器數值。 -->
-<section class="panel content-area" aria-labelledby="content-title"><h2 class="section-caption" id="content-title">系列資料</h2><p class="content-note">本系列的裝備清單與能力資料尚未刊登，後續將依龍淵天堂實際設定補充。</p></section>
+<section class="panel" aria-labelledby="page-title"><p class="eyebrow">LONGYUAN · ARMOR COLLECTION</p><h1 id="page-title"><span class="emoji" aria-hidden="true">🐉</span> 聖者金龍盔甲系列</h1><p class="description">本系列收錄 10 件裝備，依類型與階級整理能力。</p></section><!-- 裝備清單與能力：只含龍淵SQL的遊戲設定資料 -->
+<section class="panel content-area" aria-labelledby="equipment-title"><h2 class="section-caption" id="equipment-title">裝備能力一覽</h2><p class="content-note">依類型與階級查看各件裝備的基礎能力。</p><div class="equipment-tools"><label for="equipment-search">搜尋裝備<input type="search" id="equipment-search" placeholder="輸入裝備名稱" autocomplete="off"></label><label for="equipment-rank">選擇階級<select id="equipment-rank"><option value="">全部階級</option><option value="一般">一般</option><option value="1階">1階</option><option value="2階">2階</option><option value="3階">3階</option><option value="4階">4階</option><option value="5階">5階</option><option value="6階">6階</option><option value="7階">7階</option><option value="8階">8階</option><option value="極階">極階</option></select></label></div><p class="equipment-count" id="equipment-count" role="status">共 10 件裝備</p><nav class="group-links" aria-label="裝備類型"><a href="#group-1">聖者金龍盔甲</a></nav><p class="source-note">以下為裝備基礎能力；特殊觸發效果與強化後額外加成另依遊戲內說明。</p></section>
+<section class="equipment-group" id="group-1" aria-labelledby="group-title-1"><h2 id="group-title-1">聖者金龍盔甲</h2><div class="equipment-grid"><article class="equipment-card" data-equipment-id="1310243" data-rank="一般" data-search="聖者金龍盔甲 聖者金龍盔甲"><header class="equipment-header"><span class="equipment-rank">一般</span><h3>聖者金龍盔甲</h3></header><p class="equipment-meta">可使用職業：<span class="class-chip">王族</span><span class="class-chip">騎士</span><span class="class-chip">法師</span><span class="class-chip">妖精</span><span class="class-chip">黑妖</span><span class="class-chip">龍騎</span><span class="class-chip">幻術</span></p><dl class="ability-list"><div class="ability-row"><dt>防禦</dt><dd>-3</dd></div>
+<div class="ability-row"><dt>力量</dt><dd>+1</dd></div>
+<div class="ability-row"><dt>體質</dt><dd>+1</dd></div>
+<div class="ability-row"><dt>敏捷</dt><dd>+1</dd></div>
+<div class="ability-row"><dt>智力</dt><dd>+1</dd></div>
+<div class="ability-row"><dt>精神</dt><dd>+1</dd></div>
+<div class="ability-row"><dt>血量</dt><dd>+70</dd></div>
+<div class="ability-row"><dt>魔量</dt><dd>+7</dd></div>
+<div class="ability-row"><dt>回血</dt><dd>+1</dd></div>
+<div class="ability-row"><dt>回魔</dt><dd>+1</dd></div>
+<div class="ability-row"><dt>魔攻</dt><dd>+1</dd></div>
+<div class="ability-row"><dt>傷害減免</dt><dd>+1</dd></div>
+<div class="ability-row"><dt>負重減免</dt><dd>+1</dd></div>
+<div class="ability-row"><dt>近戰傷害</dt><dd>+1</dd></div>
+<div class="ability-row"><dt>遠戰傷害</dt><dd>+1</dd></div>
+<div class="ability-row"><dt>經驗加成</dt><dd>+10%</dd></div>
+<div class="ability-row"><dt>PVP額外傷害</dt><dd>+1</dd></div>
+<div class="ability-row"><dt>PVP傷害減免</dt><dd>+1</dd></div>
+<div class="ability-row"><dt>安定值</dt><dd>4</dd></div></dl></article>
+<article class="equipment-card" data-equipment-id="1310244" data-rank="1階" data-search="(1階)聖者金龍盔甲 聖者金龍盔甲"><header class="equipment-header"><span class="equipment-rank">1階</span><h3>(1階)聖者金龍盔甲</h3></header><p class="equipment-meta">可使用職業：<span class="class-chip">王族</span><span class="class-chip">騎士</span><span class="class-chip">法師</span><span class="class-chip">妖精</span><span class="class-chip">黑妖</span><span class="class-chip">龍騎</span><span class="class-chip">幻術</span></p><dl class="ability-list"><div class="ability-row"><dt>防禦</dt><dd>-4</dd></div>
+<div class="ability-row"><dt>力量</dt><dd>+2</dd></div>
+<div class="ability-row"><dt>體質</dt><dd>+2</dd></div>
+<div class="ability-row"><dt>敏捷</dt><dd>+2</dd></div>
+<div class="ability-row"><dt>智力</dt><dd>+2</dd></div>
+<div class="ability-row"><dt>精神</dt><dd>+2</dd></div>
+<div class="ability-row"><dt>血量</dt><dd>+100</dd></div>
+<div class="ability-row"><dt>魔量</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>回血</dt><dd>+2</dd></div>
+<div class="ability-row"><dt>回魔</dt><dd>+2</dd></div>
+<div class="ability-row"><dt>魔攻</dt><dd>+2</dd></div>
+<div class="ability-row"><dt>傷害減免</dt><dd>+2</dd></div>
+<div class="ability-row"><dt>負重減免</dt><dd>+2</dd></div>
+<div class="ability-row"><dt>近戰傷害</dt><dd>+2</dd></div>
+<div class="ability-row"><dt>遠戰傷害</dt><dd>+2</dd></div>
+<div class="ability-row"><dt>經驗加成</dt><dd>+12%</dd></div>
+<div class="ability-row"><dt>PVP額外傷害</dt><dd>+2</dd></div>
+<div class="ability-row"><dt>PVP傷害減免</dt><dd>+2</dd></div>
+<div class="ability-row"><dt>安定值</dt><dd>4</dd></div></dl></article>
+<article class="equipment-card" data-equipment-id="1310245" data-rank="2階" data-search="(2階)聖者金龍盔甲 聖者金龍盔甲"><header class="equipment-header"><span class="equipment-rank">2階</span><h3>(2階)聖者金龍盔甲</h3></header><p class="equipment-meta">可使用職業：<span class="class-chip">王族</span><span class="class-chip">騎士</span><span class="class-chip">法師</span><span class="class-chip">妖精</span><span class="class-chip">黑妖</span><span class="class-chip">龍騎</span><span class="class-chip">幻術</span></p><dl class="ability-list"><div class="ability-row"><dt>防禦</dt><dd>-4</dd></div>
+<div class="ability-row"><dt>力量</dt><dd>+3</dd></div>
+<div class="ability-row"><dt>體質</dt><dd>+3</dd></div>
+<div class="ability-row"><dt>敏捷</dt><dd>+3</dd></div>
+<div class="ability-row"><dt>智力</dt><dd>+3</dd></div>
+<div class="ability-row"><dt>精神</dt><dd>+3</dd></div>
+<div class="ability-row"><dt>血量</dt><dd>+200</dd></div>
+<div class="ability-row"><dt>魔量</dt><dd>+20</dd></div>
+<div class="ability-row"><dt>回血</dt><dd>+3</dd></div>
+<div class="ability-row"><dt>回魔</dt><dd>+3</dd></div>
+<div class="ability-row"><dt>魔攻</dt><dd>+3</dd></div>
+<div class="ability-row"><dt>傷害減免</dt><dd>+3</dd></div>
+<div class="ability-row"><dt>負重減免</dt><dd>+3</dd></div>
+<div class="ability-row"><dt>近戰傷害</dt><dd>+3</dd></div>
+<div class="ability-row"><dt>遠戰傷害</dt><dd>+3</dd></div>
+<div class="ability-row"><dt>經驗加成</dt><dd>+14%</dd></div>
+<div class="ability-row"><dt>PVP額外傷害</dt><dd>+3</dd></div>
+<div class="ability-row"><dt>PVP傷害減免</dt><dd>+3</dd></div>
+<div class="ability-row"><dt>安定值</dt><dd>4</dd></div></dl></article>
+<article class="equipment-card" data-equipment-id="1310246" data-rank="3階" data-search="(3階)聖者金龍盔甲 聖者金龍盔甲"><header class="equipment-header"><span class="equipment-rank">3階</span><h3>(3階)聖者金龍盔甲</h3></header><p class="equipment-meta">可使用職業：<span class="class-chip">王族</span><span class="class-chip">騎士</span><span class="class-chip">法師</span><span class="class-chip">妖精</span><span class="class-chip">黑妖</span><span class="class-chip">龍騎</span><span class="class-chip">幻術</span></p><dl class="ability-list"><div class="ability-row"><dt>防禦</dt><dd>-5</dd></div>
+<div class="ability-row"><dt>力量</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>體質</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>敏捷</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>智力</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>精神</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>血量</dt><dd>+200</dd></div>
+<div class="ability-row"><dt>魔量</dt><dd>+20</dd></div>
+<div class="ability-row"><dt>回血</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>回魔</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>魔攻</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>傷害減免</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>負重減免</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>近戰傷害</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>遠戰傷害</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>經驗加成</dt><dd>+16%</dd></div>
+<div class="ability-row"><dt>PVP額外傷害</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>PVP傷害減免</dt><dd>+4</dd></div>
+<div class="ability-row"><dt>安定值</dt><dd>4</dd></div></dl></article>
+<article class="equipment-card" data-equipment-id="1310247" data-rank="4階" data-search="(4階)聖者金龍盔甲 聖者金龍盔甲"><header class="equipment-header"><span class="equipment-rank">4階</span><h3>(4階)聖者金龍盔甲</h3></header><p class="equipment-meta">可使用職業：<span class="class-chip">王族</span><span class="class-chip">騎士</span><span class="class-chip">法師</span><span class="class-chip">妖精</span><span class="class-chip">黑妖</span><span class="class-chip">龍騎</span><span class="class-chip">幻術</span></p><dl class="ability-list"><div class="ability-row"><dt>防禦</dt><dd>-6</dd></div>
+<div class="ability-row"><dt>力量</dt><dd>+5</dd></div>
+<div class="ability-row"><dt>體質</dt><dd>+5</dd></div>
+<div class="ability-row"><dt>敏捷</dt><dd>+5</dd></div>
+<div class="ability-row"><dt>智力</dt><dd>+5</dd></div>
+<div class="ability-row"><dt>精神</dt><dd>+5</dd></div>
+<div class="ability-row"><dt>血量</dt><dd>+300</dd></div>
+<div class="ability-row"><dt>魔量</dt><dd>+30</dd></div>
+<div class="ability-row"><dt>回血</dt><dd>+5</dd></div>
+<div class="ability-row"><dt>回魔</dt><dd>+5</dd></div>
+<div class="ability-row"><dt>魔攻</dt><dd>+5</dd></div>
+<div class="ability-row"><dt>傷害減免</dt><dd>+5</dd></div>
+<div class="ability-row"><dt>負重減免</dt><dd>+5</dd></div>
+<div class="ability-row"><dt>近戰傷害</dt><dd>+5</dd></div>
+<div class="ability-row"><dt>遠戰傷害</dt><dd>+5</dd></div>
+<div class="ability-row"><dt>經驗加成</dt><dd>+18%</dd></div>
+<div class="ability-row"><dt>PVP額外傷害</dt><dd>+5</dd></div>
+<div class="ability-row"><dt>PVP傷害減免</dt><dd>+5</dd></div>
+<div class="ability-row"><dt>安定值</dt><dd>4</dd></div></dl></article>
+<article class="equipment-card" data-equipment-id="1310248" data-rank="5階" data-search="(5階)聖者金龍盔甲 聖者金龍盔甲"><header class="equipment-header"><span class="equipment-rank">5階</span><h3>(5階)聖者金龍盔甲</h3></header><p class="equipment-meta">可使用職業：<span class="class-chip">王族</span><span class="class-chip">騎士</span><span class="class-chip">法師</span><span class="class-chip">妖精</span><span class="class-chip">黑妖</span><span class="class-chip">龍騎</span><span class="class-chip">幻術</span></p><dl class="ability-list"><div class="ability-row"><dt>防禦</dt><dd>-7</dd></div>
+<div class="ability-row"><dt>力量</dt><dd>+6</dd></div>
+<div class="ability-row"><dt>體質</dt><dd>+6</dd></div>
+<div class="ability-row"><dt>敏捷</dt><dd>+6</dd></div>
+<div class="ability-row"><dt>智力</dt><dd>+6</dd></div>
+<div class="ability-row"><dt>精神</dt><dd>+6</dd></div>
+<div class="ability-row"><dt>血量</dt><dd>+400</dd></div>
+<div class="ability-row"><dt>魔量</dt><dd>+40</dd></div>
+<div class="ability-row"><dt>回血</dt><dd>+6</dd></div>
+<div class="ability-row"><dt>回魔</dt><dd>+6</dd></div>
+<div class="ability-row"><dt>魔攻</dt><dd>+6</dd></div>
+<div class="ability-row"><dt>傷害減免</dt><dd>+6</dd></div>
+<div class="ability-row"><dt>負重減免</dt><dd>+8</dd></div>
+<div class="ability-row"><dt>近戰傷害</dt><dd>+6</dd></div>
+<div class="ability-row"><dt>遠戰傷害</dt><dd>+6</dd></div>
+<div class="ability-row"><dt>經驗加成</dt><dd>+20%</dd></div>
+<div class="ability-row"><dt>PVP額外傷害</dt><dd>+6</dd></div>
+<div class="ability-row"><dt>PVP傷害減免</dt><dd>+6</dd></div>
+<div class="ability-row"><dt>安定值</dt><dd>4</dd></div></dl></article>
+<article class="equipment-card" data-equipment-id="1310249" data-rank="6階" data-search="(6階)聖者金龍盔甲 聖者金龍盔甲"><header class="equipment-header"><span class="equipment-rank">6階</span><h3>(6階)聖者金龍盔甲</h3></header><p class="equipment-meta">可使用職業：<span class="class-chip">王族</span><span class="class-chip">騎士</span><span class="class-chip">法師</span><span class="class-chip">妖精</span><span class="class-chip">黑妖</span><span class="class-chip">龍騎</span><span class="class-chip">幻術</span></p><dl class="ability-list"><div class="ability-row"><dt>防禦</dt><dd>-7</dd></div>
+<div class="ability-row"><dt>力量</dt><dd>+7</dd></div>
+<div class="ability-row"><dt>體質</dt><dd>+7</dd></div>
+<div class="ability-row"><dt>敏捷</dt><dd>+7</dd></div>
+<div class="ability-row"><dt>智力</dt><dd>+7</dd></div>
+<div class="ability-row"><dt>精神</dt><dd>+7</dd></div>
+<div class="ability-row"><dt>血量</dt><dd>+400</dd></div>
+<div class="ability-row"><dt>魔量</dt><dd>+40</dd></div>
+<div class="ability-row"><dt>回血</dt><dd>+7</dd></div>
+<div class="ability-row"><dt>回魔</dt><dd>+7</dd></div>
+<div class="ability-row"><dt>魔攻</dt><dd>+7</dd></div>
+<div class="ability-row"><dt>傷害減免</dt><dd>+7</dd></div>
+<div class="ability-row"><dt>負重減免</dt><dd>+9</dd></div>
+<div class="ability-row"><dt>近戰傷害</dt><dd>+7</dd></div>
+<div class="ability-row"><dt>遠戰傷害</dt><dd>+7</dd></div>
+<div class="ability-row"><dt>經驗加成</dt><dd>+22%</dd></div>
+<div class="ability-row"><dt>PVP額外傷害</dt><dd>+7</dd></div>
+<div class="ability-row"><dt>PVP傷害減免</dt><dd>+7</dd></div>
+<div class="ability-row"><dt>安定值</dt><dd>4</dd></div></dl></article>
+<article class="equipment-card" data-equipment-id="1310250" data-rank="7階" data-search="(7階)聖者金龍盔甲 聖者金龍盔甲"><header class="equipment-header"><span class="equipment-rank">7階</span><h3>(7階)聖者金龍盔甲</h3></header><p class="equipment-meta">可使用職業：<span class="class-chip">王族</span><span class="class-chip">騎士</span><span class="class-chip">法師</span><span class="class-chip">妖精</span><span class="class-chip">黑妖</span><span class="class-chip">龍騎</span><span class="class-chip">幻術</span></p><dl class="ability-list"><div class="ability-row"><dt>防禦</dt><dd>-8</dd></div>
+<div class="ability-row"><dt>力量</dt><dd>+8</dd></div>
+<div class="ability-row"><dt>體質</dt><dd>+8</dd></div>
+<div class="ability-row"><dt>敏捷</dt><dd>+8</dd></div>
+<div class="ability-row"><dt>智力</dt><dd>+8</dd></div>
+<div class="ability-row"><dt>精神</dt><dd>+8</dd></div>
+<div class="ability-row"><dt>血量</dt><dd>+500</dd></div>
+<div class="ability-row"><dt>魔量</dt><dd>+50</dd></div>
+<div class="ability-row"><dt>回血</dt><dd>+8</dd></div>
+<div class="ability-row"><dt>回魔</dt><dd>+8</dd></div>
+<div class="ability-row"><dt>魔攻</dt><dd>+8</dd></div>
+<div class="ability-row"><dt>傷害減免</dt><dd>+8</dd></div>
+<div class="ability-row"><dt>負重減免</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>近戰傷害</dt><dd>+8</dd></div>
+<div class="ability-row"><dt>遠戰傷害</dt><dd>+8</dd></div>
+<div class="ability-row"><dt>經驗加成</dt><dd>+24%</dd></div>
+<div class="ability-row"><dt>PVP額外傷害</dt><dd>+8</dd></div>
+<div class="ability-row"><dt>PVP傷害減免</dt><dd>+8</dd></div>
+<div class="ability-row"><dt>安定值</dt><dd>4</dd></div></dl></article>
+<article class="equipment-card" data-equipment-id="1310251" data-rank="8階" data-search="(8階)聖者金龍盔甲 聖者金龍盔甲"><header class="equipment-header"><span class="equipment-rank">8階</span><h3>(8階)聖者金龍盔甲</h3></header><p class="equipment-meta">可使用職業：<span class="class-chip">王族</span><span class="class-chip">騎士</span><span class="class-chip">法師</span><span class="class-chip">妖精</span><span class="class-chip">黑妖</span><span class="class-chip">龍騎</span><span class="class-chip">幻術</span></p><dl class="ability-list"><div class="ability-row"><dt>防禦</dt><dd>-9</dd></div>
+<div class="ability-row"><dt>力量</dt><dd>+9</dd></div>
+<div class="ability-row"><dt>體質</dt><dd>+9</dd></div>
+<div class="ability-row"><dt>敏捷</dt><dd>+9</dd></div>
+<div class="ability-row"><dt>智力</dt><dd>+9</dd></div>
+<div class="ability-row"><dt>精神</dt><dd>+9</dd></div>
+<div class="ability-row"><dt>血量</dt><dd>+600</dd></div>
+<div class="ability-row"><dt>魔量</dt><dd>+60</dd></div>
+<div class="ability-row"><dt>回血</dt><dd>+9</dd></div>
+<div class="ability-row"><dt>回魔</dt><dd>+9</dd></div>
+<div class="ability-row"><dt>魔攻</dt><dd>+9</dd></div>
+<div class="ability-row"><dt>傷害減免</dt><dd>+9</dd></div>
+<div class="ability-row"><dt>負重減免</dt><dd>+11</dd></div>
+<div class="ability-row"><dt>近戰傷害</dt><dd>+9</dd></div>
+<div class="ability-row"><dt>遠戰傷害</dt><dd>+9</dd></div>
+<div class="ability-row"><dt>經驗加成</dt><dd>+26%</dd></div>
+<div class="ability-row"><dt>PVP額外傷害</dt><dd>+9</dd></div>
+<div class="ability-row"><dt>PVP傷害減免</dt><dd>+9</dd></div>
+<div class="ability-row"><dt>安定值</dt><dd>4</dd></div></dl></article>
+<article class="equipment-card" data-equipment-id="1310252" data-rank="極階" data-search="極．聖者金龍盔甲 聖者金龍盔甲"><header class="equipment-header"><span class="equipment-rank">極階</span><h3>極．聖者金龍盔甲</h3></header><p class="equipment-meta">可使用職業：<span class="class-chip">王族</span><span class="class-chip">騎士</span><span class="class-chip">法師</span><span class="class-chip">妖精</span><span class="class-chip">黑妖</span><span class="class-chip">龍騎</span><span class="class-chip">幻術</span></p><dl class="ability-list"><div class="ability-row"><dt>防禦</dt><dd>-9</dd></div>
+<div class="ability-row"><dt>力量</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>體質</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>敏捷</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>智力</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>精神</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>血量</dt><dd>+700</dd></div>
+<div class="ability-row"><dt>魔量</dt><dd>+70</dd></div>
+<div class="ability-row"><dt>回血</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>回魔</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>魔攻</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>傷害減免</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>負重減免</dt><dd>+12</dd></div>
+<div class="ability-row"><dt>近戰傷害</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>遠戰傷害</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>經驗加成</dt><dd>+30%</dd></div>
+<div class="ability-row"><dt>PVP額外傷害</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>PVP傷害減免</dt><dd>+10</dd></div>
+<div class="ability-row"><dt>安定值</dt><dd>4</dd></div></dl></article></div></section><p class="empty-search" id="empty-search" hidden>找不到符合條件的裝備，請調整名稱或階級。</p>
+<script>
+(function(){"use strict";const search=document.getElementById("equipment-search"),rank=document.getElementById("equipment-rank"),cards=[...document.querySelectorAll(".equipment-card")],groups=[...document.querySelectorAll(".equipment-group")],count=document.getElementById("equipment-count"),empty=document.getElementById("empty-search");function filter(){const query=search.value.trim().toLocaleLowerCase();let visible=0;cards.forEach(card=>{card.hidden=Boolean((query&&!card.dataset.search.toLocaleLowerCase().includes(query))||(rank.value&&card.dataset.rank!==rank.value));if(!card.hidden)visible++;});groups.forEach(group=>{group.hidden=![...group.querySelectorAll(".equipment-card")].some(card=>!card.hidden);});count.textContent="顯示 "+visible+" / "+cards.length+" 件裝備";empty.hidden=visible>0;}search.addEventListener("input",filter);rank.addEventListener("change",filter);})();
+</script>
 <div class="back-area"><a class="button" href="armor.html">← 返回防具系列</a><a class="button" href="https://yong-yi.uk/longyuan/">返回官方首頁</a><a class="button" href="#top">返回頂端 ↑</a></div>
 </main><footer><p>龍淵天堂 · 官方網站</p></footer>
 <!-- =========================================
