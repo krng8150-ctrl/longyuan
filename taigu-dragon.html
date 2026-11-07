@@ -64,4 +64,8 @@
 </script>
 <!-- 【最下面特效區結束】 -->
 
-<script src="reading-compact.js?v=20261107"></script></body></html>
+<script src="reading-compact.js?v=20261107"></script>
+<script id="guide-direct-destination">
+(function(){function openDestination(){var p=new URLSearchParams(location.search),q=p.get('q'),g=p.get('group'),shell=document.querySelector('.ly-reading-shell');if(!shell||(!q&&!g))return;var input=shell.querySelector('input[type="search"]'),group=shell.querySelector('.ly-reading-filters select');if(g&&Array.from(group.options).some(function(o){return o.value===g})){group.value=g;group.dispatchEvent(new Event('change',{bubbles:true}));}if(q){input.value=q;input.dispatchEvent(new Event('input',{bubbles:true}));}var item=shell.querySelector('.ly-reading-item');if(item){item.open=true;requestAnimationFrame(function(){item.scrollIntoView({block:'start'});});}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',openDestination,{once:true});else openDestination();})();
+</script>
+</body></html>
