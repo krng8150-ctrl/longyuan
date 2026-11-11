@@ -1,2172 +1,591 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#07111f">
-<meta name="description" content="龍淵天堂轉生變身介紹：傳說、神話、覺醒、青變與加速版的轉生需求及能力。">
-
-<title>龍淵天堂｜轉生變身介紹</title>
-
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>變身卡介紹｜龍淵天堂</title>
 <style>
-
-/* =====================================
-   【01】基本設定
-===================================== */
-
-*{
-  box-sizing:border-box;
-}
-
-html{
-  min-height:100%;
-}
-
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:"Microsoft JhengHei",Arial,sans-serif;
-  color:#eef7ff;
-  background:#07111f;
-  line-height:1.85;
-  isolation:isolate;
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  pointer-events:none;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(3,10,22,.45),
-      rgba(3,10,22,.88)
-    ),
-    url("longyuan-bg.png")
-    center center / cover no-repeat;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-a:focus-visible,
-[tabindex]:focus-visible{
-  outline:2px solid #91d4ff;
-  outline-offset:5px;
-}
-
-h1,h2,h3,p{
-  overflow-wrap:anywhere;
-}
-
-/* =====================================
-   【02】頂部導覽
-===================================== */
-
-.nav{
-  background:rgba(4,12,28,.94);
-  border-bottom:1px solid rgba(180,220,255,.22);
-  backdrop-filter:blur(10px);
-}
-
-.nav-inner{
-  max-width:1280px;
-  margin:auto;
-  padding:17px 20px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:16px;
-}
-
-.brand{
-  font-size:26px;
-  font-weight:bold;
-  letter-spacing:3px;
-  text-shadow:0 0 16px rgba(98,183,255,.65);
-}
-
-.nav-links{
-  display:flex;
-  flex-wrap:wrap;
-  gap:20px;
-  font-size:14px;
-}
-
-.nav-links a:hover{
-  color:#91d4ff;
-}
-
-/* =====================================
-   【03】標題與頁面
-===================================== */
-
-.wrapper{
-  width:100%;
-  max-width:1280px;
-  margin:auto;
-  padding:30px 20px 65px;
-}
-
-.breadcrumb{
-  display:flex;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:10px;
-
-  margin-bottom:28px;
-  font-size:13px;
-  color:#bad7ed;
-}
-
-.breadcrumb a:hover{
-  color:#91d4ff;
-}
-
-.page-header{
-  text-align:center;
-  padding:20px 0 32px;
-}
-
-.eyebrow{
-  margin:0 0 12px;
-  color:#a9d8ff;
-  font-size:12px;
-  letter-spacing:4px;
-}
-
-.main-title{
-  margin:0 0 14px;
-  font-size:clamp(32px,5vw,54px);
-  line-height:1.5;
-  letter-spacing:4px;
-
-  text-shadow:
-    0 0 12px rgba(143,210,255,.65),
-    0 0 28px rgba(45,125,255,.45);
-}
-
-.sub-title{
-  margin:0;
-  font-size:18px;
-  color:#dcefff;
-}
-
-.page-description{
-  margin:14px 0 0;
-  font-size:14px;
-  color:#b9d3e8;
-}
-
-/* =====================================
-   【04】內容區塊
-===================================== */
-
-.panel{
-  margin-bottom:26px;
-  padding:28px;
-
-  background:rgba(8,18,38,.87);
-  border:1px solid rgba(180,220,255,.2);
-  border-radius:18px;
-  backdrop-filter:blur(6px);
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,.22),
-    inset 0 0 12px rgba(255,255,255,.025);
-}
-
-.section-title{
-  margin:0 0 22px;
-  padding-bottom:12px;
-  font-size:27px;
-
-  border-bottom:1px solid rgba(180,220,255,.18);
-  text-shadow:0 0 10px rgba(112,196,255,.5);
-}
-
-/* =====================================
-   【05】五階快速導覽
-===================================== */
-
-.tier-nav{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:10px;
-  margin-top:24px;
-}
-
-.tier-nav a{
-  display:inline-block;
-  padding:8px 16px;
-
-  background:rgba(10,29,51,.9);
-  border:1px solid rgba(180,220,255,.25);
-  border-radius:8px;
-
-  font-size:14px;
-}
-
-.tier-nav a:hover{
-  background:rgba(35,76,116,.85);
-  border-color:#8fd2ff;
-}
-
-/* =====================================
-   【06】變身能力卡片
-===================================== */
-
-.card-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:20px;
-}
-
-.card{
-  min-width:0;
-  padding:23px;
-  scroll-margin-top:24px;
-
-  background:rgba(255,255,255,.045);
-  border:1px solid rgba(180,220,255,.17);
-  border-radius:15px;
-}
-
-.card h3{
-  margin:0 0 15px;
-  font-size:24px;
-  line-height:1.6;
-}
-
-.requirement{
-  display:inline-block;
-  margin-bottom:15px;
-  padding:4px 12px;
-
-  border:1px solid rgba(180,220,255,.23);
-  border-radius:7px;
-
-  color:#d9edfc;
-  background:rgba(120,190,255,.05);
-  font-size:13px;
-}
-
-.ability p{
-  margin:8px 0;
-  font-size:15px;
-  line-height:1.95;
-  color:#e0effa;
-}
-
-.legend h3,
-.legend-text{
-  color:#ff9adf;
-  text-shadow:0 0 8px rgba(255,90,190,.35);
-}
-
-.myth h3,
-.myth-text{
-  color:#ffd36a;
-  text-shadow:0 0 8px rgba(255,190,60,.35);
-}
-
-.awakening h3,
-.awakening-text{
-  color:#b8a6ff;
-  text-shadow:0 0 8px rgba(140,120,255,.35);
-}
-
-.blue h3,
-.blue-text{
-  color:#7eeaff;
-  text-shadow:0 0 8px rgba(80,202,255,.4);
-}
-
-.accelerated h3,
-.accelerated-text{
-  color:#ffbd7a;
-  text-shadow:0 0 8px rgba(255,148,60,.35);
-}
-
-/* =====================================
-   【07】能力比較表
-===================================== */
-
-.table-note{
-  margin:0 0 15px;
-  font-size:14px;
-  color:#b9d4e8;
-}
-
-.table-wrap{
-  width:100%;
-  overflow-x:auto;
-  border:1px solid rgba(180,220,255,.18);
-  border-radius:10px;
-}
-
-table{
-  width:100%;
-  min-width:1700px;
-  border-collapse:collapse;
-  font-variant-numeric:tabular-nums;
-}
-
-caption{
-  padding:12px 15px;
-  text-align:left;
-  color:#d8ecfa;
-  font-size:14px;
-}
-
-th,td{
-  padding:13px 12px;
-  text-align:center;
-  white-space:nowrap;
-
-  border:1px solid rgba(180,220,255,.14);
-  font-size:14px;
-  line-height:1.6;
-}
-
-thead th{
-  background:#17324d;
-  color:#fff;
-}
-
-tbody th{
-  background:#10233a;
-  text-align:left;
-}
-
-tbody tr:hover{
-  background:rgba(120,180,255,.08);
-}
-
-/* =====================================
-   【08】說明及返回按鈕
-===================================== */
-
-.notes{
-  margin:0;
-  padding-left:22px;
-  color:#c8deee;
-  font-size:15px;
-}
-
-.notes li{
-  margin-bottom:10px;
-}
-
-.back-wrap{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:14px;
-  margin-top:30px;
-}
-
-.back-btn{
-  display:inline-block;
-  min-width:180px;
-  padding:12px 24px;
-
-  text-align:center;
-  border-radius:10px;
-
-  background:rgba(15,47,79,.94);
-  border:1px solid rgba(180,220,255,.35);
-}
-
-.back-btn:hover{
-  background:rgba(34,80,125,.94);
-}
-
-.footer{
-  padding:25px 20px;
-  text-align:center;
-  color:#aac7dc;
-  font-size:13px;
-  border-top:1px solid rgba(180,220,255,.14);
-}
-
-/* =====================================
-   【09】手機版
-===================================== */
-
-@media(max-width:900px){
-
-  .card-grid{
-    grid-template-columns:1fr;
-  }
-
-}
-
-@media(max-width:600px){
-
-  .nav-inner{
-    justify-content:center;
-  }
-
-  .nav-links{
-    justify-content:center;
-    gap:15px;
-  }
-
-  .wrapper{
-    padding:22px 14px 45px;
-  }
-
-  .page-header{
-    padding:12px 0 26px;
-  }
-
-  .main-title{
-    font-size:31px;
-    letter-spacing:2px;
-  }
-
-  .sub-title{
-    font-size:15px;
-  }
-
-  .panel{
-    padding:21px 16px;
-  }
-
-  .section-title{
-    font-size:23px;
-  }
-
-  .card{
-    padding:20px 16px;
-  }
-
-  .card h3{
-    font-size:22px;
-  }
-
-  .ability p{
-    font-size:14px;
-  }
-
-  .tier-nav{
-    gap:8px;
-  }
-
-  .tier-nav a{
-    padding:7px 12px;
-    font-size:13px;
-  }
-
-  .back-btn{
-    width:100%;
-  }
-
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- =====================================
-     【10】頂部導覽
-===================================== -->
-
-<header class="nav">
-
-  <div class="nav-inner">
-
-    <a class="brand" href="index.html">
-      龍淵天堂
-    </a>
-
-    <nav class="nav-links" aria-label="主要選單">
-      <a href="index.html">官方首頁</a>
-      </a>
-    </nav>
-
-  </div>
-
-</header>
-
-<main class="wrapper">
-
-  <nav class="breadcrumb" aria-label="目前位置">
-
-    <a href="index.html">首頁</a>
-    <span aria-hidden="true">›</span>
-
-    <span aria-current="page">轉生變身介紹</span>
-
-  </nav>
-
-  <!-- =====================================
-       【11】頁面標題
-  ===================================== -->
-
-  <header class="page-header">
-
-    <p class="eyebrow">
-      LONGYUAN · TRANSFORMATION
-    </p>
-
-    <h1 class="main-title">
-      轉生變身介紹
-    </h1>
-
-    <p class="sub-title">
-      傳說｜神話｜覺醒｜青變｜加速版
-    </p>
-
-    <p class="page-description">
-      查看各階變身的需求轉生與能力加成。
-    </p>
-
-    <nav class="tier-nav" aria-label="變身階級導覽">
-      <a href="#legend">傳說・1轉</a>
-      <a href="#myth">神話・5轉</a>
-      <a href="#awakening">覺醒・7轉</a>
-      <a href="#blue">青變・10轉</a>
-      <a href="#accelerated">加速版・13轉</a>
-    </nav>
-
-  </header>
-
-  <!-- =====================================
-       【12】變身能力卡片
-  ===================================== -->
-
-  <section class="panel" aria-labelledby="tier-title">
-
-    <h2 class="section-title" id="tier-title">
-      變身階級介紹
-    </h2>
-
-    <div class="card-grid" id="tier-cards"></div>
-
-  </section>
-
-  <!-- =====================================
-       【13】完整能力比較表
-  ===================================== -->
-
-  <section class="panel" aria-labelledby="table-title">
-
-    <h2 class="section-title" id="table-title">
-      各階變身能力比較
-    </h2>
-
-    <p class="table-note">
-      表格可左右滑動，查看完整能力。
-    </p>
-
-    <div
-      class="table-wrap"
-      tabindex="0"
-      role="region"
-      aria-label="變身能力比較表，可左右捲動">
-
-      <table>
-
-        <caption>
-          各階變身共通能力與需求轉生
-        </caption>
-
-        <thead>
-          <tr id="table-head"></tr>
-        </thead>
-
-        <tbody id="table-body"></tbody>
-
-      </table>
-
-    </div>
-
-  </section>
-
-  <!-- =====================================
-       【14】變身說明
-  ===================================== -->
-
-  <section class="panel" aria-labelledby="notes-title">
-
-    <h2 class="section-title" id="notes-title">
-      變身說明
-    </h2>
-
-    <ul class="notes">
-      <li>
-        各階變身的需求轉生次數如上所列。
-      </li>
-      <li>
-        本頁列出各階共通能力，
-        實際效果以龍淵天堂遊戲內設定為準。
-      </li>
-    </ul>
-
-  </section>
-
-  <noscript>
-    <p>
-      請啟用 JavaScript 查看變身能力卡片與比較表。
-    </p>
-  </noscript>
-
-  <!-- =====================================
-       【15】返回導覽
-  ===================================== -->
-
-  <nav class="back-wrap" aria-label="返回導覽">
-
-    <a class="back-btn" href="index.html">
-      返回官方首頁
-    </a>
-
-  </nav>
-
-</main>
-
-<footer class="footer">
-  龍淵天堂 · 官方網站
-</footer>
-
-<script>
-"use strict";
-
-/* =====================================
-   【16】龍淵變身資料
-
-   數值依使用者提供的龍淵截圖整理。
-
-   rebirth：需求轉生
-   ability：力量、敏捷、體質、智力、精神
-   hp：血量
-   mp：魔量
-   hpr：回血
-   mpr：回魔
-   combat：近傷、遠傷、近命、遠命、
-           物減、魔減、魔攻、魔命
-   mr：魔法防禦
-   element：火、水、風、地屬性
-
-   魅力為0，未列入顯示。
-===================================== */
-
-const TRANSFORMATIONS=[
-
-  {
-    id:"legend",
-    name:"傳說變身",
-    rebirth:1,
-    ability:2,
-    hp:150,
-    mp:80,
-    hpr:20,
-    mpr:20,
-    combat:1,
-    mr:8,
-    element:2
-  },
-
-  {
-    id:"myth",
-    name:"神話變身",
-    rebirth:5,
-    ability:3,
-    hp:250,
-    mp:120,
-    hpr:35,
-    mpr:35,
-    combat:2,
-    mr:12,
-    element:3
-  },
-
-  {
-    id:"awakening",
-    name:"覺醒變身",
-    rebirth:7,
-    ability:4,
-    hp:350,
-    mp:180,
-    hpr:55,
-    mpr:55,
-    combat:4,
-    mr:16,
-    element:4
-  },
-
-  {
-    id:"blue",
-    name:"青變",
-    rebirth:10,
-    ability:5,
-    hp:500,
-    mp:250,
-    hpr:80,
-    mpr:80,
-    combat:6,
-    mr:20,
-    element:5
-  },
-
-  {
-    id:"accelerated",
-    name:"加速版變身",
-    rebirth:13,
-    ability:6,
-    hp:600,
-    mp:310,
-    hpr:110,
-    mpr:110,
-    combat:8,
-    mr:24,
-    element:6
-  }
-
-];
-
-/* =====================================
-   【17】共用工具
-===================================== */
-
-function createElement(tag,className,text){
-
-  const element=document.createElement(tag);
-
-  if(className){
-    element.className=className;
-  }
-
-  if(text!==undefined){
-    element.textContent=text;
-  }
-
-  return element;
-
-}
-
-function plus(value){
-  return value>0?"+"+value:String(value);
-}
-
-/* =====================================
-   【18】顯示五階能力卡片
-===================================== */
-
-function renderCards(){
-
-  const container=document.getElementById(
-    "tier-cards"
-  );
-
-  container.replaceChildren();
-
-  TRANSFORMATIONS.forEach(item=>{
-
-    const card=createElement(
-      "article",
-      "card "+item.id
-    );
-
-    card.id=item.id;
-
-    const title=createElement(
-      "h3",
-      "",
-      item.name+"｜"+item.rebirth+"轉可使用"
-    );
-
-    card.appendChild(title);
-
-    card.appendChild(
-      createElement(
-        "span",
-        "requirement",
-        "需求轉生："+item.rebirth+"轉"
-      )
-    );
-
-    const ability=createElement(
-      "div",
-      "ability"
-    );
-
-    const lines=[
-
-      "力量 "+plus(item.ability)+
-      "、敏捷 "+plus(item.ability)+
-      "、體質 "+plus(item.ability)+
-      "、智力 "+plus(item.ability)+
-      "、精神 "+plus(item.ability),
-
-      "血量 "+plus(item.hp)+
-      "、魔量 "+plus(item.mp)+
-      "、回血 "+plus(item.hpr)+
-      "、回魔 "+plus(item.mpr),
-
-      "近距離傷害 "+plus(item.combat)+
-      "、近距離命中 "+plus(item.combat),
-
-      "遠距離傷害 "+plus(item.combat)+
-      "、遠距離命中 "+plus(item.combat),
-
-      "物理減免 "+plus(item.combat)+
-      "、魔法減免 "+plus(item.combat),
-
-      "魔攻 "+plus(item.combat)+
-      "、魔法命中 "+plus(item.combat),
-
-      "魔法防禦 "+plus(item.mr),
-
-      "火屬性 "+plus(item.element)+
-      "、水屬性 "+plus(item.element)+
-      "、風屬性 "+plus(item.element)+
-      "、地屬性 "+plus(item.element)
-
-    ];
-
-    lines.forEach(text=>{
-
-      ability.appendChild(
-        createElement("p","",text)
-      );
-
-    });
-
-    card.appendChild(ability);
-
-    container.appendChild(card);
-
-  });
-
-}
-
-/* =====================================
-   【19】顯示完整比較表
-===================================== */
-
-function renderTable(){
-
-  const headings=[
-
-    "變身分類",
-    "需求轉生",
-
-    "力量",
-    "敏捷",
-    "體質",
-    "智力",
-    "精神",
-
-    "血量",
-    "魔量",
-    "回血",
-    "回魔",
-
-    "近距離傷害",
-    "遠距離傷害",
-    "近距離命中",
-    "遠距離命中",
-
-    "物理減免",
-    "魔法減免",
-    "魔攻",
-    "魔法命中",
-    "魔法防禦",
-
-    "火屬性",
-    "水屬性",
-    "風屬性",
-    "地屬性"
-
-  ];
-
-  const head=document.getElementById(
-    "table-head"
-  );
-
-  const body=document.getElementById(
-    "table-body"
-  );
-
-  head.replaceChildren();
-  body.replaceChildren();
-
-  headings.forEach(text=>{
-
-    const cell=createElement(
-      "th",
-      "",
-      text
-    );
-
-    cell.setAttribute("scope","col");
-
-    head.appendChild(cell);
-
-  });
-
-  TRANSFORMATIONS.forEach(item=>{
-
-    const row=createElement("tr");
-
-    const name=createElement(
-      "th",
-      item.id+"-text",
-      item.name
-    );
-
-    name.setAttribute("scope","row");
-
-    row.appendChild(name);
-
-    const values=[
-
-      item.rebirth+"轉",
-
-      plus(item.ability),
-      plus(item.ability),
-      plus(item.ability),
-      plus(item.ability),
-      plus(item.ability),
-
-      plus(item.hp),
-      plus(item.mp),
-      plus(item.hpr),
-      plus(item.mpr),
-
-      plus(item.combat),
-      plus(item.combat),
-      plus(item.combat),
-      plus(item.combat),
-
-      plus(item.combat),
-      plus(item.combat),
-      plus(item.combat),
-      plus(item.combat),
-
-      plus(item.mr),
-
-      plus(item.element),
-      plus(item.element),
-      plus(item.element),
-      plus(item.element)
-
-    ];
-
-    values.forEach(value=>{
-
-      row.appendChild(
-        createElement("td","",value)
-      );
-
-    });
-
-    body.appendChild(row);
-
-  });
-
-}
-
-/* =====================================
-   【20】啟動
-===================================== */
-
-renderCards();
-renderTable();
-
-</script>
-<!DOCTYPE html>
-<html lang="zh-TW">
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#07111f">
-
-<title>遊戲介紹｜龍淵天堂</title>
-
-<style>
-
-/* =====================================
-   【01】基本設定
-===================================== */
-
-*{
-  box-sizing:border-box;
-}
-
-html{
-  min-height:100%;
-}
-
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:"Microsoft JhengHei",Arial,sans-serif;
-  color:#eaf6ff;
-  background:#07111f;
-  line-height:1.85;
-  isolation:isolate;
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  pointer-events:none;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(3,9,20,.45),
-      rgba(3,9,20,.82)
-    ),
-    url("longyuan-bg.png")
-    center center / cover no-repeat;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-button,input{
-  font:inherit;
-}
-
-a:focus-visible,
-button:focus-visible,
-input:focus-visible{
-  outline:2px solid #91d4ff;
-  outline-offset:5px;
-}
-
-h1,h2,h3,p,a,li{
-  overflow-wrap:anywhere;
-}
-
-/* =====================================
-   【02】頂部導覽
-===================================== */
-
-.nav{
-  position:relative;
-  z-index:10;
-  background:rgba(4,12,28,.94);
-  border-bottom:1px solid rgba(163,213,255,.22);
-  backdrop-filter:blur(10px);
-}
-
-.nav-inner{
-  max-width:1180px;
-  margin:auto;
-  padding:17px 20px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:14px;
-}
-
-.brand{
-  font-size:25px;
-  font-weight:900;
-  letter-spacing:3px;
-  text-shadow:0 0 18px #469de7;
-}
-
-.nav-links{
-  display:flex;
-  flex-wrap:wrap;
-  gap:20px;
-  font-size:14px;
-}
-
-.nav-links a:hover,
-.breadcrumb a:hover{
-  color:#91d4ff;
-}
-
-/* =====================================
-   【03】介紹頁版面
-===================================== */
-
-.page{
-  width:100%;
-  max-width:1180px;
-  margin:auto;
-  padding:30px 20px 65px;
-}
-
-.breadcrumb{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  gap:9px;
-
-  margin-bottom:22px;
-  color:#b8d7ed;
-  font-size:13px;
-}
-
-.page-header{
-  padding:30px;
-  margin-bottom:24px;
-  background:rgba(5,16,32,.86);
-  border:1px solid rgba(166,214,255,.25);
-  border-radius:16px;
-  backdrop-filter:blur(5px);
-}
-
-.eyebrow{
-  margin:0 0 10px;
-  font-size:11px;
-  letter-spacing:4px;
-  color:#a6d4f5;
-}
-
-.title-row{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-.page-icon{
-  flex-shrink:0;
-  font-family:
-    "Segoe UI Emoji",
-    "Apple Color Emoji",
-    "Noto Color Emoji",
-    sans-serif;
-  font-size:35px;
-  line-height:1.4;
-  filter:drop-shadow(0 0 8px rgba(105,195,255,.45));
-}
-
-.page-header h1{
-  margin:0;
-  font-size:34px;
-  line-height:1.5;
-  text-shadow:0 0 18px rgba(98,183,255,.6);
-}
-
-.page-header p:last-of-type{
-  margin-bottom:0;
-  color:#c2dbed;
-}
-
-.status{
-  display:inline-block;
-  margin-top:14px;
-  padding:4px 10px;
-
-  border:1px solid rgba(245,195,117,.4);
-  border-radius:6px;
-  color:#f5d39d;
-  font-size:12px;
-}
-
-.panel{
-  margin-bottom:22px;
-  padding:26px;
-
-  border:1px solid rgba(166,214,255,.2);
-  border-radius:15px;
-  background:rgba(5,16,32,.87);
-  backdrop-filter:blur(5px);
-
-  box-shadow:0 10px 35px rgba(0,0,0,.18);
-}
-
-.panel h2{
-  margin:0 0 20px;
-  padding-bottom:12px;
-
-  border-bottom:1px solid rgba(162,210,255,.18);
-  font-size:23px;
-  text-shadow:0 0 12px rgba(101,187,255,.35);
-}
-
-.panel p{
-  color:#c4dced;
-}
-
-.panel li{
-  margin-bottom:9px;
-  color:#c4dced;
-}
-
-.pending{
-  margin-bottom:0;
-  padding:16px 18px;
-
-  background:rgba(145,196,239,.06);
-  border-left:3px solid #79bced;
-  color:#bfd8eb;
-}
-
-/* =====================================
-   【04】系統入口與小圖示
-===================================== */
-
-.entry-grid{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:14px;
-}
-
-.entry{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
-  min-width:0;
-  min-height:150px;
-  padding:22px 14px;
-  text-align:center;
-
-  border:1px solid rgba(158,210,255,.23);
-  border-radius:12px;
-
-  background:linear-gradient(
-    145deg,
-    rgba(25,51,80,.72),
-    rgba(7,22,42,.86)
-  );
-
-  transition:
-    transform .2s,
-    border-color .2s,
-    box-shadow .2s;
-}
-
-.entry:hover{
-  transform:translateY(-3px);
-  border-color:#85caff;
-  box-shadow:0 0 20px rgba(73,160,242,.18);
-}
-
-.entry-icon{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  min-height:46px;
-  margin-bottom:10px;
-
-  font-family:
-    "Segoe UI Emoji",
-    "Apple Color Emoji",
-    "Noto Color Emoji",
-    sans-serif;
-
-  font-size:32px;
-  line-height:1.4;
-
-  filter:drop-shadow(
-    0 0 7px rgba(105,195,255,.5)
-  );
-}
-
-.entry strong{
-  display:block;
-  font-size:17px;
-  line-height:1.6;
-}
-
-.entry small{
-  display:block;
-  margin-top:8px;
-  color:#b0cee3;
-  font-size:12px;
-  line-height:1.7;
-}
-
-/* =====================================
-   【05】返回導覽
-===================================== */
-
-.return-links{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:28px;
-}
-
-.btn{
-  display:inline-block;
-  padding:11px 22px;
-  border:1px solid #75bbef;
-  border-radius:8px;
-  background:rgba(13,44,76,.9);
-  text-align:center;
-}
-
-.btn:hover{
-  background:rgba(32,83,128,.9);
-}
-
-.footer{
-  padding:25px 20px;
-  text-align:center;
-  border-top:1px solid rgba(145,205,255,.15);
-  font-size:13px;
-  color:#aac6dc;
-}
-
-/* =====================================
-   【06】平板與手機版
-===================================== */
-
-@media(max-width:900px){
-
-  .entry-grid{
-    grid-template-columns:repeat(3,minmax(0,1fr));
-  }
-
-}
-
-@media(max-width:700px){
-
-  .nav-inner{
-    justify-content:center;
-  }
-
-  .nav-links{
-    justify-content:center;
-    gap:15px;
-  }
-
-  .entry-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-
-}
-
-@media(max-width:480px){
-
-  .page{
-    padding:22px 14px 45px;
-  }
-
-  .brand{
-    font-size:23px;
-  }
-
-  .nav-links{
-    font-size:13px;
-    gap:12px;
-  }
-
-  .page-header,
-  .panel{
-    padding:21px 16px;
-  }
-
-  .page-header h1{
-    font-size:26px;
-  }
-
-  .page-icon{
-    font-size:28px;
-  }
-
-  .title-row{
-    gap:10px;
-  }
-
-  .panel h2{
-    font-size:21px;
-  }
-
-  .entry-grid{
-    gap:10px;
-  }
-
-  .entry{
-    min-height:145px;
-    padding:18px 9px;
-  }
-
-  .entry strong{
-    font-size:15px;
-  }
-
-  .entry small{
-    font-size:11px;
-  }
-
-  .entry-icon{
-    font-size:29px;
-  }
-
-  .return-links .btn{
-    flex:1 1 100%;
-  }
-
-}
-
-@media(prefers-reduced-motion:reduce){
-
-  *{
-    transition:none!important;
-  }
-
-}
-
-</style>
-<link rel="stylesheet" href="reading-compact.css?v=20261107"></head>
-
-<body>
-
-
-</script>
-<!-- =====================================================
-     龍淵天堂官方網站
-     【V4 微微飄浮火苗特效 開始】
-
-     功能：
-     1. 小火苗緩緩向上飄
-     2. 左右輕微搖晃
-     3. 橘紅色餘燼忽明忽暗
-     4. 自動適應電腦與手機
-     5. 不影響原本 V3 隕石特效
-
-     貼上位置：
-     index.html 最下面的 </body> 正上方
-
-     以後要修改火苗：
-     只替換本區塊，不要重複貼上。
-===================================================== -->
-
-<style id="ly-floating-fire-v4-css">
-
-/* =====================================
-   【火苗 01】特效容器
-===================================== */
-
-#ly-floating-fire-v4{
-  position:absolute;
-  inset:0;
-  overflow:hidden;
-  pointer-events:none;
-  z-index:2;
-}
-
-/* =====================================
-   【火苗 02】微微飄浮火苗
-===================================== */
-
-.ly-v4-flame{
-  position:absolute;
-  bottom:-35px;
-
-  width:var(--flame-size,9px);
-  height:calc(var(--flame-size,9px) * 2.1);
-
-  border-radius:65% 25% 65% 40%;
-
-  background:linear-gradient(
-    to top,
-    #ff4b12 0%,
-    #ff8a20 35%,
-    #ffd276 70%,
-    rgba(255,236,164,0) 100%
-  );
-
-  box-shadow:
-    0 0 8px rgba(255,100,20,.7),
-    0 0 18px rgba(255,65,0,.25);
-
-  filter:blur(.6px);
-
-  opacity:0;
-
-  transform:rotate(35deg);
-
-  animation:
-    ly-v4-flame-rise
-    var(--flame-duration,8s)
-    ease-in-out
-    var(--flame-delay,0s)
-    infinite;
-
-  will-change:transform,opacity;
-}
-
-/* =====================================
-   【火苗 03】火苗上升動畫
-===================================== */
-
-@keyframes ly-v4-flame-rise{
-
-  0%{
-    transform:
-      translate(0,0)
-      rotate(35deg)
-      scale(.65);
-    opacity:0;
-  }
-
-  15%{
-    opacity:.75;
-  }
-
-  35%{
-    transform:
-      translate(12px,-110px)
-      rotate(22deg)
-      scale(1);
-    opacity:.65;
-  }
-
-  60%{
-    transform:
-      translate(-9px,-225px)
-      rotate(43deg)
-      scale(.8);
-    opacity:.4;
-  }
-
-  85%{
-    transform:
-      translate(14px,-340px)
-      rotate(28deg)
-      scale(.5);
-    opacity:.15;
-  }
-
-  100%{
-    transform:
-      translate(4px,-420px)
-      rotate(35deg)
-      scale(.2);
-    opacity:0;
-  }
-
-}
-
-/* =====================================
-   【火苗 04】細小餘燼火星
-===================================== */
-
-.ly-v4-ember{
-  position:absolute;
-  bottom:-15px;
-
-  width:var(--ember-size,3px);
-  height:var(--ember-size,3px);
-
-  border-radius:50%;
-
-  background:#ffbf60;
-
-  box-shadow:
-    0 0 6px #ff9b31,
-    0 0 13px rgba(255,72,10,.55);
-
-  opacity:0;
-
-  animation:
-    ly-v4-ember-rise
-    var(--ember-duration,10s)
-    linear
-    var(--ember-delay,0s)
-    infinite;
-
-  will-change:transform,opacity;
-}
-
-/* =====================================
-   【火苗 05】餘燼上升動畫
-===================================== */
-
-@keyframes ly-v4-ember-rise{
-
-  0%{
-    transform:translate(0,0) scale(.5);
-    opacity:0;
-  }
-
-  15%{
-    opacity:.7;
-  }
-
-  40%{
-    transform:translate(16px,-140px) scale(1);
-    opacity:.8;
-  }
-
-  70%{
-    transform:translate(-12px,-280px) scale(.65);
-    opacity:.35;
-  }
-
-  100%{
-    transform:translate(8px,-440px) scale(.2);
-    opacity:0;
-  }
-
-}
-
-/* =====================================
-   【火苗 06】手機效果調整
-===================================== */
-
-@media(max-width:600px){
-
-  .ly-v4-flame{
-    filter:blur(.5px);
-  }
-
-  .ly-v4-ember{
-    box-shadow:0 0 7px rgba(255,110,30,.65);
-  }
-
-}
-
-/* =====================================
-   【火苗 07】尊重減少動畫設定
-===================================== */
-
-@media(prefers-reduced-motion:reduce){
-
-  #ly-floating-fire-v4{
-    display:none!important;
-  }
-
-}
-
-</style>
-
-<script id="ly-floating-fire-v4-js">
-
-(function(){
-
-  "use strict";
-
-  /* =====================================
-     【火苗 08】防止重複產生
-  ===================================== */
-
-  if(document.getElementById("ly-floating-fire-v4")){
-    return;
-  }
-
-  /* =====================================
-     【火苗 09】尋找首頁主視覺
-  ===================================== */
-
-  const hero=document.querySelector(".hero");
-
-  if(!hero){
-    return;
-  }
-
-  /* =====================================
-     【火苗 10】建立特效容器
-  ===================================== */
-
-  const layer=document.createElement("div");
-
-  layer.id="ly-floating-fire-v4";
-  layer.setAttribute("aria-hidden","true");
-
-  hero.insertBefore(layer,hero.firstChild);
-
-  /* =====================================
-     【火苗 11】火苗數量設定
-
-     電腦：16 個火苗、22 個火星
-     手機：8 個火苗、12 個火星
-
-     以後想增加或減少數量，
-     修改這裡的數字即可。
-  ===================================== */
-
-  const isMobile=window.matchMedia(
-    "(max-width:600px)"
-  ).matches;
-
-  const flameCount=isMobile ? 8 : 16;
-  const emberCount=isMobile ? 12 : 22;
-
-  /* =====================================
-     【火苗 12】產生固定亂數
-
-     讓每顆火苗的位置與速度不同，
-     但不會因重新整理而亂跳。
-  ===================================== */
-
-  function seededRandom(seed){
-
-    const value=Math.sin(seed*127.1)*43758.5453;
-
-    return value-Math.floor(value);
-
-  }
-
-  /* =====================================
-     【火苗 13】建立小火苗
-  ===================================== */
-
-  for(let i=0;i<flameCount;i++){
-
-    const flame=document.createElement("span");
-
-    flame.className="ly-v4-flame";
-
-    const x=seededRandom(i+10)*100;
-    const size=5+seededRandom(i+30)*7;
-    const duration=7+seededRandom(i+50)*6;
-    const delay=-(seededRandom(i+70)*duration);
-
-    flame.style.left=x+"%";
-
-    flame.style.setProperty(
-      "--flame-size",
-      size+"px"
-    );
-
-    flame.style.setProperty(
-      "--flame-duration",
-      duration+"s"
-    );
-
-    flame.style.setProperty(
-      "--flame-delay",
-      delay+"s"
-    );
-
-    layer.appendChild(flame);
-
-  }
-
-  /* =====================================
-     【火苗 14】建立餘燼火星
-  ===================================== */
-
-  for(let i=0;i<emberCount;i++){
-
-    const ember=document.createElement("span");
-
-    ember.className="ly-v4-ember";
-
-    const x=seededRandom(i+110)*100;
-    const size=2+seededRandom(i+130)*3;
-    const duration=8+seededRandom(i+150)*8;
-    const delay=-(seededRandom(i+170)*duration);
-
-    ember.style.left=x+"%";
-
-    ember.style.setProperty(
-      "--ember-size",
-      size+"px"
-    );
-
-    ember.style.setProperty(
-      "--ember-duration",
-      duration+"s"
-    );
-
-    ember.style.setProperty(
-      "--ember-delay",
-      delay+"s"
-    );
-
-    layer.appendChild(ember);
-
-  }
-
-})();
-
-</script>
-
-<!-- =====================================================
-     【V4 微微飄浮火苗特效 結束】
-
-     名稱：龍淵天堂・飄浮火苗與餘燼
-     版本：V4
-
-     保留原本 V3 龍焰隕石雨。
-
-     以後修改火苗時：
-     從「V4 微微飄浮火苗特效 開始」
-     到「V4 微微飄浮火苗特效 結束」
-     整段替換即可。
-===================================================== -->
-
-<!-- ==========================================
-     【龍淵天堂 V5 背景圖片 開始】
-
-     圖片名稱：longyuan-bg.png
-     作用：首頁黑龍城堡背景
-     不影響隕石及火苗特效
-========================================== -->
-
-<style id="ly-background-v5">
-
-/* 【01】首頁背景圖片 */
-.hero{
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(4,10,20,.30),
-      rgba(4,10,20,.48)
-    ),
-    url("longyuan-bg.png")
-    center center / cover no-repeat;
-}
-
-/* 【02】標題保持清楚 */
-.hero-content{
-  position:relative;
-  z-index:3;
-}
-
-/* 【03】手機版背景 */
-@media(max-width:600px){
-  .hero{
-    background-position:center center;
-  }
-}
-
-</style>
-
-<!-- =========================================
-     龍淵天堂｜飄浮火苗與餘燼
-     貼在每個頁面的 </body> 前面
-========================================= -->
-
-<style id="ly-rising-fire-style">
-
-/* 特效固定在整個畫面，不影響點擊 */
-
-#ly-rising-fire{
-  position:fixed;
-  inset:0;
-  z-index:5;
-  overflow:hidden;
-  pointer-events:none;
-}
-
-/* 小火苗 */
-
-#ly-rising-fire .ly-fire-flame{
-  position:absolute;
-  bottom:-40px;
-
-  width:var(--fire-size,8px);
-  height:calc(var(--fire-size,8px) * 2.2);
-
-  border-radius:65% 30% 60% 40%;
-
-  background:linear-gradient(
-    to top,
-    #f0440e 0%,
-    #ff7b19 35%,
-    #ffd16d 70%,
-    rgba(255,233,166,0) 100%
-  );
-
-  box-shadow:
-    0 0 7px rgba(255,115,25,.55),
-    0 0 16px rgba(255,65,0,.2);
-
-  filter:blur(.5px);
-  opacity:0;
-
-  animation:
-    ly-fire-flame-rise
-    var(--fire-duration,12s)
-    linear
-    var(--fire-delay,0s)
-    infinite;
-}
-
-/* 火苗緩緩上升，左右輕微搖晃 */
-
-@keyframes ly-fire-flame-rise{
-
-  0%{
-    transform:translate(0,0) rotate(30deg) scale(.65);
-    opacity:0;
-  }
-
-  12%{
-    opacity:.55;
-  }
-
-  35%{
-    transform:
-      translate(12px,calc(var(--fire-travel) * -.35))
-      rotate(18deg)
-      scale(1);
-    opacity:.6;
-  }
-
-  65%{
-    transform:
-      translate(-10px,calc(var(--fire-travel) * -.65))
-      rotate(40deg)
-      scale(.8);
-    opacity:.35;
-  }
-
-  85%{
-    opacity:.12;
-  }
-
-  100%{
-    transform:
-      translate(8px,calc(var(--fire-travel) * -1))
-      rotate(26deg)
-      scale(.25);
-    opacity:0;
-  }
-
-}
-
-/* 細小餘燼 */
-
-#ly-rising-fire .ly-fire-ember{
-  position:absolute;
-  bottom:-20px;
-
-  width:var(--fire-size,3px);
-  height:var(--fire-size,3px);
-  border-radius:50%;
-
-  background:#ffc875;
-
-  box-shadow:
-    0 0 5px rgba(255,155,49,.7),
-    0 0 10px rgba(255,72,10,.35);
-
-  opacity:0;
-
-  animation:
-    ly-fire-ember-rise
-    var(--fire-duration,15s)
-    linear
-    var(--fire-delay,0s)
-    infinite;
-}
-
-@keyframes ly-fire-ember-rise{
-
-  0%{
-    transform:translate(0,0) scale(.5);
-    opacity:0;
-  }
-
-  15%{
-    opacity:.6;
-  }
-
-  45%{
-    transform:
-      translate(-14px,calc(var(--fire-travel) * -.45))
-      scale(1);
-    opacity:.65;
-  }
-
-  75%{
-    transform:
-      translate(12px,calc(var(--fire-travel) * -.75))
-      scale(.6);
-    opacity:.25;
-  }
-
-  100%{
-    transform:
-      translate(-5px,calc(var(--fire-travel) * -1))
-      scale(.2);
-    opacity:0;
-  }
-
-}
-
-/* 尊重使用者的減少動畫設定 */
-
-@media(prefers-reduced-motion:reduce){
-
-  #ly-rising-fire{
-    display:none!important;
-  }
-
-}
-
-</style>
-
-<script>
-(function(){
-
-  "use strict";
-
-  /* 防止同一頁重複產生特效 */
-
-  if(document.getElementById("ly-rising-fire")){
-    return;
-  }
-
-  const motionPreference=window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  );
-
-  if(motionPreference.matches){
-    return;
-  }
-
-  const layer=document.createElement("div");
-
-  layer.id="ly-rising-fire";
-  layer.setAttribute("aria-hidden","true");
-
-  document.body.appendChild(layer);
-
-  /* =====================================
-     可調整設定
-
-     電腦：12個火苗、16個餘燼
-     手機：6個火苗、8個餘燼
-
-     想減少特效，調低下面數量即可。
-  ===================================== */
-
-  const mobile=window.matchMedia(
-    "(max-width:600px)"
-  ).matches;
-
-  const flameCount=mobile?6:12;
-  const emberCount=mobile?8:16;
-
-  /* 固定亂數，讓位置自然分散 */
-
-  function random(seed){
-
-    const value=Math.sin(seed*127.1)*43758.5453;
-
-    return value-Math.floor(value);
-
-  }
-
-  /* 上升距離依畫面高度調整 */
-
-  function updateTravel(){
-
-    layer.style.setProperty(
-      "--fire-travel",
-      (window.innerHeight+100)+"px"
-    );
-
-  }
-
-  updateTravel();
-
-  window.addEventListener(
-    "resize",
-    updateTravel,
-    {passive:true}
-  );
-
-  /* 建立粒子 */
-
-  function createParticle(className,index,offset){
-
-    const particle=document.createElement("span");
-
-    particle.className=className;
-
-    const isFlame=className==="ly-fire-flame";
-
-    const position=random(index+offset)*100;
-
-    const size=isFlame
-      ?4+random(index+offset+20)*5
-      :1.5+random(index+offset+20)*2;
-
-    const duration=isFlame
-      ?11+random(index+offset+40)*8
-      :14+random(index+offset+40)*10;
-
-    const delay=-random(index+offset+60)*duration;
-
-    particle.style.left=position+"%";
-
-    particle.style.setProperty(
-      "--fire-size",
-      size+"px"
-    );
-
-    particle.style.setProperty(
-      "--fire-duration",
-      duration+"s"
-    );
-
-    particle.style.setProperty(
-      "--fire-delay",
-      delay+"s"
-    );
-
-    layer.appendChild(particle);
-
-  }
-
-  for(let i=0;i<flameCount;i++){
-
-    createParticle(
-      "ly-fire-flame",
-      i,
-      10
-    );
-
-  }
-
-  for(let i=0;i<emberCount;i++){
-
-    createParticle(
-      "ly-fire-ember",
-      i,
-      200
-    );
-
-  }
-
-  /* 系統切換為減少動畫時，立即隱藏 */
-
-  function updateMotion(){
-    layer.hidden=motionPreference.matches;
-  }
-
-  if(motionPreference.addEventListener){
-
-    motionPreference.addEventListener(
-      "change",
-      updateMotion
-    );
-
-  }
-
-})();
-</script>
-
-<!-- 龍淵天堂｜飄浮火苗與餘燼 結束 -->
-<script src="reading-compact.js?v=20261107"></script></body>
-</html>
+*{box-sizing:border-box}body{margin:0;color:#eef5ff;background:#0a1525;font:15px/1.55 "Microsoft JhengHei",sans-serif}
+header,main{max-width:1100px;margin:auto;padding:18px 16px}a{color:#b7e5ff}
+h1{margin:0;color:#f5d7a0}h2{margin:20px 0 10px;color:#f5d7a0}small{font-weight:normal;color:#c2d1df}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}nav a{padding:4px 9px;border:1px solid #345171;border-radius:5px;text-decoration:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:12px}
+article{padding:14px;border:1px solid #345171;border-radius:10px;background:#13233a}h3{font-size:15px;margin:0 0 8px;overflow-wrap:anywhere}
+dl{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:4px 10px}dl div{display:flex;justify-content:space-between;gap:4px;border-bottom:1px solid #314960}dd{margin:0;color:#b9eaff}
+</style></head><body><header><a href="index.html#entries">返回官網入口</a></header><main><h1>變身卡介紹</h1><nav aria-label='變身卡分類'><a href='#tier-0'>紅色變身卡</a><a href='#tier-1'>傳說變身卡</a><a href='#tier-2'>神話變身卡</a><a href='#tier-3'>覺醒變身卡</a><a href='#tier-4'>青變身卡</a><a href='#tier-5'>荒神變身卡</a></nav>
+<section id='tier-0'><h2>紅色變身卡 <small>10 張</small></h2><div class='cards'>
+<article><h3>紅色變身卡：反王肯恩</h3><dl>
+<div><dt>力量</dt><dd>+1</dd></div>
+<div><dt>敏捷</dt><dd>+1</dd></div>
+<div><dt>智力</dt><dd>+1</dd></div>
+<div><dt>精神</dt><dd>+1</dd></div>
+<div><dt>血量</dt><dd>+80</dd></div>
+<div><dt>魔量</dt><dd>+20</dd></div>
+<div><dt>回魔</dt><dd>+1</dd></div>
+<div><dt>近戰命中</dt><dd>+1</dd></div>
+<div><dt>遠攻命中</dt><dd>+1</dd></div>
+</dl></article>
+<article><h3>紅色變身卡：夜小釵</h3><dl>
+<div><dt>力量</dt><dd>+1</dd></div>
+<div><dt>敏捷</dt><dd>+1</dd></div>
+<div><dt>智力</dt><dd>+1</dd></div>
+<div><dt>精神</dt><dd>+1</dd></div>
+<div><dt>血量</dt><dd>+80</dd></div>
+<div><dt>魔量</dt><dd>+20</dd></div>
+<div><dt>回魔</dt><dd>+1</dd></div>
+<div><dt>近戰命中</dt><dd>+1</dd></div>
+<div><dt>遠攻命中</dt><dd>+1</dd></div>
+</dl></article>
+<article><h3>紅色變身卡：海露拜</h3><dl>
+<div><dt>力量</dt><dd>+1</dd></div>
+<div><dt>敏捷</dt><dd>+1</dd></div>
+<div><dt>智力</dt><dd>+1</dd></div>
+<div><dt>精神</dt><dd>+1</dd></div>
+<div><dt>血量</dt><dd>+80</dd></div>
+<div><dt>魔量</dt><dd>+20</dd></div>
+<div><dt>回魔</dt><dd>+1</dd></div>
+<div><dt>近戰命中</dt><dd>+1</dd></div>
+<div><dt>遠攻命中</dt><dd>+1</dd></div>
+</dl></article>
+<article><h3>紅色變身卡：特羅斯</h3><dl>
+<div><dt>力量</dt><dd>+1</dd></div>
+<div><dt>敏捷</dt><dd>+1</dd></div>
+<div><dt>智力</dt><dd>+1</dd></div>
+<div><dt>精神</dt><dd>+1</dd></div>
+<div><dt>血量</dt><dd>+80</dd></div>
+<div><dt>魔量</dt><dd>+20</dd></div>
+<div><dt>回魔</dt><dd>+1</dd></div>
+<div><dt>近戰命中</dt><dd>+1</dd></div>
+<div><dt>遠攻命中</dt><dd>+1</dd></div>
+</dl></article>
+<article><h3>紅色變身卡：素還真</h3><dl>
+<div><dt>力量</dt><dd>+1</dd></div>
+<div><dt>敏捷</dt><dd>+1</dd></div>
+<div><dt>智力</dt><dd>+1</dd></div>
+<div><dt>精神</dt><dd>+1</dd></div>
+<div><dt>血量</dt><dd>+80</dd></div>
+<div><dt>魔量</dt><dd>+20</dd></div>
+<div><dt>回魔</dt><dd>+1</dd></div>
+<div><dt>近戰命中</dt><dd>+1</dd></div>
+<div><dt>遠攻命中</dt><dd>+1</dd></div>
+</dl></article>
+<article><h3>紅色變身卡：荊棘公主艾薇</h3><dl>
+<div><dt>力量</dt><dd>+1</dd></div>
+<div><dt>敏捷</dt><dd>+1</dd></div>
+<div><dt>智力</dt><dd>+1</dd></div>
+<div><dt>精神</dt><dd>+1</dd></div>
+<div><dt>血量</dt><dd>+80</dd></div>
+<div><dt>魔量</dt><dd>+20</dd></div>
+<div><dt>回魔</dt><dd>+1</dd></div>
+<div><dt>近戰命中</dt><dd>+1</dd></div>
+<div><dt>遠攻命中</dt><dd>+1</dd></div>
+</dl></article>
+<article><h3>紅色變身卡：棄天帝</h3><dl>
+<div><dt>力量</dt><dd>+1</dd></div>
+<div><dt>敏捷</dt><dd>+1</dd></div>
+<div><dt>智力</dt><dd>+1</dd></div>
+<div><dt>精神</dt><dd>+1</dd></div>
+<div><dt>血量</dt><dd>+80</dd></div>
+<div><dt>魔量</dt><dd>+20</dd></div>
+<div><dt>回魔</dt><dd>+1</dd></div>
+<div><dt>近戰命中</dt><dd>+1</dd></div>
+<div><dt>遠攻命中</dt><dd>+1</dd></div>
+</dl></article>
+<article><h3>紅色變身卡：惡夢的傑克吳燈籠</h3><dl>
+<div><dt>力量</dt><dd>+1</dd></div>
+<div><dt>敏捷</dt><dd>+1</dd></div>
+<div><dt>智力</dt><dd>+1</dd></div>
+<div><dt>精神</dt><dd>+1</dd></div>
+<div><dt>血量</dt><dd>+80</dd></div>
+<div><dt>魔量</dt><dd>+20</dd></div>
+<div><dt>回魔</dt><dd>+1</dd></div>
+<div><dt>近戰命中</dt><dd>+1</dd></div>
+<div><dt>遠攻命中</dt><dd>+1</dd></div>
+</dl></article>
+<article><h3>紅色變身卡：賽尼斯</h3><dl>
+<div><dt>力量</dt><dd>+1</dd></div>
+<div><dt>敏捷</dt><dd>+1</dd></div>
+<div><dt>智力</dt><dd>+1</dd></div>
+<div><dt>精神</dt><dd>+1</dd></div>
+<div><dt>血量</dt><dd>+80</dd></div>
+<div><dt>魔量</dt><dd>+20</dd></div>
+<div><dt>回魔</dt><dd>+1</dd></div>
+<div><dt>近戰命中</dt><dd>+1</dd></div>
+<div><dt>遠攻命中</dt><dd>+1</dd></div>
+</dl></article>
+<article><h3>紅色變身卡：覺醒炎魔</h3><dl>
+<div><dt>力量</dt><dd>+1</dd></div>
+<div><dt>敏捷</dt><dd>+1</dd></div>
+<div><dt>智力</dt><dd>+1</dd></div>
+<div><dt>精神</dt><dd>+1</dd></div>
+<div><dt>血量</dt><dd>+80</dd></div>
+<div><dt>魔量</dt><dd>+20</dd></div>
+<div><dt>回魔</dt><dd>+1</dd></div>
+<div><dt>近戰命中</dt><dd>+1</dd></div>
+<div><dt>遠攻命中</dt><dd>+1</dd></div>
+</dl></article>
+</div></section>
+<section id='tier-1'><h2>傳說變身卡 <small>4 張</small></h2><div class='cards'>
+<article><h3>傳說變身卡：屠龍者</h3><dl>
+<div><dt>力量</dt><dd>+2</dd></div>
+<div><dt>敏捷</dt><dd>+2</dd></div>
+<div><dt>體質</dt><dd>+2</dd></div>
+<div><dt>智力</dt><dd>+2</dd></div>
+<div><dt>精神</dt><dd>+2</dd></div>
+<div><dt>血量</dt><dd>+150</dd></div>
+<div><dt>魔量</dt><dd>+50</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+1</dd></div>
+<div><dt>近戰命中</dt><dd>+2</dd></div>
+<div><dt>遠攻傷害</dt><dd>+1</dd></div>
+<div><dt>遠攻命中</dt><dd>+2</dd></div>
+</dl></article>
+<article><h3>傳說變身卡：鋼鐵阿頓</h3><dl>
+<div><dt>力量</dt><dd>+2</dd></div>
+<div><dt>敏捷</dt><dd>+2</dd></div>
+<div><dt>體質</dt><dd>+2</dd></div>
+<div><dt>智力</dt><dd>+2</dd></div>
+<div><dt>精神</dt><dd>+2</dd></div>
+<div><dt>血量</dt><dd>+150</dd></div>
+<div><dt>魔量</dt><dd>+50</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+1</dd></div>
+<div><dt>近戰命中</dt><dd>+2</dd></div>
+<div><dt>遠攻傷害</dt><dd>+1</dd></div>
+<div><dt>遠攻命中</dt><dd>+2</dd></div>
+</dl></article>
+<article><h3>傳說變身卡：地獄死亡騎士</h3><dl>
+<div><dt>力量</dt><dd>+2</dd></div>
+<div><dt>敏捷</dt><dd>+2</dd></div>
+<div><dt>體質</dt><dd>+2</dd></div>
+<div><dt>智力</dt><dd>+2</dd></div>
+<div><dt>精神</dt><dd>+2</dd></div>
+<div><dt>血量</dt><dd>+150</dd></div>
+<div><dt>魔量</dt><dd>+50</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+1</dd></div>
+<div><dt>近戰命中</dt><dd>+2</dd></div>
+<div><dt>遠攻傷害</dt><dd>+1</dd></div>
+<div><dt>遠攻命中</dt><dd>+2</dd></div>
+</dl></article>
+<article><h3>傳說變身卡：赫發斯特斯</h3><dl>
+<div><dt>力量</dt><dd>+2</dd></div>
+<div><dt>敏捷</dt><dd>+2</dd></div>
+<div><dt>體質</dt><dd>+2</dd></div>
+<div><dt>智力</dt><dd>+2</dd></div>
+<div><dt>精神</dt><dd>+2</dd></div>
+<div><dt>血量</dt><dd>+150</dd></div>
+<div><dt>魔量</dt><dd>+50</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+1</dd></div>
+<div><dt>近戰命中</dt><dd>+2</dd></div>
+<div><dt>遠攻傷害</dt><dd>+1</dd></div>
+<div><dt>遠攻命中</dt><dd>+2</dd></div>
+</dl></article>
+</div></section>
+<section id='tier-2'><h2>神話變身卡 <small>19 張</small></h2><div class='cards'>
+<article><h3>神話變身卡：GX神話變形怪首領紫</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：神話公主</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：神話王族</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：神話槍手(女)</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：神話槍手(男)</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：神話龍鬥士</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：神話騎士女</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：神話騎士男</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：神話變形怪首領金</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：神話妖精女</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：神話妖精男</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：神話法師女</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：神話法師男</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：炙炎死亡騎士</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：男幻術師</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：神話神聖劍士</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：神話黑暗妖精女</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：神話黑暗妖精男</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+<article><h3>神話變身卡：神話黑暗騎士</h3><dl>
+<div><dt>力量</dt><dd>+3</dd></div>
+<div><dt>敏捷</dt><dd>+3</dd></div>
+<div><dt>體質</dt><dd>+3</dd></div>
+<div><dt>智力</dt><dd>+3</dd></div>
+<div><dt>精神</dt><dd>+3</dd></div>
+<div><dt>血量</dt><dd>+200</dd></div>
+<div><dt>魔量</dt><dd>+150</dd></div>
+<div><dt>回魔</dt><dd>+2</dd></div>
+<div><dt>近戰傷害</dt><dd>+3</dd></div>
+<div><dt>近戰命中</dt><dd>+3</dd></div>
+<div><dt>遠攻傷害</dt><dd>+3</dd></div>
+<div><dt>遠攻命中</dt><dd>+3</dd></div>
+</dl></article>
+</div></section>
+<section id='tier-3'><h2>覺醒變身卡 <small>5 張</small></h2><div class='cards'>
+<article><h3>覺醒變身卡：女騎士(斗篷)</h3><dl>
+<div><dt>力量</dt><dd>+4</dd></div>
+<div><dt>敏捷</dt><dd>+4</dd></div>
+<div><dt>體質</dt><dd>+4</dd></div>
+<div><dt>智力</dt><dd>+4</dd></div>
+<div><dt>精神</dt><dd>+4</dd></div>
+<div><dt>血量</dt><dd>+300</dd></div>
+<div><dt>魔量</dt><dd>+200</dd></div>
+<div><dt>回魔</dt><dd>+4</dd></div>
+<div><dt>近戰傷害</dt><dd>+4</dd></div>
+<div><dt>近戰命中</dt><dd>+4</dd></div>
+<div><dt>遠攻傷害</dt><dd>+4</dd></div>
+<div><dt>遠攻命中</dt><dd>+4</dd></div>
+</dl></article>
+<article><h3>覺醒變身卡：領主公主</h3><dl>
+<div><dt>力量</dt><dd>+4</dd></div>
+<div><dt>敏捷</dt><dd>+4</dd></div>
+<div><dt>體質</dt><dd>+4</dd></div>
+<div><dt>智力</dt><dd>+4</dd></div>
+<div><dt>精神</dt><dd>+4</dd></div>
+<div><dt>血量</dt><dd>+300</dd></div>
+<div><dt>魔量</dt><dd>+200</dd></div>
+<div><dt>回魔</dt><dd>+4</dd></div>
+<div><dt>近戰傷害</dt><dd>+4</dd></div>
+<div><dt>近戰命中</dt><dd>+4</dd></div>
+<div><dt>遠攻傷害</dt><dd>+4</dd></div>
+<div><dt>遠攻命中</dt><dd>+4</dd></div>
+</dl></article>
+<article><h3>覺醒變身卡：領主王子</h3><dl>
+<div><dt>力量</dt><dd>+4</dd></div>
+<div><dt>敏捷</dt><dd>+4</dd></div>
+<div><dt>體質</dt><dd>+4</dd></div>
+<div><dt>智力</dt><dd>+4</dd></div>
+<div><dt>精神</dt><dd>+4</dd></div>
+<div><dt>血量</dt><dd>+300</dd></div>
+<div><dt>魔量</dt><dd>+200</dd></div>
+<div><dt>回魔</dt><dd>+4</dd></div>
+<div><dt>近戰傷害</dt><dd>+4</dd></div>
+<div><dt>近戰命中</dt><dd>+4</dd></div>
+<div><dt>遠攻傷害</dt><dd>+4</dd></div>
+<div><dt>遠攻命中</dt><dd>+4</dd></div>
+</dl></article>
+<article><h3>覺醒變身卡：男騎士斗篷</h3><dl>
+<div><dt>力量</dt><dd>+4</dd></div>
+<div><dt>敏捷</dt><dd>+4</dd></div>
+<div><dt>體質</dt><dd>+4</dd></div>
+<div><dt>智力</dt><dd>+4</dd></div>
+<div><dt>精神</dt><dd>+4</dd></div>
+<div><dt>血量</dt><dd>+300</dd></div>
+<div><dt>魔量</dt><dd>+200</dd></div>
+<div><dt>回魔</dt><dd>+4</dd></div>
+<div><dt>近戰傷害</dt><dd>+4</dd></div>
+<div><dt>近戰命中</dt><dd>+4</dd></div>
+<div><dt>遠攻傷害</dt><dd>+4</dd></div>
+<div><dt>遠攻命中</dt><dd>+4</dd></div>
+</dl></article>
+<article><h3>覺醒變身卡：雷神</h3><dl>
+<div><dt>力量</dt><dd>+4</dd></div>
+<div><dt>敏捷</dt><dd>+4</dd></div>
+<div><dt>體質</dt><dd>+4</dd></div>
+<div><dt>智力</dt><dd>+4</dd></div>
+<div><dt>精神</dt><dd>+4</dd></div>
+<div><dt>血量</dt><dd>+300</dd></div>
+<div><dt>魔量</dt><dd>+200</dd></div>
+<div><dt>回魔</dt><dd>+4</dd></div>
+<div><dt>近戰傷害</dt><dd>+4</dd></div>
+<div><dt>近戰命中</dt><dd>+4</dd></div>
+<div><dt>遠攻傷害</dt><dd>+4</dd></div>
+<div><dt>遠攻命中</dt><dd>+4</dd></div>
+</dl></article>
+</div></section>
+<section id='tier-4'><h2>青變身卡 <small>3 張</small></h2><div class='cards'>
+<article><h3>青變身卡：格拉狄翁</h3><dl>
+<div><dt>力量</dt><dd>+5</dd></div>
+<div><dt>敏捷</dt><dd>+5</dd></div>
+<div><dt>體質</dt><dd>+5</dd></div>
+<div><dt>智力</dt><dd>+5</dd></div>
+<div><dt>精神</dt><dd>+5</dd></div>
+<div><dt>血量</dt><dd>+400</dd></div>
+<div><dt>魔量</dt><dd>+300</dd></div>
+<div><dt>回魔</dt><dd>+5</dd></div>
+<div><dt>近戰傷害</dt><dd>+5</dd></div>
+<div><dt>近戰命中</dt><dd>+5</dd></div>
+<div><dt>遠攻傷害</dt><dd>+5</dd></div>
+<div><dt>遠攻命中</dt><dd>+5</dd></div>
+<div><dt>魔攻</dt><dd>+5</dd></div>
+</dl></article>
+<article><h3>青變身卡：吉爾塔斯</h3><dl>
+<div><dt>力量</dt><dd>+5</dd></div>
+<div><dt>敏捷</dt><dd>+5</dd></div>
+<div><dt>體質</dt><dd>+5</dd></div>
+<div><dt>智力</dt><dd>+5</dd></div>
+<div><dt>精神</dt><dd>+5</dd></div>
+<div><dt>血量</dt><dd>+400</dd></div>
+<div><dt>魔量</dt><dd>+300</dd></div>
+<div><dt>回魔</dt><dd>+5</dd></div>
+<div><dt>近戰傷害</dt><dd>+5</dd></div>
+<div><dt>近戰命中</dt><dd>+5</dd></div>
+<div><dt>遠攻傷害</dt><dd>+5</dd></div>
+<div><dt>遠攻命中</dt><dd>+5</dd></div>
+<div><dt>魔攻</dt><dd>+5</dd></div>
+</dl></article>
+<article><h3>青變身卡：魔神朱武</h3><dl>
+<div><dt>力量</dt><dd>+5</dd></div>
+<div><dt>敏捷</dt><dd>+5</dd></div>
+<div><dt>體質</dt><dd>+5</dd></div>
+<div><dt>智力</dt><dd>+5</dd></div>
+<div><dt>精神</dt><dd>+5</dd></div>
+<div><dt>血量</dt><dd>+400</dd></div>
+<div><dt>魔量</dt><dd>+300</dd></div>
+<div><dt>回魔</dt><dd>+5</dd></div>
+<div><dt>近戰傷害</dt><dd>+5</dd></div>
+<div><dt>近戰命中</dt><dd>+5</dd></div>
+<div><dt>遠攻傷害</dt><dd>+5</dd></div>
+<div><dt>遠攻命中</dt><dd>+5</dd></div>
+<div><dt>魔攻</dt><dd>+5</dd></div>
+</dl></article>
+</div></section>
+<section id='tier-5'><h2>荒神變身卡 <small>1 張</small></h2><div class='cards'>
+<article><h3>荒神變身卡：真．死亡騎士</h3><dl>
+<div><dt>力量</dt><dd>+6</dd></div>
+<div><dt>敏捷</dt><dd>+6</dd></div>
+<div><dt>體質</dt><dd>+6</dd></div>
+<div><dt>智力</dt><dd>+6</dd></div>
+<div><dt>精神</dt><dd>+6</dd></div>
+<div><dt>血量</dt><dd>+500</dd></div>
+<div><dt>魔量</dt><dd>+400</dd></div>
+<div><dt>回魔</dt><dd>+10</dd></div>
+<div><dt>近戰傷害</dt><dd>+10</dd></div>
+<div><dt>近戰命中</dt><dd>+10</dd></div>
+<div><dt>遠攻傷害</dt><dd>+10</dd></div>
+<div><dt>遠攻命中</dt><dd>+10</dd></div>
+<div><dt>魔攻</dt><dd>+10</dd></div>
+<div><dt>經驗加成</dt><dd>+100</dd></div>
+<div><dt>武器傷害設定</dt><dd>50</dd></div>
+<div><dt>武器觸發設定</dt><dd>5</dd></div>
+</dl></article>
+</div></section>
+</main></body></html>
