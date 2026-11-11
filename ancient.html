@@ -433,7 +433,13 @@
 
     <!-- 各級能力由下方資料產生，數值為 0 的項目不顯示 -->
 
-    <div class="level-grid" id="ancient-levels"></div>
+    <div class="level-grid" id="ancient-levels">
+<section class='level-card' id='level-1' aria-labelledby='level-title-1'><div class='level-header'><h2 id='level-title-1'>古代魔石的祝福Lv.1</h2></div><dl class='ability-list'><div class='ability-row'><dt>血量</dt><dd>+10</dd></div><div class='ability-row'><dt>魔量</dt><dd>+5</dd></div><div class='ability-row'><dt>回魔</dt><dd>+1</dd></div><div class='ability-row'><dt>近戰傷害</dt><dd>+1</dd></div><div class='ability-row'><dt>遠距離傷害</dt><dd>+1</dd></div><div class='ability-row'><dt>魔法攻擊</dt><dd>+1</dd></div><div class='ability-row'><dt>經驗加成</dt><dd>+1％</dd></div></dl></section>
+<section class='level-card' id='level-2' aria-labelledby='level-title-2'><div class='level-header'><h2 id='level-title-2'>古代魔石的祝福Lv.2</h2></div><dl class='ability-list'><div class='ability-row'><dt>血量</dt><dd>+20</dd></div><div class='ability-row'><dt>魔量</dt><dd>+10</dd></div><div class='ability-row'><dt>回魔</dt><dd>+1</dd></div><div class='ability-row'><dt>近戰傷害</dt><dd>+1</dd></div><div class='ability-row'><dt>遠距離傷害</dt><dd>+1</dd></div><div class='ability-row'><dt>魔法攻擊</dt><dd>+1</dd></div><div class='ability-row'><dt>經驗加成</dt><dd>+3％</dd></div></dl></section>
+<section class='level-card' id='level-3' aria-labelledby='level-title-3'><div class='level-header'><h2 id='level-title-3'>古代魔石的祝福Lv.3</h2></div><dl class='ability-list'><div class='ability-row'><dt>血量</dt><dd>+30</dd></div><div class='ability-row'><dt>魔量</dt><dd>+15</dd></div><div class='ability-row'><dt>回魔</dt><dd>+1</dd></div><div class='ability-row'><dt>近戰傷害</dt><dd>+1</dd></div><div class='ability-row'><dt>遠距離傷害</dt><dd>+1</dd></div><div class='ability-row'><dt>魔法攻擊</dt><dd>+2</dd></div><div class='ability-row'><dt>經驗加成</dt><dd>+5％</dd></div></dl></section>
+<section class='level-card' id='level-4' aria-labelledby='level-title-4'><div class='level-header'><h2 id='level-title-4'>古代魔石的祝福Lv.4</h2></div><dl class='ability-list'><div class='ability-row'><dt>血量</dt><dd>+40</dd></div><div class='ability-row'><dt>魔量</dt><dd>+20</dd></div><div class='ability-row'><dt>回魔</dt><dd>+2</dd></div><div class='ability-row'><dt>近戰傷害</dt><dd>+2</dd></div><div class='ability-row'><dt>遠距離傷害</dt><dd>+2</dd></div><div class='ability-row'><dt>物理傷害減免</dt><dd>+1</dd></div><div class='ability-row'><dt>魔法攻擊</dt><dd>+2</dd></div><div class='ability-row'><dt>經驗加成</dt><dd>+7％</dd></div></dl></section>
+<section class='level-card' id='level-5' aria-labelledby='level-title-5'><div class='level-header'><h2 id='level-title-5'>古代魔石的祝福Lv.5</h2></div><dl class='ability-list'><div class='ability-row'><dt>血量</dt><dd>+50</dd></div><div class='ability-row'><dt>魔量</dt><dd>+25</dd></div><div class='ability-row'><dt>回魔</dt><dd>+3</dd></div><div class='ability-row'><dt>近戰傷害</dt><dd>+3</dd></div><div class='ability-row'><dt>遠距離傷害</dt><dd>+3</dd></div><div class='ability-row'><dt>物理傷害減免</dt><dd>+2</dd></div><div class='ability-row'><dt>魔法攻擊</dt><dd>+3</dd></div><div class='ability-row'><dt>經驗加成</dt><dd>+9％</dd></div></dl></section>
+</div>
 
     <noscript>
       <p class="panel">
@@ -473,95 +479,7 @@
        經驗加成使用 % 單位。
   ===================================== -->
 
-  <script>
-    (function () {
-      "use strict";
-
-      const abilities = [
-        { name: "血量", unit: "" },
-        { name: "魔量", unit: "" },
-        { name: "回魔", unit: "" },
-        { name: "近戰傷害", unit: "" },
-        { name: "遠距離傷害", unit: "" },
-        { name: "傷害減免", unit: "" },
-        { name: "魔法攻擊", unit: "" },
-        { name: "經驗加成", unit: "%" }
-      ];
-
-      const levels = [
-        // Lv1
-        [10, 5, 1, 1, 1, 0, 1, 1],
-
-        // Lv2
-        [20, 10, 1, 1, 1, 0, 1, 3],
-
-        // Lv3
-        [30, 15, 1, 1, 1, 0, 2, 5],
-
-        // Lv4
-        [40, 20, 2, 2, 2, 1, 2, 7],
-
-        // Lv5
-        [50, 25, 3, 3, 3, 2, 3, 9]
-      ];
-
-      const container = document.getElementById("ancient-levels");
-      const fragment = document.createDocumentFragment();
-
-      levels.forEach(function (values, index) {
-        const level = index + 1;
-
-        const card = document.createElement("section");
-        card.className = "level-card";
-        card.id = "level-" + level;
-        card.setAttribute(
-          "aria-labelledby",
-          "level-title-" + level
-        );
-
-        const header = document.createElement("div");
-        header.className = "level-header";
-
-        const title = document.createElement("h2");
-        title.id = "level-title-" + level;
-        title.textContent = "古代魔石的祝福";
-
-        const badge = document.createElement("span");
-        badge.className = "level-badge";
-        badge.textContent = "Lv" + level;
-
-        header.append(title, badge);
-
-        const list = document.createElement("dl");
-        list.className = "ability-list";
-
-        values.forEach(function (value, abilityIndex) {
-          if (value === 0) {
-            return;
-          }
-
-          const ability = abilities[abilityIndex];
-
-          const row = document.createElement("div");
-          row.className = "ability-row";
-
-          const name = document.createElement("dt");
-          name.textContent = ability.name;
-
-          const amount = document.createElement("dd");
-          amount.textContent = "+" + value + ability.unit;
-
-          row.append(name, amount);
-          list.appendChild(row);
-        });
-
-        card.append(header, list);
-        fragment.appendChild(card);
-      });
-
-      container.appendChild(fragment);
-    })();
-  </script>
+  
 
   <!-- =========================================
        【最下面特效區開始】
@@ -802,3 +720,4 @@
 
 <script src="reading-compact.js?v=20261107"></script></body>
 </html>
+
